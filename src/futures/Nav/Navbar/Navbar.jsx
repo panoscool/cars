@@ -9,8 +9,7 @@ import {
   Drawer,
   CssBaseline,
   MenuList,
-  MenuItem,
-  Button
+  MenuItem
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -21,6 +20,7 @@ import {
   Pages,
   ArrowForward
 } from "@material-ui/icons";
+import MenuItems from "../Menus/MenuItems";
 
 const drawerWidth = 240;
 
@@ -70,29 +70,6 @@ class Navbar extends Component {
   render() {
     const { classes, children } = this.props;
     const { mobileOpen } = this.state;
-
-    const topMenu = (
-      <Hidden smDown implementation="css">
-        <Button component={Link} to="/">
-          menu1
-        </Button>
-        <Button component={Link} to="/about">
-          menu2
-        </Button>
-        <Button component={Link} to="/projects">
-          menu3
-        </Button>
-        <Button component={Link} to="/work-together">
-          menu4
-        </Button>
-        <Button component={Link} to="/auth">
-          menu5
-        </Button>
-        <Button component={Link} to="/logout">
-          menu6
-        </Button>
-      </Hidden>
-    );
 
     const drawer = (
       <Fragment>
@@ -175,7 +152,7 @@ class Navbar extends Component {
         <CssBaseline />
 
         <div className={classes.root}>
-          <AppBar position="fixed" color="default" className={classes.appBar}>
+          <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
               <IconButton
                 color="inherit"
@@ -198,7 +175,7 @@ class Navbar extends Component {
                   logo
                 </Link>
               </Typography>
-              {topMenu}
+              <MenuItems />
             </Toolbar>
           </AppBar>
           <Hidden mdUp>
