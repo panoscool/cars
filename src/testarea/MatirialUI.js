@@ -1,40 +1,41 @@
 import React from "react";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import { green, blue } from "@material-ui/core/colors";
 
-function SimpleMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
+const ColorButton = withStyles(theme => ({
+  root: {
+    color: theme.palette.getContrastText(blue[500]),
+    backgroundColor: blue[700],
+    "&:hover": {
+      backgroundColor: blue[800]
+    }
   }
+}))(Button);
 
-  function handleClose() {
-    setAnchorEl(null);
+const useStyles = makeStyles(theme => ({
+  margin: {
+    margin: theme.spacing(1)
   }
+}));
+
+function CustomizedButtons() {
+  const classes = useStyles();
 
   return (
     <div>
-      <Button
-        aria-owns={anchorEl ? "simple-menu" : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
+      <ColorButton
+        variant="contained"
+        color="primary"
+        className={classes.margin}
       >
-        Open Menu
+        Custom CSS
+      </ColorButton>
+      <Button variant="contained" color="primary" className={classes.margin}>
+        Theme Provider
       </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </Menu>
     </div>
   );
 }
 
-export default SimpleMenu;
+export default CustomizedButtons;

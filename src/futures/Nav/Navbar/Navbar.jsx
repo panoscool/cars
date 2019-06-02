@@ -7,20 +7,12 @@ import {
   Typography,
   Hidden,
   Drawer,
-  CssBaseline,
-  MenuList,
-  MenuItem
+  CssBaseline
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  Menu,
-  Home,
-  Info,
-  Work,
-  Pages,
-  ArrowForward
-} from "@material-ui/icons";
-import MenuItems from "../Menus/MenuItems";
+import { Menu } from "@material-ui/icons";
+import ListMenu from "../Menus/ListMenu";
+import DrawerMenu from "../Menus/DrawerMenu";
 
 const drawerWidth = 240;
 
@@ -37,7 +29,8 @@ const styles = theme => ({
     flexGrow: 1
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
+    boxShadow: "none"
   },
   navIconHide: {
     [theme.breakpoints.up("md")]: {
@@ -71,82 +64,6 @@ class Navbar extends Component {
     const { classes, children } = this.props;
     const { mobileOpen } = this.state;
 
-    const drawer = (
-      <Fragment>
-        <Hidden smDown>
-          <div className={classes.toolbar} />
-        </Hidden>
-        <MenuList>
-          <MenuItem
-            component={Link}
-            to="/"
-            selected={"/"}
-            onClick={this.handleDrawerToggle}
-          >
-            <IconButton color="inherit">
-              <Home />
-            </IconButton>
-            menu1
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/about"
-            selected={"/about"}
-            onClick={this.handleDrawerToggle}
-          >
-            <IconButton color="inherit">
-              <Info />
-            </IconButton>
-            menu2
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/projects"
-            selected={"/projects"}
-            onClick={this.handleDrawerToggle}
-          >
-            <IconButton color="inherit">
-              <Pages />
-            </IconButton>
-            menu3
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/work-together"
-            selected={"/work-together"}
-            onClick={this.handleDrawerToggle}
-          >
-            <IconButton color="inherit">
-              <Work />
-            </IconButton>
-            menu4
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/auth"
-            selected={"/auth"}
-            onClick={this.handleDrawerToggle}
-          >
-            <IconButton color="inherit">
-              <ArrowForward />
-            </IconButton>
-            menu5
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/logout"
-            selected={"/logout"}
-            onClick={this.handleDrawerToggle}
-          >
-            <IconButton color="inherit">
-              <ArrowForward />
-            </IconButton>
-            menu6
-          </MenuItem>
-        </MenuList>
-      </Fragment>
-    );
-
     return (
       <Fragment>
         <CssBaseline />
@@ -156,7 +73,7 @@ class Navbar extends Component {
             <Toolbar>
               <IconButton
                 color="inherit"
-                aria-label="open drawer"
+                aria-label="open-drawer"
                 onClick={this.handleDrawerToggle}
                 className={classes.navIconHide}
               >
@@ -175,7 +92,7 @@ class Navbar extends Component {
                   logo
                 </Link>
               </Typography>
-              <MenuItems />
+              <ListMenu />
             </Toolbar>
           </AppBar>
           <Hidden mdUp>
@@ -190,7 +107,7 @@ class Navbar extends Component {
                 keepMounted: true // Better open performance on mobile.
               }}
             >
-              {drawer}
+              <DrawerMenu handleDrawerToggle={this.handleDrawerToggle} />
             </Drawer>
           </Hidden>
           <main className={classes.content}>

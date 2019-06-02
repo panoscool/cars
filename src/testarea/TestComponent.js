@@ -9,14 +9,13 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 
 function ElevationScroll(props) {
-  const { children, window } = props;
+  const { children } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0,
-    target: window ? window() : undefined
+    threshold: 0
   });
 
   return React.cloneElement(children, {
@@ -25,10 +24,7 @@ function ElevationScroll(props) {
 }
 
 ElevationScroll.propTypes = {
-  children: PropTypes.node.isRequired,
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
-  window: PropTypes.func
+  children: PropTypes.node.isRequired
 };
 
 export default function ElevateAppBar(props) {
@@ -45,7 +41,7 @@ export default function ElevateAppBar(props) {
       <Toolbar />
       <Container>
         <Box my={2}>
-          {[...new Array(12)]
+          {[...new Array(22)]
             .map(
               () => `Cras mattis consectetur purus sit amet fermentum.
 Cras justo odio, dapibus ac facilisis in, egestas eget quam.
