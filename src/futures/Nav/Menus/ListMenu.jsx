@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Hidden, Button, MenuItem, IconButton } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
@@ -42,62 +43,76 @@ const MenuItems = () => {
   return (
     <Hidden smDown implementation="css">
       <DropDown button="Search">
-        <MenuItem>
+        <MenuItem component={Link} to="/cars/search">
           <IconButton color="inherit">{icons.car}</IconButton>
           Cars
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/bikes/search">
           <IconButton color="inherit">{icons.bike}</IconButton>
           Bikes
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/commercial/search">
           <IconButton color="inherit">{icons.commercial}</IconButton>
           Commercial
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/campers/search">
           <IconButton color="inherit">{icons.camping}</IconButton>
           Campers
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/boats/search">
           <IconButton color="inherit">{icons.boat}</IconButton>
           Boats
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/bicycles/search">
           <IconButton color="inherit">{icons.bicycle}</IconButton>
           Bicycles
         </MenuItem>
       </DropDown>
       <DropDown button="Offer">
-        <MenuItem>
+        <MenuItem component={Link} to="/car/create">
           <IconButton color="inherit">{icons.car}</IconButton>Car
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/bike/create">
           <IconButton color="inherit">{icons.bike}</IconButton>Bike
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/commercial/create">
           <IconButton color="inherit">{icons.commercial}</IconButton>Commercial
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/camper/create">
           <IconButton color="inherit">{icons.camping}</IconButton>Camper
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/boat/create">
           <IconButton color="inherit">{icons.boat}</IconButton>Boat
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/bicycle/create">
           <IconButton color="inherit">{icons.bicycle}</IconButton>
           Bicycle
         </MenuItem>
       </DropDown>
       <DropDown button="Dealers">
-        <MenuItem>Dealers List</MenuItem>
-        <MenuItem>Map of Dealers</MenuItem>
-        <MenuItem>Catalog of Businesses</MenuItem>
+        <MenuItem component={Link} to="/dealers-list">
+          Dealers List
+        </MenuItem>
+        <MenuItem component={Link} to="/dealers-map">
+          Map of Dealers
+        </MenuItem>
+        <MenuItem component={Link} to="/business-catalog">
+          Catalog of Businesses
+        </MenuItem>
       </DropDown>
       <DropDown button="Informations">
-        <MenuItem>Contact</MenuItem>
-        <MenuItem>Market Guide</MenuItem>
-        <MenuItem>Users F.A.Q.</MenuItem>
-        <MenuItem>Dealers F.A.Q.</MenuItem>
+        <MenuItem component={Link} to="/contact">
+          Contact
+        </MenuItem>
+        <MenuItem component={Link} to="/market-guide">
+          Market Guide
+        </MenuItem>
+        <MenuItem component={Link} to="/users-faq">
+          Users F.A.Q.
+        </MenuItem>
+        <MenuItem component={Link} to="/dealers-faq">
+          Dealers F.A.Q.
+        </MenuItem>
       </DropDown>
 
       <ColorButton
