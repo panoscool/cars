@@ -5,19 +5,10 @@ import {
   Popper,
   Button,
   MenuList,
-  MenuItem,
   ClickAwayListener
 } from "@material-ui/core";
 
-const MenuListComposition = ({
-  button,
-  item1,
-  item2,
-  item3,
-  item4,
-  item5,
-  item6
-}) => {
+const MenuListComposition = ({ button, children }) => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -55,14 +46,7 @@ const MenuListComposition = ({
           >
             <Paper id="menu-list">
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList>
-                  <MenuItem onClick={handleClose}>{item1}</MenuItem>
-                  <MenuItem onClick={handleClose}>{item2}</MenuItem>
-                  <MenuItem onClick={handleClose}>{item3}</MenuItem>
-                  <MenuItem onClick={handleClose}>{item4}</MenuItem>
-                  <MenuItem onClick={handleClose}>{item5}</MenuItem>
-                  <MenuItem onClick={handleClose}>{item6}</MenuItem>
-                </MenuList>
+                <MenuList onClick={handleClose}>{children}</MenuList>
               </ClickAwayListener>
             </Paper>
           </Grow>

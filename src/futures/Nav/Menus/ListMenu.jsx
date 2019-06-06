@@ -1,6 +1,14 @@
 import React from "react";
-import { Hidden, Button } from "@material-ui/core";
+import { Hidden, Button, MenuItem, IconButton } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import {
+  DirectionsCar,
+  DirectionsBike,
+  LocalShipping,
+  DirectionsBoat,
+  Terrain,
+  Motorcycle
+} from "@material-ui/icons";
 import green from "@material-ui/core/colors/green";
 import DropDown from "./DropDown";
 
@@ -20,32 +28,77 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const icons = {
+  car: <DirectionsCar />,
+  bike: <Motorcycle />,
+  commercial: <LocalShipping />,
+  camping: <Terrain />,
+  boat: <DirectionsBoat />,
+  bicycle: <DirectionsBike />
+};
+
 const MenuItems = () => {
   const classes = useStyles();
   return (
     <Hidden smDown implementation="css">
-      <DropDown
-        button="Search"
-        item1="Cars"
-        item2="Bikes"
-        item3="Commercial"
-        item4="Campers"
-        item5="Boats"
-        item6="Bikes"
-      />
-      <DropDown button="Offer" item1="Car" item2="Bike" item3="Commercial" />
-      <DropDown
-        button="Dealers"
-        item1="Cars"
-        item2="Bikes"
-        item3="Commercial"
-      />
-      <DropDown
-        button="Informations"
-        item1="Cars"
-        item2="Bikes"
-        item3="Commercial"
-      />
+      <DropDown button="Search">
+        <MenuItem>
+          <IconButton color="inherit">{icons.car}</IconButton>
+          Cars
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.bike}</IconButton>
+          Bikes
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.commercial}</IconButton>
+          Commercial
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.camping}</IconButton>
+          Campers
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.boat}</IconButton>
+          Boats
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.bicycle}</IconButton>
+          Bicycles
+        </MenuItem>
+      </DropDown>
+      <DropDown button="Offer">
+        <MenuItem>
+          <IconButton color="inherit">{icons.car}</IconButton>Car
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.bike}</IconButton>Bike
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.commercial}</IconButton>Commercial
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.camping}</IconButton>Camper
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.boat}</IconButton>Boat
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">{icons.bicycle}</IconButton>
+          Bicycle
+        </MenuItem>
+      </DropDown>
+      <DropDown button="Dealers">
+        <MenuItem>Dealers List</MenuItem>
+        <MenuItem>Map of Dealers</MenuItem>
+        <MenuItem>Catalog of Businesses</MenuItem>
+      </DropDown>
+      <DropDown button="Informations">
+        <MenuItem>Contact</MenuItem>
+        <MenuItem>Market Guide</MenuItem>
+        <MenuItem>Users F.A.Q.</MenuItem>
+        <MenuItem>Dealers F.A.Q.</MenuItem>
+      </DropDown>
 
       <ColorButton
         variant="contained"
