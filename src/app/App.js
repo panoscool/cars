@@ -1,12 +1,19 @@
 import React from "react";
-import Navbar from "../futures/Nav/Navbar/Navbar";
-import HomePage from "../futures/Home/HomePage";
+import { Switch, Route } from "react-router-dom";
+import Navbar from "../features/Nav/Navbar/Navbar";
+import HomePage from "../features/Home/HomePage";
+import CarCreate from "../features/Classified/ClassifiedCreate/CarCreate";
+import TestComponent from "../testarea/TestComponent";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <HomePage />
+      <Switch>
+        <Route path="/car/create" component={CarCreate} />
+        <Route path="/testarea" component={TestComponent} />
+        <Route path="/" component={HomePage} />
+      </Switch>
     </div>
   );
 }
