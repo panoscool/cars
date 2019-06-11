@@ -1,32 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import MaterialUi from "./MatirialUI";
+import { carOfferType, carCategory } from "../app/data/CarAttributes";
 
 const TestComponent = () => {
-  const [values, setValues] = useState({
-    name: "Cat in the Hat",
+  const [selectValues, setSelectValues] = React.useState({
     age: "",
-    multiline: "Controlled",
-    currency: "EUR"
+    car: ""
   });
 
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+  // const handleChange = name => event => {
+  //   setValues({ ...values, [name]: event.target.value });
+  // };
 
-  // function handleChange(event) {
-  //   setValues(oldValues => ({
-  //     ...oldValues,
-  //     [event.target.name]: event.target.value
-  //   }));
-  // }
+  function handleChange(event) {
+    setSelectValues(oldValues => ({
+      ...oldValues,
+      [event.target.name]: event.target.value
+    }));
+  }
 
-  console.log(values);
+  console.log(selectValues);
   return (
-    <MaterialUi
-      values={values}
-      setValues={setValues}
-      handleChange={handleChange}
-    />
+    <div>
+      <MaterialUi
+        name="age"
+        values={selectValues.age}
+        something={carOfferType}
+        handleChange={handleChange}
+      />
+      <MaterialUi
+        name="car"
+        values={selectValues.car}
+        something={carCategory}
+        handleChange={handleChange}
+      />
+    </div>
   );
 };
 

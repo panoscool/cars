@@ -17,31 +17,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function OutlinedTextFields() {
+function OutlinedTextFields(props) {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    name: "Cat in the Hat",
-    age: "",
-    multiline: "Controlled",
-    currency: "EUR"
-  });
 
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
-
+  const { name, label, values, placeholder, handleChange } = props;
   return (
-    <form className={classes.container} noValidate autoComplete="off">
-      <TextField
-        id="outlined-dense"
-        label="Dense"
-        margin="dense"
-        variant="outlined"
-        fullWidth
-        onChange={handleChange}
-        className={clsx(classes.textField, classes.dense)}
-      />
-    </form>
+    <TextField
+      id="outlined-dense"
+      margin="dense"
+      variant="outlined"
+      name={name}
+      value={values}
+      label={label}
+      placeholder={placeholder}
+      fullWidth
+      onChange={handleChange}
+      className={clsx(classes.textField, classes.dense)}
+    />
   );
 }
 

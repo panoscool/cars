@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Loading from "../loading/Loading";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,6 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
+    minWidth: 120,
     width: "100%"
   },
   selectEmpty: {
@@ -24,62 +24,46 @@ const useStyles = makeStyles(theme => ({
 function SimpleSelect(props) {
   const classes = useStyles();
 
-  const inputLabel = useRef();
-  const [labelWidth, setLabelWidth] = useState(0);
-  useEffect(() => {
+  const inputLabel = React.useRef(null);
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  console.log(inputLabel);
+  const { name, values, attributes, label, required, handleChange } = props;
 
-  // const [values, setValues] = useState({
-  //   age: "",
-  //   name: "hai"
-  // });
-
-  // function handleChange(event) {
-  //   setValues(oldValues => ({
-  //     ...oldValues,
-  //     [event.target.name]: event.target.value
-  //   }));
-  // }
-  const { name, label, values, attributes, handleChange } = props;
-  if (!attributes) return <Loading />;
-  console.log(values);
   return (
-    <form className={classes.root} autoComplete="off">
-      <FormControl
-        required={props.required}
-        variant="outlined"
-        className={classes.formControl}
+    <FormControl
+      required={required}
+      variant="outlined"
+      className={classes.formControl}
+    >
+      <InputLabel ref={inputLabel} htmlFor="outlined-select">
+        {label}
+      </InputLabel>
+      <Select
+        value={values}
+        onChange={handleChange}
+        input={
+          <OutlinedInput
+            labelWidth={labelWidth}
+            name={name}
+            id="outlined-select"
+          />
+        }
       >
-        <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-          {label}
-        </InputLabel>
-        <Select
-          value={values}
-          onChange={handleChange}
-          input={
-            <OutlinedInput
-              labelWidth={labelWidth}
-              name={name}
-              id="outlined-age-simple"
-            />
-          }
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {attributes.map(attribute => {
-            return (
-              <MenuItem key={attribute.key} value={attribute.key}>
-                {attribute.value}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-    </form>
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        {attributes.map(attribute => {
+          return (
+            <MenuItem key={attribute.key} value={attribute.key}>
+              {attribute.value}
+            </MenuItem>
+          );
+        })}
+      </Select>
+    </FormControl>
   );
 }
 

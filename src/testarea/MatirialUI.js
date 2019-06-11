@@ -1,264 +1,285 @@
 import React from "react";
+import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import Input from "@material-ui/core/Input";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import FilledInput from "@material-ui/core/FilledInput";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
+
+const currencies = [
+  {
+    value: "USD",
+    label: "$"
+  },
+  {
+    value: "EUR",
+    label: "€"
+  },
+  {
+    value: "BTC",
+    label: "฿"
+  },
+  {
+    value: "JPY",
+    label: "¥"
+  }
+];
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  container: {
     display: "flex",
     flexWrap: "wrap"
   },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
-  selectEmpty: {
+  dense: {
     marginTop: theme.spacing(2)
+  },
+  menu: {
+    width: 200
   }
 }));
 
-export default function SimpleSelect() {
+export default function OutlinedTextFields() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
+    name: "Cat in the Hat",
     age: "",
-    name: "hai"
+    multiline: "Controlled",
+    currency: "EUR"
   });
 
-  const inputLabel = React.useRef(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth);
-  }, []);
-
-  function handleChange(event) {
-    setValues(oldValues => ({
-      ...oldValues,
-      [event.target.name]: event.target.value
-    }));
-  }
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value });
+  };
 
   return (
-    <form className={classes.root} autoComplete="off">
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-simple">Age</InputLabel>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          inputProps={{
-            name: "age",
-            id: "age-simple"
-          }}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-helper">Age</InputLabel>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          input={<Input name="age" id="age-helper" />}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <FormHelperText>Some important helper text</FormHelperText>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          displayEmpty
-          name="age"
-          className={classes.selectEmpty}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <FormHelperText>Without label</FormHelperText>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel shrink htmlFor="age-label-placeholder">
-          Age
-        </InputLabel>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          input={<Input name="age" id="age-label-placeholder" />}
-          displayEmpty
-          name="age"
-          className={classes.selectEmpty}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <FormHelperText>Label + placeholder</FormHelperText>
-      </FormControl>
-      <FormControl className={classes.formControl} disabled>
-        <InputLabel htmlFor="name-disabled">Name</InputLabel>
-        <Select
-          value={values.name}
-          onChange={handleChange}
-          input={<Input name="name" id="name-disabled" />}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="hai">Hai</MenuItem>
-          <MenuItem value="olivier">Olivier</MenuItem>
-          <MenuItem value="kevin">Kevin</MenuItem>
-        </Select>
-        <FormHelperText>Disabled</FormHelperText>
-      </FormControl>
-      <FormControl className={classes.formControl} error>
-        <InputLabel htmlFor="name-error">Name</InputLabel>
-        <Select
-          value={values.name}
-          onChange={handleChange}
-          name="name"
-          renderValue={value => `⚠️  - ${value}`}
-          input={<Input id="name-error" />}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="hai">Hai</MenuItem>
-          <MenuItem value="olivier">Olivier</MenuItem>
-          <MenuItem value="kevin">Kevin</MenuItem>
-        </Select>
-        <FormHelperText>Error</FormHelperText>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="name-readonly">Name</InputLabel>
-        <Select
-          value={values.name}
-          onChange={handleChange}
-          input={<Input name="name" id="name-readonly" readOnly />}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="hai">Hai</MenuItem>
-          <MenuItem value="olivier">Olivier</MenuItem>
-          <MenuItem value="kevin">Kevin</MenuItem>
-        </Select>
-        <FormHelperText>Read only</FormHelperText>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-auto-width">Age</InputLabel>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          input={<Input name="age" id="age-auto-width" />}
-          autoWidth
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <FormHelperText>Auto width</FormHelperText>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          name="age"
-          displayEmpty
-          className={classes.selectEmpty}
-        >
-          <MenuItem value="" disabled>
-            Placeholder
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <FormHelperText>Placeholder</FormHelperText>
-      </FormControl>
-      <FormControl required className={classes.formControl}>
-        <InputLabel htmlFor="age-required">Age</InputLabel>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          name="age"
-          inputProps={{
-            id: "age-required"
-          }}
-          className={classes.selectEmpty}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        <FormHelperText>Required</FormHelperText>
-      </FormControl>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-          Age
-        </InputLabel>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          input={
-            <OutlinedInput
-              labelWidth={labelWidth}
-              name="age"
-              id="outlined-age-simple"
-            />
+    <form className={classes.container} noValidate autoComplete="off">
+      <TextField
+        id="outlined-name"
+        label="Name"
+        className={classes.textField}
+        value={values.name}
+        onChange={handleChange("name")}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-uncontrolled"
+        label="Uncontrolled"
+        defaultValue="foo"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        required
+        id="outlined-required"
+        label="Required"
+        defaultValue="Hello World"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        error
+        id="outlined-error"
+        label="Error"
+        defaultValue="Hello World"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        disabled
+        id="outlined-disabled"
+        label="Disabled"
+        defaultValue="Hello World"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-email-input"
+        label="Email"
+        className={classes.textField}
+        type="email"
+        name="email"
+        autoComplete="email"
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-password-input"
+        label="Password"
+        className={classes.textField}
+        type="password"
+        autoComplete="current-password"
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-read-only-input"
+        label="Read Only"
+        defaultValue="Hello World"
+        className={classes.textField}
+        margin="normal"
+        InputProps={{
+          readOnly: true
+        }}
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-dense"
+        label="Dense"
+        className={clsx(classes.textField, classes.dense)}
+        margin="dense"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-dense-multiline"
+        label="Dense multiline"
+        className={clsx(classes.textField, classes.dense)}
+        margin="dense"
+        variant="outlined"
+        multiline
+        rowsMax="4"
+      />
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Multiline"
+        multiline
+        rowsMax="4"
+        value={values.multiline}
+        onChange={handleChange("multiline")}
+        className={classes.textField}
+        margin="normal"
+        helperText="hello"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-multiline-static"
+        label="Multiline"
+        multiline
+        rows="4"
+        defaultValue="Default Value"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-helperText"
+        label="Helper text"
+        defaultValue="Default Value"
+        className={classes.textField}
+        helperText="Some important text"
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-with-placeholder"
+        label="With placeholder"
+        placeholder="Placeholder"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-textarea"
+        label="Multiline Placeholder"
+        placeholder="Placeholder"
+        multiline
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-number"
+        label="Number"
+        value={values.age}
+        onChange={handleChange("age")}
+        type="number"
+        className={classes.textField}
+        InputLabelProps={{
+          shrink: true
+        }}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-search"
+        label="Search field"
+        type="search"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-select-currency"
+        select
+        label="Select"
+        className={classes.textField}
+        value={values.currency}
+        onChange={handleChange("currency")}
+        SelectProps={{
+          MenuProps: {
+            className: classes.menu
           }
-        >
-          <MenuItem value="">
-            <em>None</em>
+        }}
+        helperText="Please select your currency"
+        margin="normal"
+        variant="outlined"
+      >
+        {currencies.map(option => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl variant="filled" className={classes.formControl}>
-        <InputLabel htmlFor="filled-age-simple">Age</InputLabel>
-        <Select
-          value={values.age}
-          onChange={handleChange}
-          input={<FilledInput name="age" id="filled-age-simple" />}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
+        ))}
+      </TextField>
+      <TextField
+        id="outlined-select-currency-native"
+        select
+        label="Native select"
+        className={classes.textField}
+        value={values.currency}
+        onChange={handleChange("currency")}
+        SelectProps={{
+          native: true,
+          MenuProps: {
+            className: classes.menu
+          }
+        }}
+        helperText="Please select your currency"
+        margin="normal"
+        variant="outlined"
+      >
+        {currencies.map(option => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </TextField>
+      <TextField
+        id="outlined-full-width"
+        label="Label"
+        style={{ margin: 8 }}
+        placeholder="Placeholder"
+        helperText="Full width!"
+        fullWidth
+        margin="normal"
+        variant="outlined"
+        InputLabelProps={{
+          shrink: true
+        }}
+      />
+      <TextField
+        id="outlined-bare"
+        className={classes.textField}
+        defaultValue="Bare"
+        margin="normal"
+        variant="outlined"
+        inputProps={{ "aria-label": "bare" }}
+      />
     </form>
   );
 }

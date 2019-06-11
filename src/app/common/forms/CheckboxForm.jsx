@@ -1,27 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-function Checkboxes() {
-  const [state, setState] = useState({
-    checkedA: true,
-    checkedB: true,
-    checkedF: true
-  });
-
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.checked });
-  };
-
+function Checkboxes(props) {
+  const { name, label, values, handleChange } = props;
   return (
-    <div>
-      <Checkbox
-        onChange={handleChange("checkedA")}
-        value="checkedA"
-        inputProps={{
-          "aria-label": "primary checkbox"
-        }}
-      />
-    </div>
+    <FormControlLabel
+      label={label}
+      labelPlacement="start"
+      control={
+        <Checkbox
+          name={name}
+          value={values}
+          onChange={handleChange}
+          color="primary"
+          inputProps={{
+            "aria-label": "primary checkbox"
+          }}
+        />
+      }
+    />
   );
 }
 
