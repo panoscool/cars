@@ -14,19 +14,26 @@ import SelectForm from "../../../app/common/forms/SelectForm";
 import InputForm from "../../../app/common/forms/InputForm";
 import CheckboxForm from "../../../app/common/forms/CheckboxForm";
 import {
-  carOfferType,
+  offerType,
+  classifiedCondition,
+  previousOwners,
+  adDuration
+} from "../../../app/data/SharedAttributes";
+import {
   carCategory,
   carManufacturer,
-  carCondition,
   carModel,
-  carOwners,
   carTransmission,
   carFuelType,
   carDriveType,
   carEuroStandard,
   carColor,
   carInteriorColor,
-  carInteriorType
+  carInteriorType,
+  carDoors,
+  carSeats,
+  carAirbags,
+  carPlate
 } from "../../../app/data/CarAttributes";
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +65,10 @@ const ClassifiedCreate = () => {
     efficiencyCity: "",
     efficiencyMotorway: "",
     efficiencyMixed: "",
-    price: ""
+    price: "",
+    description: "",
+    youTube: "",
+    password: ""
   });
 
   const handleInputChange = event => {
@@ -74,11 +84,17 @@ const ClassifiedCreate = () => {
     owners: "",
     transmission: "",
     fuel: "",
-    drive: "",
+    driveType: "",
     standard: "",
     color: "",
     interiorColor: "",
-    interiorType: ""
+    interiorType: "",
+    doors: "",
+    seats: "",
+    plate: "",
+    airbags: "",
+    rimSize: "",
+    duration: ""
   });
 
   const handleSelectChange = event => {
@@ -116,15 +132,31 @@ const ClassifiedCreate = () => {
             </Typography>
             <Divider variant="fullWidth" />
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
                 <SelectForm
                   required
                   name="offer"
                   label="Offer Type"
                   values={selectValues.offer}
-                  attributes={carOfferType}
+                  attributes={offerType}
                   handleChange={handleSelectChange}
                 />
+                <SelectForm
+                  required
+                  name="condition"
+                  label="Condition"
+                  values={selectValues.condition}
+                  attributes={classifiedCondition}
+                  handleChange={handleSelectChange}
+                />
+                <CheckboxForm
+                  name="crashed"
+                  label="Crashed"
+                  value={state.crashed}
+                  handleChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
                 <SelectForm
                   required
                   name="category"
@@ -141,29 +173,6 @@ const ClassifiedCreate = () => {
                   attributes={carManufacturer}
                   handleChange={handleSelectChange}
                 />
-                <InputForm
-                  name="variant"
-                  label="Variant"
-                  placeholder="eg. GTI"
-                  values={inputValues.variant}
-                  handleChange={handleInputChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <SelectForm
-                  required
-                  name="condition"
-                  label="Condition"
-                  values={selectValues.condition}
-                  attributes={carCondition}
-                  handleChange={handleSelectChange}
-                />
-                <CheckboxForm
-                  name="crashed"
-                  label="Crashed"
-                  value={state.crashed}
-                  handleChange={handleChange}
-                />
                 <SelectForm
                   required
                   name="model"
@@ -172,12 +181,21 @@ const ClassifiedCreate = () => {
                   attributes={carModel}
                   handleChange={handleSelectChange}
                 />
+              </Grid>
+              <Grid item xs={12} sm={4}>
                 <SelectForm
                   name="owners"
                   label="Previous owners"
                   values={selectValues.owners}
-                  attributes={carOwners}
+                  attributes={previousOwners}
                   handleChange={handleSelectChange}
+                />
+                <InputForm
+                  name="variant"
+                  label="Variant"
+                  placeholder="eg. GTI"
+                  values={inputValues.variant}
+                  handleChange={handleInputChange}
                 />
               </Grid>
             </Grid>
@@ -186,14 +204,14 @@ const ClassifiedCreate = () => {
             </Typography>
             <Divider variant="fullWidth" />
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <InputForm
+              <Grid item xs={12} sm={4}>
+                <SelectForm
                   required
-                  name="mileages"
-                  label="Mileages"
-                  placeholder="km"
-                  values={inputValues.mileages}
-                  handleChange={handleInputChange}
+                  name="transmission"
+                  label="Transmission"
+                  values={selectValues.transmission}
+                  attributes={carTransmission}
+                  handleChange={handleSelectChange}
                 />
                 <InputForm
                   required
@@ -203,19 +221,30 @@ const ClassifiedCreate = () => {
                   values={inputValues.engine}
                   handleChange={handleInputChange}
                 />
+                <InputForm
+                  required
+                  name="power"
+                  label="Power"
+                  placeholder="bhp"
+                  values={inputValues.power}
+                  handleChange={handleInputChange}
+                />
+                <InputForm
+                  required
+                  name="mileages"
+                  label="Mileages"
+                  placeholder="km"
+                  values={inputValues.mileages}
+                  handleChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
                 <SelectForm
                   required
-                  name="transmission"
-                  label="Transmission"
-                  values={selectValues.transmission}
-                  attributes={carTransmission}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="standard"
-                  label="Euro Standar"
-                  values={selectValues.standard}
-                  attributes={carEuroStandard}
+                  name="fuel"
+                  label="Fuel Type"
+                  values={selectValues.fuel}
+                  attributes={carFuelType}
                   handleChange={handleSelectChange}
                 />
                 <InputForm
@@ -232,29 +261,27 @@ const ClassifiedCreate = () => {
                   values={inputValues.efficiencyMotorway}
                   handleChange={handleInputChange}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <SelectForm
-                  required
-                  name="fuel"
-                  label="Fuel Type"
-                  values={selectValues.fuel}
-                  attributes={carFuelType}
-                  handleChange={handleSelectChange}
-                />
                 <InputForm
-                  required
-                  name="power"
-                  label="Power"
-                  placeholder="bhp"
-                  values={inputValues.power}
+                  name="efficiencyMixed"
+                  label="Fuel Efficiency Mixed"
+                  placeholder="l/100km"
+                  values={inputValues.efficiencyMixed}
                   handleChange={handleInputChange}
                 />
+              </Grid>
+              <Grid item xs={12} sm={4}>
                 <SelectForm
-                  name="drive"
+                  name="driveType"
                   label="Drive Type"
-                  values={selectValues.drive}
+                  values={selectValues.driveType}
                   attributes={carDriveType}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
+                  name="standard"
+                  label="Euro Standar"
+                  values={selectValues.standard}
+                  attributes={carEuroStandard}
                   handleChange={handleSelectChange}
                 />
                 <InputForm
@@ -264,13 +291,6 @@ const ClassifiedCreate = () => {
                   values={inputValues.emissions}
                   handleChange={handleInputChange}
                 />
-                <InputForm
-                  name="efficiencyMixed"
-                  label="Fuel Efficiency Mixed"
-                  placeholder="l/100km"
-                  values={inputValues.efficiencyMixed}
-                  handleChange={handleInputChange}
-                />
               </Grid>
             </Grid>
             <Typography className={classes.title} variant="h6" gutterBottom>
@@ -278,7 +298,39 @@ const ClassifiedCreate = () => {
             </Typography>
             <Divider variant="fullWidth" />
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
+                <SelectForm
+                  required
+                  name="doors"
+                  label="Doors"
+                  values={selectValues.doors}
+                  attributes={carDoors}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
+                  required
+                  name="seats"
+                  label="Seats"
+                  values={selectValues.seats}
+                  attributes={carSeats}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
+                  required
+                  name="plate"
+                  label="Plate"
+                  values={selectValues.plate}
+                  attributes={carPlate}
+                  handleChange={handleSelectChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <CheckboxForm
+                  name="metallic"
+                  label="Metallic"
+                  value={state.metallic}
+                  handleChange={handleChange}
+                />
                 <SelectForm
                   required
                   name="color"
@@ -295,17 +347,25 @@ const ClassifiedCreate = () => {
                   handleChange={handleSelectChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <CheckboxForm
-                  name="metallic"
-                  label="Metallic"
-                  value={state.metallic}
-                  handleChange={handleChange}
-                />
+              <Grid item xs={12} sm={4}>
                 <SelectForm
                   name="interiorType"
                   label="Interior Type"
                   values={selectValues.interiorType}
+                  attributes={carInteriorType}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
+                  name="airbags"
+                  label="Airbags"
+                  values={selectValues.airbags}
+                  attributes={carAirbags}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
+                  name="rimSize"
+                  label="Rim size (inches)"
+                  values={selectValues.rimSize}
                   attributes={carInteriorType}
                   handleChange={handleSelectChange}
                 />
@@ -338,6 +398,26 @@ const ClassifiedCreate = () => {
               Classified Description
             </Typography>
             <Divider variant="fullWidth" />
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <InputForm
+                  multiline
+                  rows={5}
+                  name="description"
+                  label="Description"
+                  placeholder="No phones, emails or links are allowed in the description. Otherwise the classified will be deleted."
+                  values={inputValues.description}
+                  handleChange={handleInputChange}
+                />
+                <InputForm
+                  name="youTube"
+                  label="YouTube"
+                  values={inputValues.youTube}
+                  handleChange={handleInputChange}
+                />
+              </Grid>
+            </Grid>
+
             <Typography className={classes.title} variant="h6" gutterBottom>
               Extras
             </Typography>
@@ -346,6 +426,27 @@ const ClassifiedCreate = () => {
               Ad Options
             </Typography>
             <Divider variant="fullWidth" />
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <SelectForm
+                  required
+                  name="duration"
+                  label="Ad Duration"
+                  values={selectValues.duration}
+                  attributes={adDuration}
+                  handleChange={handleSelectChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <InputForm
+                  required
+                  name="password"
+                  label="Password"
+                  values={inputValues.password}
+                  handleChange={handleInputChange}
+                />
+              </Grid>
+            </Grid>
             <Typography className={classes.title} variant="h6" gutterBottom>
               Contact Details
             </Typography>

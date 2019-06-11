@@ -1,9 +1,3 @@
-export const carOfferType = [
-  { key: "sale", value: "Sale" },
-  { key: "wanted", value: "Wanted" },
-  { key: "rent", value: "Rent" }
-];
-
 export const carCategory = [
   { key: "4x4/jeep/suv", value: "4X4/Jeep/SUV" },
   { key: "compact/hatchback", value: "Compact/Hatchback" },
@@ -28,29 +22,11 @@ export const carManufacturer = [
   { key: "ferrari", value: "Ferrari" }
 ];
 
-export const carCondition = [
-  { key: "used", value: "Used" },
-  { key: "new", value: "New" }
-];
-
 export const carModel = [
   { key: "eighty", value: "80" },
   { key: "ninety", value: "90" },
   { key: "hundred", value: "100" },
   { key: "two-hundred", value: "200" }
-];
-
-export const carOwners = [
-  { key: "zero-0", value: "0" },
-  { key: "one-1", value: "1" },
-  { key: "two-2", value: "2" },
-  { key: "three-3", value: "3" },
-  { key: "four-4", value: "4" },
-  { key: "five-5", value: "5" },
-  { key: "six-6", value: "6" },
-  { key: "seven-7", value: "7" },
-  { key: "eight-8", value: "8" },
-  { key: "nine-9", value: "9" }
 ];
 
 export const carTransmission = [
@@ -114,4 +90,47 @@ export const carInteriorType = [
   { key: "part-leather", value: "Part Leather" },
   { key: "velour", value: "Velour" },
   { key: "other", value: "Other" }
+];
+
+export const carDoors = [
+  { key: "two-2", value: "2" },
+  { key: "three-3", value: "3" },
+  { key: "four-4", value: "4" },
+  { key: "five-5", value: "5" },
+  { key: "six-6", value: "6" },
+  { key: "seven-7", value: "7" }
+];
+
+export const carSeats = [
+  { key: "one-1", value: "1" },
+  { key: "two-2", value: "2" },
+  { key: "three-3", value: "3" },
+  { key: "four-4", value: "4" },
+  { key: "five-5", value: "5" },
+  { key: "six-6", value: "6" },
+  { key: "seven-7", value: "7" },
+  { key: "eight-8", value: "8" },
+  { key: "nine-9", value: "9" },
+  { key: "ten-10", value: "10" },
+  { key: "eleven-11", value: "11" }
+];
+
+export const carAirbags = [
+  { key: "zero-0", value: "0" },
+  { key: "one-1", value: "1" },
+  { key: "two-2", value: "2" },
+  { key: "three-3", value: "3" },
+  { key: "four-4", value: "4" },
+  { key: "five-5", value: "5" },
+  { key: "six-6", value: "6" },
+  { key: "seven-7", value: "7" },
+  { key: "eight-8", value: "8" },
+  { key: "nine-9", value: "9" },
+  { key: "ten-10", value: "10" }
+];
+
+export const carPlate = [
+  { key: "odd", value: "Odd" },
+  { key: "even", value: "Even" },
+  { key: "unknown", value: "Unknown" }
 ];

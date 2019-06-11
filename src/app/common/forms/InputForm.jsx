@@ -20,7 +20,17 @@ const useStyles = makeStyles(theme => ({
 function OutlinedTextFields(props) {
   const classes = useStyles();
 
-  const { name, label, values, placeholder, required, handleChange } = props;
+  const {
+    name,
+    label,
+    values,
+    placeholder,
+    type,
+    required,
+    multiline,
+    rows,
+    handleChange
+  } = props;
   return (
     <TextField
       id="outlined-dense"
@@ -30,7 +40,10 @@ function OutlinedTextFields(props) {
       name={name}
       value={values}
       label={label}
+      type={type}
       placeholder={placeholder}
+      multiline={multiline}
+      rows={rows}
       fullWidth
       onChange={handleChange}
       className={clsx(classes.textField, classes.dense)}
