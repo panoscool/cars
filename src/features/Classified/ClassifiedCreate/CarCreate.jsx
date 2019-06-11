@@ -16,7 +16,7 @@ import CheckboxForm from "../../../app/common/forms/CheckboxForm";
 import {
   carOfferType,
   carCategory,
-  carMaker,
+  carManufacturer,
   carCondition,
   carModel,
   carOwners,
@@ -51,7 +51,7 @@ const ClassifiedCreate = () => {
 
   const [inputValues, setInputValues] = useState({
     variant: "",
-    mileage: "",
+    mileages: "",
     engine: "",
     power: "",
     emissions: "",
@@ -68,7 +68,7 @@ const ClassifiedCreate = () => {
   const [selectValues, setSelectValues] = useState({
     offer: "",
     category: "",
-    make: "",
+    manufacturer: "",
     condition: "",
     model: "",
     owners: "",
@@ -135,10 +135,10 @@ const ClassifiedCreate = () => {
                 />
                 <SelectForm
                   required
-                  name="make"
-                  label="Make"
-                  values={selectValues.make}
-                  attributes={carMaker}
+                  name="manufacturer"
+                  label="Manufacturer"
+                  values={selectValues.manufacturer}
+                  attributes={carManufacturer}
                   handleChange={handleSelectChange}
                 />
                 <InputForm
@@ -189,10 +189,10 @@ const ClassifiedCreate = () => {
               <Grid item xs={12} sm={6}>
                 <InputForm
                   required
-                  name="mileage"
-                  label="Mileage"
+                  name="mileages"
+                  label="Mileages"
                   placeholder="km"
-                  values={inputValues.mileage}
+                  values={inputValues.mileages}
                   handleChange={handleInputChange}
                 />
                 <InputForm

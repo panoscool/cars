@@ -19,7 +19,7 @@ export const carCategory = [
   { key: "other", value: "Other" }
 ];
 
-export const carMaker = [
+export const carManufacturer = [
   { key: "audi", value: "Audi" },
   { key: "bmw", value: "BMW" },
   { key: "toyota", value: "Toyota" },
