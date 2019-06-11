@@ -57,7 +57,8 @@ const ClassifiedCreate = () => {
     emissions: "",
     efficiencyCity: "",
     efficiencyMotorway: "",
-    efficiencyMixed: ""
+    efficiencyMixed: "",
+    price: ""
   });
 
   const handleInputChange = event => {
@@ -213,7 +214,7 @@ const ClassifiedCreate = () => {
                 <SelectForm
                   name="standard"
                   label="Euro Standar"
-                  values={selectValues.transmission}
+                  values={selectValues.standard}
                   attributes={carEuroStandard}
                   handleChange={handleSelectChange}
                 />
@@ -350,6 +351,7 @@ const ClassifiedCreate = () => {
             </Typography>
             <Divider variant="fullWidth" />
             <Button
+              type="submit"
               variant="contained"
               color="primary"
               className={classes.button}
