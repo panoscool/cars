@@ -33,7 +33,8 @@ import {
   carDoors,
   carSeats,
   carAirbags,
-  carPlate
+  carPlate,
+  carRimSize
 } from "../../../app/data/CarAttributes";
 
 const useStyles = makeStyles(theme => ({
@@ -68,7 +69,11 @@ const ClassifiedCreate = () => {
     price: "",
     description: "",
     youTube: "",
-    password: ""
+    password: "",
+    userName: '',
+    email: '',
+    phone1: '',
+    phone2: ''
   });
 
   const handleInputChange = event => {
@@ -366,7 +371,7 @@ const ClassifiedCreate = () => {
                   name="rimSize"
                   label="Rim size (inches)"
                   values={selectValues.rimSize}
-                  attributes={carInteriorType}
+                  attributes={carRimSize}
                   handleChange={handleSelectChange}
                 />
               </Grid>
@@ -451,6 +456,41 @@ const ClassifiedCreate = () => {
               Contact Details
             </Typography>
             <Divider variant="fullWidth" />
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <InputForm
+                  required
+                  name="userName"
+                  label="Name"
+                  values={inputValues.userName}
+                  handleChange={handleInputChange}
+                />
+                <InputForm
+                  required
+                  type="tel"
+                  name="phone1"
+                  label="Phone 1"
+                  values={inputValues.phone1}
+                  handleChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <InputForm
+                type="email"
+                  name="email"
+                  label="Email"
+                  values={inputValues.email}
+                  handleChange={handleInputChange}
+                />
+                <InputForm
+                  type="tel"
+                  name="phone2"
+                  label="Phone 2"
+                  values={inputValues.phone2}
+                  handleChange={handleInputChange}
+                />
+              </Grid>
+              </Grid>
             <Button
               type="submit"
               variant="contained"

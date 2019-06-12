@@ -134,3 +134,27 @@ export const carPlate = [
   { key: "even", value: "Even" },
   { key: "unknown", value: "Unknown" }
 ];
+
+export const carRimSize = [
+  { key: "ten-10", value: "10" },
+  { key: "eleven-11", value: "11" },
+  { key: "twelve-12", value: "12" },
+  { key: "thirteen-13", value: "13" },
+  { key: "fourteen-14", value: "14" },
+  { key: "fifteen-15", value: "15" },
+  { key: "sixteen-16", value: "16" },
+  { key: "seventeen-17", value: "17" },
+  { key: "eighteen-18", value: "18" },
+  { key: "nineteen-19", value: "19" },
+  { key: "twenty-20", value: "20" },
+  { key: "twenty-one-21", value: "21" },
+  { key: "twenty-two-22", value: "22" },
+  { key: "twenty-three-23", value: "23" },
+  { key: "twenty-four-24", value: "24" },
+  { key: "twenty-five-25", value: "25" },
+  { key: "twenty-six-26", value: "26" },
+  { key: "twenty-seven-27", value: "27" },
+  { key: "twenty-eighth-28", value: "28" },
+  { key: "twenty-nine-29", value: "29" },
+  { key: "thirty-30", value: "30" }
+]
