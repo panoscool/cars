@@ -1,0 +1,17 @@
+{
+  "carManufacturer": [
+    { "key": "audi", "value": "Audi" },
+    { "key": "bmw", "value": "BMW" },
+    { "key": "toyota", "value": "Toyota" },
+    { "key": "honda", "value": "Honda" },
+    { "key": "fiat", "value": "Fiat" },
+    { "key": "ferrari", "value": "Ferrari" }
+  ],
+
+  "carModel": [
+    { "key": "eighty", "value": "80" },
+    { "key": "ninety", "value": "90" },
+    { "key": "hundred", "value": "100" },
+    { "key": "two-hundred", "value": "200" }
+  ]
+}

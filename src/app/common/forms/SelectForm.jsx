@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -18,6 +19,9 @@ const useStyles = makeStyles(theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
+  },
+  dense: {
+    marginTop: theme.spacing(2)
   }
 }));
 
@@ -35,8 +39,9 @@ function SimpleSelect(props) {
   return (
     <FormControl
       required={required}
+      margin="dense" 
       variant="outlined"
-      className={classes.formControl}
+      className={clsx(classes.formControl, classes.dense)}
     >
       <InputLabel ref={inputLabel} htmlFor="outlined-select">
         {label}

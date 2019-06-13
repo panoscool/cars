@@ -18,11 +18,9 @@ import {
   classifiedCondition,
   previousOwners,
   adDuration
-} from "../../../app/data/SharedAttributes";
+} from "../../../app/data/attributes/SharedAttributes";
 import {
   carCategory,
-  carManufacturer,
-  carModel,
   carTransmission,
   carFuelType,
   carDriveType,
@@ -35,7 +33,8 @@ import {
   carAirbags,
   carPlate,
   carRimSize
-} from "../../../app/data/CarAttributes";
+} from "../../../app/data/attributes/CarAttributes";
+import { carManufacturer, carModel } from "../../../app/data/classifieds/cars";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,10 +69,10 @@ const ClassifiedCreate = () => {
     description: "",
     youTube: "",
     password: "",
-    userName: '',
-    email: '',
-    phone1: '',
-    phone2: ''
+    userName: "",
+    email: "",
+    phone1: "",
+    phone2: ""
   });
 
   const handleInputChange = event => {
@@ -330,12 +329,6 @@ const ClassifiedCreate = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <CheckboxForm
-                  name="metallic"
-                  label="Metallic"
-                  value={state.metallic}
-                  handleChange={handleChange}
-                />
                 <SelectForm
                   required
                   name="color"
@@ -350,6 +343,12 @@ const ClassifiedCreate = () => {
                   values={selectValues.interiorColor}
                   attributes={carInteriorColor}
                   handleChange={handleSelectChange}
+                />
+                <CheckboxForm
+                  name="metallic"
+                  label="Metallic"
+                  value={state.metallic}
+                  handleChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -476,7 +475,7 @@ const ClassifiedCreate = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <InputForm
-                type="email"
+                  type="email"
                   name="email"
                   label="Email"
                   values={inputValues.email}
@@ -490,7 +489,7 @@ const ClassifiedCreate = () => {
                   handleChange={handleInputChange}
                 />
               </Grid>
-              </Grid>
+            </Grid>
             <Button
               type="submit"
               variant="contained"

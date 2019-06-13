@@ -13,22 +13,6 @@ export const carCategory = [
   { key: "other", value: "Other" }
 ];
 
-export const carManufacturer = [
-  { key: "audi", value: "Audi" },
-  { key: "bmw", value: "BMW" },
-  { key: "toyota", value: "Toyota" },
-  { key: "honda", value: "Honda" },
-  { key: "fiat", value: "Fiat" },
-  { key: "ferrari", value: "Ferrari" }
-];
-
-export const carModel = [
-  { key: "eighty", value: "80" },
-  { key: "ninety", value: "90" },
-  { key: "hundred", value: "100" },
-  { key: "two-hundred", value: "200" }
-];
-
 export const carTransmission = [
   { key: "automatic", value: "Automatic" },
   { key: "manual", value: "Manual" },
@@ -157,4 +141,4 @@ export const carRimSize = [
   { key: "twenty-eighth-28", value: "28" },
   { key: "twenty-nine-29", value: "29" },
   { key: "thirty-30", value: "30" }
-]
+];
