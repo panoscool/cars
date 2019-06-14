@@ -17,7 +17,8 @@ import {
   offerType,
   classifiedCondition,
   previousOwners,
-  adDuration
+  adDuration,
+  exchangeWith
 } from "../../../app/data/attributes/SharedAttributes";
 import {
   carCategory,
@@ -34,7 +35,14 @@ import {
   carPlate,
   carRimSize
 } from "../../../app/data/attributes/CarAttributes";
-import { carManufacturer, carModel } from "../../../app/data/classifieds/cars";
+import carModel from "../../../app/data/classifieds/carModels";
+import carManufacturer from "../../../app/data/classifieds/carMakers";
+import {
+  column1,
+  column2,
+  column3,
+  column4
+} from "../../../app/data/classifieds/carExtras";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -82,9 +90,9 @@ const ClassifiedCreate = () => {
   const [selectValues, setSelectValues] = useState({
     offer: "",
     category: "",
-    manufacturer: "",
+    manufacturer: "audi",
     condition: "",
-    model: "",
+    model: "80",
     owners: "",
     transmission: "",
     fuel: "",
@@ -98,7 +106,8 @@ const ClassifiedCreate = () => {
     plate: "",
     airbags: "",
     rimSize: "",
-    duration: ""
+    duration: "",
+    exchange: ""
   });
 
   const handleSelectChange = event => {
@@ -123,6 +132,8 @@ const ClassifiedCreate = () => {
     const formValues = { selectValues, inputValues, state };
     console.log("formValues", formValues);
   };
+
+  const options = carModel[selectValues.manufacturer] || [];
 
   return (
     <Fragment>
@@ -156,6 +167,7 @@ const ClassifiedCreate = () => {
                 <CheckboxForm
                   name="crashed"
                   label="Crashed"
+                  labelPlacement="start"
                   value={state.crashed}
                   handleChange={handleChange}
                 />
@@ -182,7 +194,7 @@ const ClassifiedCreate = () => {
                   name="model"
                   label="Model"
                   values={selectValues.model}
-                  attributes={carModel}
+                  attributes={options}
                   handleChange={handleSelectChange}
                 />
               </Grid>
@@ -347,6 +359,7 @@ const ClassifiedCreate = () => {
                 <CheckboxForm
                   name="metallic"
                   label="Metallic"
+                  labelPlacement="start"
                   value={state.metallic}
                   handleChange={handleChange}
                 />
@@ -380,7 +393,7 @@ const ClassifiedCreate = () => {
             </Typography>
             <Divider variant="fullWidth" />
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
                 <InputForm
                   required
                   name="price"
@@ -389,10 +402,20 @@ const ClassifiedCreate = () => {
                   handleChange={handleInputChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
+                <SelectForm
+                  name="exchange"
+                  label="Exchange with"
+                  values={selectValues.exchange}
+                  attributes={exchangeWith}
+                  handleChange={handleSelectChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
                 <CheckboxForm
                   name="negotiable"
                   label="Negotiable"
+                  labelPlacement="start"
                   value={state.negotiable}
                   handleChange={handleChange}
                 />
@@ -426,6 +449,56 @@ const ClassifiedCreate = () => {
               Extras
             </Typography>
             <Divider variant="fullWidth" />
+            <Grid container spacing={3}>
+              <Grid item xs={6} sm={3}>
+                {column1.map(extra => {
+                  return (
+                    <CheckboxForm
+                      key={extra.key}
+                      name={extra.key}
+                      label={extra.value}
+                      labelPlacement="end"
+                    />
+                  );
+                })}
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                {column2.map(extra => {
+                  return (
+                    <CheckboxForm
+                      key={extra.key}
+                      name={extra.key}
+                      label={extra.value}
+                      labelPlacement="end"
+                    />
+                  );
+                })}
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                {column3.map(extra => {
+                  return (
+                    <CheckboxForm
+                      key={extra.key}
+                      name={extra.key}
+                      label={extra.value}
+                      labelPlacement="end"
+                    />
+                  );
+                })}
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                {column4.map(extra => {
+                  return (
+                    <CheckboxForm
+                      key={extra.key}
+                      name={extra.key}
+                      label={extra.value}
+                      labelPlacement="end"
+                    />
+                  );
+                })}
+              </Grid>
+            </Grid>
             <Typography className={classes.title} variant="h6" gutterBottom>
               Ad Options
             </Typography>

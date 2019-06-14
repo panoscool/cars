@@ -26,3 +26,11 @@ export const adDuration = [
   { key: "20-days", value: "20 Days" },
   { key: "1-month", value: "1 Month" }
 ];
+
+export const exchangeWith = [
+  { key: "car", value: "Car" },
+  { key: "bike", value: "Bike" },
+  { key: "boat", value: "Boat" },
+  { key: "commercial", value: "Commercial" },
+  { key: "camper", value: "Camper" }
+];

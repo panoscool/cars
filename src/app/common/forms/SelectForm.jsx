@@ -34,12 +34,20 @@ function SimpleSelect(props) {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  const { name, values, attributes, label, required, handleChange } = props;
+  const {
+    name,
+    values,
+    attributes,
+    label,
+    required,
+
+    handleChange
+  } = props;
 
   return (
     <FormControl
       required={required}
-      margin="dense" 
+      margin="dense"
       variant="outlined"
       className={clsx(classes.formControl, classes.dense)}
     >
@@ -57,9 +65,6 @@ function SimpleSelect(props) {
           />
         }
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
         {attributes.map(attribute => {
           return (
             <MenuItem key={attribute.key} value={attribute.key}>
