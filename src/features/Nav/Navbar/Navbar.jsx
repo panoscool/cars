@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -9,17 +9,17 @@ import {
   Drawer,
   CssBaseline
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Menu } from "@material-ui/icons";
 import ListMenu from "../Menus/ListMenu";
 import DrawerMenu from "../Menus/DrawerMenu";
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    zIndex: 1,
+    zIndex: "tooltip",
     overflow: "hidden",
     position: "relative",
     display: "flex",
@@ -49,75 +49,69 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: `theme.spacing(y) * 3`
   }
-});
+}));
 
-class Navbar extends Component {
-  state = {
-    mobileOpen: false
+const Navbar = ({ children }) => {
+  const classes = useStyles();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
-  };
+  return (
+    <Fragment>
+      <CssBaseline />
 
-  render() {
-    const { classes, children } = this.props;
-    const { mobileOpen } = this.state;
-
-    return (
-      <Fragment>
-        <CssBaseline />
-
-        <div className={classes.root}>
-          <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open-drawer"
-                onClick={this.handleDrawerToggle}
-                className={classes.navIconHide}
-              >
-                <Menu />
-              </IconButton>
-              <Typography
-                variant="h6"
-                color="inherit"
-                className={classes.grow}
-                noWrap
-              >
-                <Link
-                  to="/"
-                  style={{ textDecoration: "inherit", color: "inherit" }}
-                >
-                  logo
-                </Link>
-              </Typography>
-              <ListMenu />
-            </Toolbar>
-          </AppBar>
-          <Hidden mdUp>
-            <Drawer
-              variant="temporary"
-              open={mobileOpen}
-              onClose={this.handleDrawerToggle}
-              classes={{
-                paper: classes.drawerPaper
-              }}
-              ModalProps={{
-                keepMounted: true // Better open performance on mobile.
-              }}
+      <div className={classes.root}>
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open-drawer"
+              onClick={handleDrawerToggle}
+              className={classes.navIconHide}
             >
-              <DrawerMenu handleDrawerToggle={this.handleDrawerToggle} />
-            </Drawer>
-          </Hidden>
-          <main className={classes.content}>
-            <div className={classes.toolbar} />
-            {children}
-          </main>
-        </div>
-      </Fragment>
-    );
-  }
-}
+              <Menu />
+            </IconButton>
+            <Typography
+              variant="h6"
+              color="inherit"
+              className={classes.grow}
+              noWrap
+            >
+              <Link
+                to="/"
+                style={{ textDecoration: "inherit", color: "inherit" }}
+              >
+                logo
+              </Link>
+            </Typography>
+            <ListMenu />
+          </Toolbar>
+        </AppBar>
+        <Hidden mdUp>
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper
+            }}
+            ModalProps={{
+              keepMounted: true // Better open performance on mobile.
+            }}
+          >
+            <DrawerMenu handleDrawerToggle={handleDrawerToggle} />
+          </Drawer>
+        </Hidden>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {children}
+        </main>
+      </div>
+    </Fragment>
+  );
+};
 
-export default withStyles(styles)(Navbar);
+export default Navbar;
