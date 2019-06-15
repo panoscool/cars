@@ -1,3 +1,8 @@
+export const exchange = [
+  { key: "bicycle", value: "Bicycle" },
+  { key: "other", value: "Other" }
+];
+
 export const bicycleCategory = [
   { key: "bmx", value: "BMX" },
   { key: "bicycle-trailer", value: "Bicycle Trailer" },
@@ -20,4 +25,11 @@ export const bicycleCategory = [
   { key: "electric-scooter", value: "Electric Scooter" },
   { key: "electric-bike", value: "Electric Bike" },
   { key: "other", value: "Other" }
+];
+
+export const frameType = [
+  { key: "aluminium", value: "Aluminium" },
+  { key: "carbon", value: "Carbon" },
+  { key: "titanium", value: "Titanium" },
+  { key: "magnesium", value: "Magnesium" }
 ];

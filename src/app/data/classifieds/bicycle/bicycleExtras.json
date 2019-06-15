@@ -1,0 +1,14 @@
+[
+  { "key": "womens", "value": "Women's" },
+  { "key": "mens", "value": "Men's" },
+  { "key": "dynamo-lights", "value": "Dynamo Lights" },
+  { "key": "led-lights", "value": "Led Lights" },
+  { "key": "shock-absorber", "value": "Shock Absorber" },
+  { "key": "fenders", "value": "Fenders" },
+  { "key": "single-speed", "value": "Single Speed" },
+  { "key": "interior-speed", "value": "Interior Speed" },
+  { "key": "exterior-speed", "value": "Exterior Speed" },
+  { "key": "antique", "value": "Antique" },
+  { "key": "basket", "value": "Basket" },
+  { "key": "cargo-rack", "value": "Cargo Rack" }
+]

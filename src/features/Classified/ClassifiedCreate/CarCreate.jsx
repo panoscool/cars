@@ -9,7 +9,6 @@ import {
   Divider,
   Typography
 } from "@material-ui/core";
-// import Breadcrumb from "../../../app/common/breadcrumbs/Breadcrumb";
 import SelectForm from "../../../app/common/forms/SelectForm";
 import InputForm from "../../../app/common/forms/InputForm";
 import CheckboxForm from "../../../app/common/forms/CheckboxForm";
@@ -35,14 +34,14 @@ import {
   carPlate,
   carRimSize
 } from "../../../app/data/attributes/CarAttributes";
-import carModel from "../../../app/data/classifieds/carModels";
-import carManufacturer from "../../../app/data/classifieds/carMakers";
+import carModel from "../../../app/data/classifieds/car/carModels";
+import carManufacturer from "../../../app/data/classifieds/car/carMakers";
 import {
   column1,
   column2,
   column3,
   column4
-} from "../../../app/data/classifieds/carExtras";
+} from "../../../app/data/classifieds/car/carExtras";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -140,7 +139,6 @@ const ClassifiedCreate = () => {
       <CssBaseline />
       <Paper className={classes.paper}>
         <Container maxWidth="md">
-          {/* <Breadcrumb /> */}
           <form onSubmit={handleSubmit} className={classes.root}>
             <Typography variant="h6" gutterBottom>
               Vehicle Details

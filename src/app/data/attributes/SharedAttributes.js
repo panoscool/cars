@@ -34,3 +34,18 @@ export const exchangeWith = [
   { key: "commercial", value: "Commercial" },
   { key: "camper", value: "Camper" }
 ];
+
+export const months = [
+  { key: "january", value: "January" },
+  { key: "february", value: "February" },
+  { key: "march", value: "March" },
+  { key: "april", value: "April" },
+  { key: "may", value: "May" },
+  { key: "june", value: "June" },
+  { key: "july", value: "July" },
+  { key: "august", value: "August" },
+  { key: "september", value: "September" },
+  { key: "october", value: "October" },
+  { key: "november", value: "November" },
+  { key: "december", value: "December" }
+];

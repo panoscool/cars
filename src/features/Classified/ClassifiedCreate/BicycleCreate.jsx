@@ -17,19 +17,22 @@ import {
   classifiedCondition,
   previousOwners,
   adDuration,
-  exchangeWith
+  months
 } from "../../../app/data/attributes/SharedAttributes";
-import { bicycleCategory } from "../../../app/data/attributes/BicycleAttributes";
+import {
+  bicycleCategory,
+  frameType,
+  exchange
+} from "../../../app/data/attributes/BicycleAttributes";
 import {
   carColor,
   carInteriorColor,
-  carDoors,
   carSeats,
   carPlate,
   carRimSize
 } from "../../../app/data/attributes/CarAttributes";
-import carModel from "../../../app/data/classifieds/carModels";
-import carManufacturer from "../../../app/data/classifieds/carMakers";
+import bicycleMakers from "../../../app/data/classifieds/bicycle/bicycleMakers";
+import bicycleExtras from "../../../app/data/classifieds/bicycle/bicycleExtras";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,9 +80,10 @@ const ClassifiedCreate = () => {
   const [selectValues, setSelectValues] = useState({
     offer: "",
     category: "",
-    manufacturer: "audi",
+    manufacturer: "",
     condition: "",
-    model: "80",
+    month: "",
+    purchased: "",
     owners: "",
     transmission: "",
     fuel: "",
@@ -119,8 +123,6 @@ const ClassifiedCreate = () => {
     const formValues = { selectValues, inputValues, state };
     console.log("formValues", formValues);
   };
-
-  const options = carModel[selectValues.manufacturer] || [];
 
   return (
     <Fragment>
@@ -172,32 +174,39 @@ const ClassifiedCreate = () => {
                   name="manufacturer"
                   label="Manufacturer"
                   values={selectValues.manufacturer}
-                  attributes={carManufacturer}
+                  attributes={bicycleMakers}
                   handleChange={handleSelectChange}
                 />
-                <SelectForm
-                  required
-                  name="model"
-                  label="Model"
-                  values={selectValues.model}
-                  attributes={options}
-                  handleChange={handleSelectChange}
+                <InputForm
+                  name="variant"
+                  label="Variant"
+                  placeholder="eg. racing"
+                  values={inputValues.variant}
+                  handleChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
+                <SelectForm
+                  required
+                  name="purchased"
+                  label="Purchased"
+                  values={selectValues.purchased}
+                  attributes={months}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
+                  name="month"
+                  label="Month"
+                  values={selectValues.month}
+                  attributes={months}
+                  handleChange={handleSelectChange}
+                />
                 <SelectForm
                   name="owners"
                   label="Previous owners"
                   values={selectValues.owners}
                   attributes={previousOwners}
                   handleChange={handleSelectChange}
-                />
-                <InputForm
-                  name="variant"
-                  label="Variant"
-                  placeholder="eg. GTI"
-                  values={inputValues.variant}
-                  handleChange={handleInputChange}
                 />
               </Grid>
             </Grid>
@@ -209,25 +218,6 @@ const ClassifiedCreate = () => {
             <Grid container spacing={3}>
               <Grid item xs={12} sm={4}>
                 <SelectForm
-                  required
-                  name="doors"
-                  label="Doors"
-                  values={selectValues.doors}
-                  attributes={carDoors}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  required
-                  name="seats"
-                  label="Seats"
-                  values={selectValues.seats}
-                  attributes={carSeats}
-                  handleChange={handleSelectChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <SelectForm
-                  required
                   name="color"
                   label="Color"
                   values={selectValues.color}
@@ -235,28 +225,42 @@ const ClassifiedCreate = () => {
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
-                  name="frameSize"
-                  label="Frame size"
-                  placeholder="cm"
+                  name="frameType"
+                  label="Frame type"
                   values={selectValues.interiorColor}
-                  attributes={carInteriorColor}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  required
-                  name="plate"
-                  label="Plate"
-                  values={selectValues.plate}
-                  attributes={carPlate}
+                  attributes={frameType}
                   handleChange={handleSelectChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
                 <SelectForm
+                  name="frameSize"
+                  label="Frame size (cm)"
+                  values={selectValues.interiorColor}
+                  attributes={carInteriorColor}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
                   name="rimSize"
                   label="Rim size (inches)"
                   values={selectValues.rimSize}
                   attributes={carRimSize}
+                  handleChange={handleSelectChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <SelectForm
+                  name="breaks"
+                  label="Breaks"
+                  values={selectValues.plate}
+                  attributes={carPlate}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
+                  name="gears"
+                  label="Gears"
+                  values={selectValues.seats}
+                  attributes={carSeats}
                   handleChange={handleSelectChange}
                 />
               </Grid>
@@ -280,7 +284,7 @@ const ClassifiedCreate = () => {
                   name="exchange"
                   label="Exchange with"
                   values={selectValues.exchange}
-                  attributes={exchangeWith}
+                  attributes={exchange}
                   handleChange={handleSelectChange}
                 />
               </Grid>
@@ -323,7 +327,18 @@ const ClassifiedCreate = () => {
             </Typography>
             <Divider variant="fullWidth" />
             <Grid container spacing={3}>
-              check box
+              <Grid item xs={6} sm={3}>
+                {bicycleExtras.map(extra => {
+                  return (
+                    <CheckboxForm
+                      key={extra.key}
+                      name={extra.key}
+                      label={extra.value}
+                      labelPlacement="end"
+                    />
+                  );
+                })}
+              </Grid>
             </Grid>
             <Typography className={classes.title} variant="h6" gutterBottom>
               Ad Options
