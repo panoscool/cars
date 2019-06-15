@@ -22,7 +22,8 @@ import {
 import {
   bicycleCategory,
   frameType,
-  exchange
+  exchange,
+  brakeType
 } from "../../../app/data/attributes/BicycleAttributes";
 import {
   carColor,
@@ -94,7 +95,7 @@ const ClassifiedCreate = () => {
     interiorType: "",
     doors: "",
     seats: "",
-    plate: "",
+    brakes: "",
     airbags: "",
     rimSize: "",
     duration: "",
@@ -250,10 +251,10 @@ const ClassifiedCreate = () => {
               </Grid>
               <Grid item xs={12} sm={4}>
                 <SelectForm
-                  name="breaks"
-                  label="Breaks"
+                  name="brakes"
+                  label="Brakes"
                   values={selectValues.plate}
-                  attributes={carPlate}
+                  attributes={brakeType}
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
@@ -327,7 +328,7 @@ const ClassifiedCreate = () => {
             </Typography>
             <Divider variant="fullWidth" />
             <Grid container spacing={3}>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs>
                 {bicycleExtras.map(extra => {
                   return (
                     <CheckboxForm

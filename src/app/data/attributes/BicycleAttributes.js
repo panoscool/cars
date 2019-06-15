@@ -33,3 +33,10 @@ export const frameType = [
   { key: "titanium", value: "Titanium" },
   { key: "magnesium", value: "Magnesium" }
 ];
+
+export const brakeType = [
+  { key: "brake-drums", value: "Brake Drums" },
+  { key: "hydraulic-disc", value: "Hydraulic Disk Brakes" },
+  { key: "mechanical-disc", value: "Mechanical Disk Brakes" },
+  { key: "v-brakes", value: "V-Brakes" }
+];
