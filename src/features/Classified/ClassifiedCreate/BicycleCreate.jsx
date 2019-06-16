@@ -17,23 +17,19 @@ import {
   classifiedCondition,
   previousOwners,
   adDuration,
-  months
-} from "../../../app/data/attributes/SharedAttributes";
+  months,
+  color
+} from "../../../app/data/SharedAttributes";
 import {
-  bicycleCategory,
+  category,
+  manufacturers,
   frameType,
   exchange,
-  brakeType
-} from "../../../app/data/attributes/BicycleAttributes";
-import {
-  carColor,
-  carInteriorColor,
-  carSeats,
-  carPlate,
-  carRimSize
-} from "../../../app/data/attributes/CarAttributes";
-import bicycleMakers from "../../../app/data/classifieds/bicycle/bicycleMakers";
-import bicycleExtras from "../../../app/data/classifieds/bicycle/bicycleExtras";
+  brakeType,
+  extras,
+  gears
+} from "../../../app/data/bicycle/bicycle";
+import { interiorColor, rimSize } from "../../../app/data/car/car";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,13 +53,6 @@ const ClassifiedCreate = () => {
 
   const [inputValues, setInputValues] = useState({
     variant: "",
-    mileages: "",
-    engine: "",
-    power: "",
-    emissions: "",
-    efficiencyCity: "",
-    efficiencyMotorway: "",
-    efficiencyMixed: "",
     price: "",
     description: "",
     youTube: "",
@@ -71,7 +60,7 @@ const ClassifiedCreate = () => {
     userName: "",
     email: "",
     phone1: "",
-    phone2: ""
+    location: ""
   });
 
   const handleInputChange = event => {
@@ -86,17 +75,11 @@ const ClassifiedCreate = () => {
     month: "",
     purchased: "",
     owners: "",
-    transmission: "",
-    fuel: "",
-    driveType: "",
-    standard: "",
+    frameType: "",
+    frameSize: "",
+    gears: "",
     color: "",
-    interiorColor: "",
-    interiorType: "",
-    doors: "",
-    seats: "",
     brakes: "",
-    airbags: "",
     rimSize: "",
     duration: "",
     exchange: ""
@@ -167,7 +150,7 @@ const ClassifiedCreate = () => {
                   name="category"
                   label="Category"
                   values={selectValues.category}
-                  attributes={bicycleCategory}
+                  attributes={category}
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
@@ -175,7 +158,7 @@ const ClassifiedCreate = () => {
                   name="manufacturer"
                   label="Manufacturer"
                   values={selectValues.manufacturer}
-                  attributes={bicycleMakers}
+                  attributes={manufacturers}
                   handleChange={handleSelectChange}
                 />
                 <InputForm
@@ -222,7 +205,7 @@ const ClassifiedCreate = () => {
                   name="color"
                   label="Color"
                   values={selectValues.color}
-                  attributes={carColor}
+                  attributes={color}
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
@@ -238,14 +221,14 @@ const ClassifiedCreate = () => {
                   name="frameSize"
                   label="Frame size (cm)"
                   values={selectValues.interiorColor}
-                  attributes={carInteriorColor}
+                  attributes={interiorColor}
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
                   name="rimSize"
                   label="Rim size (inches)"
                   values={selectValues.rimSize}
-                  attributes={carRimSize}
+                  attributes={rimSize}
                   handleChange={handleSelectChange}
                 />
               </Grid>
@@ -260,8 +243,8 @@ const ClassifiedCreate = () => {
                 <SelectForm
                   name="gears"
                   label="Gears"
-                  values={selectValues.seats}
-                  attributes={carSeats}
+                  values={selectValues.gears}
+                  attributes={gears}
                   handleChange={handleSelectChange}
                 />
               </Grid>
@@ -329,7 +312,7 @@ const ClassifiedCreate = () => {
             <Divider variant="fullWidth" />
             <Grid container spacing={3}>
               <Grid item xs>
-                {bicycleExtras.map(extra => {
+                {extras.map(extra => {
                   return (
                     <CheckboxForm
                       key={extra.key}
@@ -390,17 +373,17 @@ const ClassifiedCreate = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <InputForm
+                  required
+                  name="location"
+                  label="Location"
+                  values={inputValues.location}
+                  handleChange={handleInputChange}
+                />
+                <InputForm
                   type="email"
                   name="email"
                   label="Email"
                   values={inputValues.email}
-                  handleChange={handleInputChange}
-                />
-                <InputForm
-                  type="tel"
-                  name="phone2"
-                  label="Phone 2"
-                  values={inputValues.phone2}
                   handleChange={handleInputChange}
                 />
               </Grid>

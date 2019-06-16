@@ -49,3 +49,14 @@ export const months = [
   { key: "november", value: "November" },
   { key: "december", value: "December" }
 ];
+
+export const color = [
+  { key: "black", value: "Black" },
+  { key: "white", value: "White" },
+  { key: "silver", value: "Silver" },
+  { key: "blue", value: "Blue" },
+  { key: "grey", value: "Grey" },
+  { key: "green", value: "Green" },
+  { key: "red", value: "Red" },
+  { key: "yello", value: "Yellow" }
+];

@@ -1,0 +1,73 @@
+{
+  "category": [
+    { "key": "bmx", "value": "BMX" },
+    { "key": "bicycle-trailer", "value": "Bicycle Trailer" },
+    { "key": "children-bicycle", "value": "Children Bicycle" },
+    { "key": "city-bicycle", "value": "City Bicycle" },
+    { "key": "downhill", "value": "Downhill" },
+    { "key": "fat-bike", "value": "Fat Bike" },
+    { "key": "fitness", "value": "Fitness" },
+    { "key": "four-wheeler", "value": "Four Wheeler" },
+    { "key": "monocle", "value": "Monocle-One Wheel" },
+    { "key": "mountain", "value": "Mountain" },
+    { "key": "road-bicycle", "value": "Road Bicycle" },
+    { "key": "scooter-skates", "value": "Scooter Skates" },
+    { "key": "skateboard-waveboard", "value": "Skateboard-Waveboard" },
+    { "key": "snow-bike", "value": "Snow Bike" },
+    { "key": "tandem", "value": "Tandem" },
+    { "key": "trekking", "value": "Trekking" },
+    { "key": "tricycle", "value": "Tricycle" },
+    { "key": "folded-bike", "value": "Folded Bike" },
+    { "key": "electric-scooter", "value": "Electric Scooter" },
+    { "key": "electric-bike", "value": "Electric Bike" },
+    { "key": "other", "value": "Other" }
+  ],
+  "frameType": [
+    { "key": "aluminium", "value": "Aluminium" },
+    { "key": "carbon", "value": "Carbon" },
+    { "key": "titanium", "value": "Titanium" },
+    { "key": "magnesium", "value": "Magnesium" }
+  ],
+  "brakeType": [
+    { "key": "brake-drums", "value": "Brake Drums" },
+    { "key": "hydraulic-disc", "value": "Hydraulic Disk Brakes" },
+    { "key": "mechanical-disc", "value": "Mechanical Disk Brakes" },
+    { "key": "v-brakes", "value": "V-Brakes" }
+  ],
+  "manufacturers": [
+    { "key": "4ever", "value": "4ever" },
+    { "key": "a-ok", "value": "A-Ok" },
+    { "key": "a2b", "value": "A2B" },
+    { "key": "accell-group", "value": "Accell Group" },
+    { "key": "adriatica", "value": "Adriatica" },
+    { "key": "airbike", "value": "Airbike" },
+    { "key": "airnimal", "value": "Airnimal" },
+    { "key": "alan", "value": "Alan" },
+    { "key": "alibaba", "value": "Alibaba" },
+    { "key": "aloha", "value": "Aloha" }
+  ],
+  "extras": [
+    { "key": "womens", "value": "Women's" },
+    { "key": "mens", "value": "Men's" },
+    { "key": "dynamo-lights", "value": "Dynamo Lights" },
+    { "key": "led-lights", "value": "Led Lights" },
+    { "key": "shock-absorber", "value": "Shock Absorber" },
+    { "key": "fenders", "value": "Fenders" },
+    { "key": "single-speed", "value": "Single Speed" },
+    { "key": "interior-speed", "value": "Interior Speed" },
+    { "key": "exterior-speed", "value": "Exterior Speed" },
+    { "key": "antique", "value": "Antique" },
+    { "key": "basket", "value": "Basket" },
+    { "key": "cargo-rack", "value": "Cargo Rack" }
+  ],
+  "exchange": [
+    { "key": "bicycle", "value": "Bicycle" },
+    { "key": "other", "value": "Other" }
+  ],
+  "gears": [
+    { "key": "0-4", "value": "0-4" },
+    { "key": "5-12", "value": "5-12" },
+    { "key": "13-21", "value": "13-21" },
+    { "key": "22-30", "value": "22-30" }
+  ]
+}
