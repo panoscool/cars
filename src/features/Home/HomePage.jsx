@@ -10,6 +10,14 @@ const useStyles = makeStyles(theme => ({
   },
   leftIcon: {
     marginRight: theme.spacing(1)
+  },
+  buttons: {
+    textAlign: "center"
+  },
+  classifieds: {
+    display: "flex",
+    marginBottom: 20,
+    justifyContent: "space-between"
   }
 }));
 
@@ -17,7 +25,7 @@ const HomePage = () => {
   const classes = useStyles();
   return (
     <Container maxWidth="lg">
-      <div style={{ textAlign: "center" }}>
+      <div className={classes.buttons}>
         <Button variant="contained" color="primary" className={classes.button}>
           <Search className={classes.leftIcon} />
           Search
@@ -26,13 +34,7 @@ const HomePage = () => {
           <Edit className={classes.leftIcon} />
           Offer
         </Button>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: 20
-          }}
-        >
+        <div className={classes.classifieds}>
           <Typography gutterBottom variant="h5" component="h2">
             Latest Classifieds
           </Typography>

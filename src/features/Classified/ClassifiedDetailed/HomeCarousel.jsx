@@ -7,10 +7,11 @@ import {
   CardMedia,
   Typography
 } from "@material-ui/core";
+import bicycle from "../../../assets/images/bicycle.jfif";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 200
+    maxWidth: 240
   }
 });
 
@@ -24,7 +25,7 @@ export default function ImgMediaCard() {
           component="img"
           alt="Contemplative Reptile"
           height="120"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={bicycle}
           title="Contemplative Reptile"
         />
         <CardContent>

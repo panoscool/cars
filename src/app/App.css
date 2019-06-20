@@ -3,16 +3,20 @@
   bottom: 0;
 }
 
-/* .horizontal-list {
-  list-style-type: none;
+.horizontal-list {
   margin: 0;
   padding: 0;
   overflow: hidden;
-} */
+  list-style-type: none;
+}
 
 .horizontal-list li {
-  display: inline;
-  color: white;
-  padding: 14px 16px;
-  text-decoration: none;
+  float: left;
+  padding: 10px;
+}
+
+@media (min-width: 768px) {
+  .horizontal-list li {
+    padding: 10px;
+  }
 }
