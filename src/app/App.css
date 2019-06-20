@@ -1,0 +1,18 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+}
+
+/* .horizontal-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+} */
+
+.horizontal-list li {
+  display: inline;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}

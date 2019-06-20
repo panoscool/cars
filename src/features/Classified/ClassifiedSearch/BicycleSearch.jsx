@@ -16,17 +16,18 @@ import {
   offerType,
   classifiedCondition,
   months,
-  color
+  color,
+  sort,
+  lastEdit
 } from "../../../app/data/SharedAttributes";
 import {
   category,
   manufacturers,
-  frameType,
+  price,
   brakeType,
   extras,
   gears
 } from "../../../app/data/bicycle/bicycle";
-import { interiorColor, rimSize } from "../../../app/data/car/car";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,15 +50,7 @@ const ClassifiedSearch = () => {
   const classes = useStyles();
 
   const [inputValues, setInputValues] = useState({
-    variant: "",
-    price: "",
-    description: "",
-    youTube: "",
-    password: "",
-    userName: "",
-    email: "",
-    phone1: "",
-    phone2: ""
+    variant: ""
   });
 
   const handleInputChange = event => {
@@ -69,17 +62,17 @@ const ClassifiedSearch = () => {
     category: "",
     manufacturer: "",
     condition: "",
-    month: "",
-    purchased: "",
-    owners: "",
-    frameType: "",
-    frameSize: "",
+    purchasedFrom: "",
+    purchasedTo: "",
+    frameSizeFrom: "",
+    frameSizeTo: "",
+    priceFrom: "",
+    priceTo: "",
+    lastEdit: "",
     gears: "",
     color: "",
     brakes: "",
-    rimSize: "",
-    duration: "",
-    exchange: ""
+    sort: ""
   });
 
   const handleSelectChange = event => {
@@ -134,7 +127,7 @@ const ClassifiedSearch = () => {
                   name="crashed"
                   label="Crashed"
                   labelPlacement="start"
-                  value={state.crashed}
+                  values={state.crashed}
                   handleChange={handleChange}
                 />
               </Grid>
@@ -165,7 +158,7 @@ const ClassifiedSearch = () => {
                 <SelectForm
                   name="brakes"
                   label="Brakes"
-                  values={selectValues.plate}
+                  values={selectValues.brakes}
                   attributes={brakeType}
                   handleChange={handleSelectChange}
                 />
@@ -187,49 +180,70 @@ const ClassifiedSearch = () => {
             </Grid>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={4}>
+                <CheckboxForm
+                  name="withPrice"
+                  label="With price only"
+                  labelPlacement="start"
+                  values={state.crashed}
+                  handleChange={handleChange}
+                />
                 <SelectForm
                   name="priceFrom"
                   label="Price from"
-                  values={selectValues.interiorColor}
-                  attributes={frameType}
+                  values={selectValues.priceFrom}
+                  attributes={price}
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
                   name="priceTo"
                   label="Price to"
-                  values={selectValues.interiorColor}
-                  attributes={frameType}
+                  values={selectValues.priceTo}
+                  attributes={price}
                   handleChange={handleSelectChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
                 <SelectForm
-                  name="frameSize"
+                  name="sort"
+                  label="Sort"
+                  values={selectValues.sort}
+                  attributes={sort}
+                  handleChange={handleSelectChange}
+                />
+                <SelectForm
+                  name="frameSizeFrom"
                   label="Frame size from"
-                  values={selectValues.interiorColor}
-                  attributes={interiorColor}
+                  values={selectValues.frameSizeFrom}
+                  attributes={price}
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
-                  name="frameSize"
+                  name="frameSizeTo"
                   label="Frame size to"
-                  values={selectValues.rimSize}
-                  attributes={rimSize}
+                  values={selectValues.frameSizeTo}
+                  attributes={price}
                   handleChange={handleSelectChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
+                <SelectForm
+                  name="lastEdit"
+                  label="Last edit"
+                  values={selectValues.lastEdit}
+                  attributes={lastEdit}
+                  handleChange={handleSelectChange}
+                />
                 <SelectForm
                   name="purchasedFrom"
                   label="Purchased from"
-                  values={selectValues.purchased}
+                  values={selectValues.purchasedFrom}
                   attributes={months}
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
                   name="purchasedTo"
                   label="Purchased to"
-                  values={selectValues.purchased}
+                  values={selectValues.purchasedTo}
                   attributes={months}
                   handleChange={handleSelectChange}
                 />

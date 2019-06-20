@@ -60,3 +60,18 @@ export const color = [
   { key: "red", value: "Red" },
   { key: "yello", value: "Yellow" }
 ];
+
+export const sort = [
+  { key: "lowest-price", value: "Lowest Price" },
+  { key: "highest-price", value: "Highest Price" },
+  { key: "newest", value: "Newest" },
+  { key: "oldest", value: "Oldest" },
+  { key: "brand", value: "Brand" }
+];
+
+export const lastEdit = [
+  { key: "today", value: "Today" },
+  { key: "3-days", value: "3 Days" },
+  { key: "1-week", value: "1 Week" },
+  { key: "2-weeks", value: "2 Weeks" }
+];

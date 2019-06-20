@@ -29,7 +29,6 @@ import {
   extras,
   gears
 } from "../../../app/data/bicycle/bicycle";
-import { interiorColor, rimSize } from "../../../app/data/car/car";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -94,8 +93,7 @@ const ClassifiedCreate = () => {
 
   const [state, setState] = useState({
     crashed: false,
-    negotiable: false,
-    metallic: false
+    negotiable: false
   });
 
   const handleChange = event => {
@@ -140,7 +138,7 @@ const ClassifiedCreate = () => {
                   name="crashed"
                   label="Crashed"
                   labelPlacement="start"
-                  value={state.crashed}
+                  values={state.crashed}
                   handleChange={handleChange}
                 />
               </Grid>
@@ -211,7 +209,7 @@ const ClassifiedCreate = () => {
                 <SelectForm
                   name="frameType"
                   label="Frame type"
-                  values={selectValues.interiorColor}
+                  values={selectValues.frameType}
                   attributes={frameType}
                   handleChange={handleSelectChange}
                 />
@@ -220,15 +218,15 @@ const ClassifiedCreate = () => {
                 <SelectForm
                   name="frameSize"
                   label="Frame size (cm)"
-                  values={selectValues.interiorColor}
-                  attributes={interiorColor}
+                  values={selectValues.frameSize}
+                  attributes={gears}
                   handleChange={handleSelectChange}
                 />
                 <SelectForm
                   name="rimSize"
                   label="Rim size (inches)"
                   values={selectValues.rimSize}
-                  attributes={rimSize}
+                  attributes={gears}
                   handleChange={handleSelectChange}
                 />
               </Grid>
@@ -236,7 +234,7 @@ const ClassifiedCreate = () => {
                 <SelectForm
                   name="brakes"
                   label="Brakes"
-                  values={selectValues.plate}
+                  values={selectValues.brakes}
                   attributes={brakeType}
                   handleChange={handleSelectChange}
                 />
@@ -277,7 +275,7 @@ const ClassifiedCreate = () => {
                   name="negotiable"
                   label="Negotiable"
                   labelPlacement="start"
-                  value={state.negotiable}
+                  values={state.negotiable}
                   handleChange={handleChange}
                 />
               </Grid>
