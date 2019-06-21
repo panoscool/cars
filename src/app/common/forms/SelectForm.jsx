@@ -67,7 +67,7 @@ function SimpleSelect(props) {
       >
         {attributes.map(attribute => {
           return (
-            <MenuItem key={attribute.key} value={attribute.key}>
+            <MenuItem key={attribute.key} value={attribute.value}>
               {attribute.value}
             </MenuItem>
           );
