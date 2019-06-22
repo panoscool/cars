@@ -90,10 +90,17 @@ const ClassifiedCreate = () => {
     }));
   };
 
-  const [state, setState] = useState({
+  const extraKeys = extras.map(obj => obj.key);
+  const defaultCheckBoxState = {
     crashed: false,
     negotiable: false
+  };
+  extraKeys.forEach(keyName => {
+    defaultCheckBoxState[keyName] = false;
   });
+  const [state, setState] = useState(defaultCheckBoxState);
+
+  console.log(state);
 
   const handleChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -311,6 +318,7 @@ const ClassifiedCreate = () => {
                 return (
                   <CheckboxForm
                     key={extra.key}
+                    handleChange={handleChange}
                     name={extra.key}
                     label={extra.value}
                     labelPlacement="end"
