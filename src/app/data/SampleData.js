@@ -26,7 +26,9 @@ export const bicycles = [
     purchased: "june",
     rimSize: "22-30",
     crashed: false,
-    negotiable: true
+    negotiable: true,
+    img:
+      "https://i5.walmartimages.ca/images/Large/304/711/999999-690995304711.jpg"
   },
   {
     id: 2,
@@ -35,7 +37,7 @@ export const bicycles = [
     location: "Here 2",
     password: "123456",
     phone1: "+302114001117",
-    price: "120",
+    price: "130",
     userName: "Panos",
     variant: "test",
     youTube: "youtube",
@@ -48,13 +50,46 @@ export const bicycles = [
     frameSize: "5-12",
     frameType: "aluminium",
     gears: "13-21",
-    manufacturer: "4ever",
+    manufacturer: "Accell Group",
     month: "april",
     offer: "sale",
     owners: "one-1",
     purchased: "june",
     rimSize: "22-30",
     crashed: false,
-    negotiable: true
+    negotiable: true,
+    img:
+      "https://i5.walmartimages.ca/images/Large/304/711/999999-690995304711.jpg"
+  },
+  {
+    id: 3,
+    description: "description for classified 2 is going here",
+    email: "",
+    location: "Here 2",
+    password: "123456",
+    phone1: "+302114001117",
+    price: "140",
+    userName: "Panos",
+    variant: "test",
+    youTube: "youtube",
+    brakes: "hydraulic-disc",
+    category: "Fitness",
+    color: "white",
+    condition: "used",
+    duration: "1-month",
+    exchange: "",
+    frameSize: "5-12",
+    frameType: "aluminium",
+    gears: "13-21",
+    manufacturer: "Adriatica",
+    month: "april",
+    offer: "sale",
+    owners: "one-1",
+    purchased: "june",
+    rimSize: "22-30",
+    crashed: false,
+    negotiable: true,
+    img:
+      "https://i5.walmartimages.ca/images/Large/304/711/999999-690995304711.jpg"
   }
 ];

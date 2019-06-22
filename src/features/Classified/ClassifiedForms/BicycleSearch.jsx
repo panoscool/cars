@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
   Grid,
   Paper,
-  CssBaseline,
   Button,
   Divider,
   Typography
@@ -28,6 +28,7 @@ import {
   extras,
   gears
 } from "../../../app/data/bicycle/bicycle";
+import { bicycles } from "../../../app/data/SampleData";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,6 +44,10 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     paddingTop: 14
+  },
+  showButton: {
+    display: "flex",
+    justifyContent: "space-between"
   }
 }));
 
@@ -98,186 +103,195 @@ const ClassifiedSearch = () => {
   };
 
   return (
-    <Fragment>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <Container maxWidth="md">
-          <form onSubmit={handleSubmit} className={classes.root}>
+    <Paper className={classes.paper}>
+      <Container maxWidth="md">
+        <form onSubmit={handleSubmit} className={classes.root}>
+          <div className={classes.showButton}>
             <Typography variant="h6" gutterBottom>
               Search for bicycle
             </Typography>
-            <Divider variant="fullWidth" />
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={4}>
-                <SelectForm
-                  name="offer"
-                  label="Offer Type"
-                  values={selectValues.offer}
-                  attributes={offerType}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="condition"
-                  label="Condition"
-                  values={selectValues.condition}
-                  attributes={classifiedCondition}
-                  handleChange={handleSelectChange}
-                />
-                <CheckboxForm
-                  name="crashed"
-                  label="Crashed"
-                  labelPlacement="start"
-                  values={state.crashed}
-                  handleChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <SelectForm
-                  name="category"
-                  label="Category"
-                  values={selectValues.category}
-                  attributes={category}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="manufacturer"
-                  label="Manufacturer"
-                  values={selectValues.manufacturer}
-                  attributes={manufacturers}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="color"
-                  label="Color"
-                  values={selectValues.color}
-                  attributes={color}
-                  handleChange={handleSelectChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <SelectForm
-                  name="brakes"
-                  label="Brakes"
-                  values={selectValues.brakes}
-                  attributes={brakeType}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="gears"
-                  label="Gears"
-                  values={selectValues.gears}
-                  attributes={gears}
-                  handleChange={handleSelectChange}
-                />
-                <InputForm
-                  name="variant"
-                  label="Variant"
-                  placeholder="eg. racing"
-                  values={inputValues.variant}
-                  handleChange={handleInputChange}
-                />
-              </Grid>
+            <Button
+              component={Link}
+              to="/search"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Show all {bicycles.length}
+            </Button>
+          </div>
+          <Divider variant="fullWidth" />
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={4}>
+              <SelectForm
+                name="offer"
+                label="Offer Type"
+                values={selectValues.offer}
+                attributes={offerType}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="condition"
+                label="Condition"
+                values={selectValues.condition}
+                attributes={classifiedCondition}
+                handleChange={handleSelectChange}
+              />
+              <CheckboxForm
+                name="crashed"
+                label="Crashed"
+                labelPlacement="start"
+                values={state.crashed}
+                handleChange={handleChange}
+              />
             </Grid>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={4}>
-                <CheckboxForm
-                  name="withPrice"
-                  label="With price only"
-                  labelPlacement="start"
-                  values={state.crashed}
-                  handleChange={handleChange}
-                />
-                <SelectForm
-                  name="priceFrom"
-                  label="Price from"
-                  values={selectValues.priceFrom}
-                  attributes={price}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="priceTo"
-                  label="Price to"
-                  values={selectValues.priceTo}
-                  attributes={price}
-                  handleChange={handleSelectChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <SelectForm
-                  name="sort"
-                  label="Sort"
-                  values={selectValues.sort}
-                  attributes={sort}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="frameSizeFrom"
-                  label="Frame size from"
-                  values={selectValues.frameSizeFrom}
-                  attributes={price}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="frameSizeTo"
-                  label="Frame size to"
-                  values={selectValues.frameSizeTo}
-                  attributes={price}
-                  handleChange={handleSelectChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <SelectForm
-                  name="lastEdit"
-                  label="Last edit"
-                  values={selectValues.lastEdit}
-                  attributes={lastEdit}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="purchasedFrom"
-                  label="Purchased from"
-                  values={selectValues.purchasedFrom}
-                  attributes={months}
-                  handleChange={handleSelectChange}
-                />
-                <SelectForm
-                  name="purchasedTo"
-                  label="Purchased to"
-                  values={selectValues.purchasedTo}
-                  attributes={months}
-                  handleChange={handleSelectChange}
-                />
-              </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectForm
+                name="category"
+                label="Category"
+                values={selectValues.category}
+                attributes={category}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="manufacturer"
+                label="Manufacturer"
+                values={selectValues.manufacturer}
+                attributes={manufacturers}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="color"
+                label="Color"
+                values={selectValues.color}
+                attributes={color}
+                handleChange={handleSelectChange}
+              />
             </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectForm
+                name="brakes"
+                label="Brakes"
+                values={selectValues.brakes}
+                attributes={brakeType}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="gears"
+                label="Gears"
+                values={selectValues.gears}
+                attributes={gears}
+                handleChange={handleSelectChange}
+              />
+              <InputForm
+                name="variant"
+                label="Variant"
+                placeholder="eg. racing"
+                values={inputValues.variant}
+                handleChange={handleInputChange}
+              />
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={4}>
+              <CheckboxForm
+                name="withPrice"
+                label="With price only"
+                labelPlacement="start"
+                values={state.crashed}
+                handleChange={handleChange}
+              />
+              <SelectForm
+                name="priceFrom"
+                label="Price from"
+                values={selectValues.priceFrom}
+                attributes={price}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="priceTo"
+                label="Price to"
+                values={selectValues.priceTo}
+                attributes={price}
+                handleChange={handleSelectChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectForm
+                name="sort"
+                label="Sort"
+                values={selectValues.sort}
+                attributes={sort}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="frameSizeFrom"
+                label="Frame size from"
+                values={selectValues.frameSizeFrom}
+                attributes={price}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="frameSizeTo"
+                label="Frame size to"
+                values={selectValues.frameSizeTo}
+                attributes={price}
+                handleChange={handleSelectChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectForm
+                name="lastEdit"
+                label="Last edit"
+                values={selectValues.lastEdit}
+                attributes={lastEdit}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="purchasedFrom"
+                label="Purchased from"
+                values={selectValues.purchasedFrom}
+                attributes={months}
+                handleChange={handleSelectChange}
+              />
+              <SelectForm
+                name="purchasedTo"
+                label="Purchased to"
+                values={selectValues.purchasedTo}
+                attributes={months}
+                handleChange={handleSelectChange}
+              />
+            </Grid>
+          </Grid>
 
-            <Divider variant="fullWidth" style={{ margin: 16 }} />
-            <Grid container spacing={3}>
-              <Grid item xs>
-                {extras.map(extra => {
-                  return (
-                    <CheckboxForm
-                      key={extra.key}
-                      name={extra.key}
-                      label={extra.value}
-                      labelPlacement="end"
-                    />
-                  );
-                })}
-              </Grid>
+          <Divider variant="fullWidth" style={{ margin: 16 }} />
+          <Grid container spacing={3}>
+            <Grid item xs>
+              {extras.map(extra => {
+                return (
+                  <CheckboxForm
+                    key={extra.key}
+                    name={extra.key}
+                    label={extra.value}
+                    labelPlacement="end"
+                  />
+                );
+              })}
             </Grid>
-
+          </Grid>
+          <div style={{ textAlign: "right" }}>
             <Button
               type="submit"
               variant="contained"
               color="primary"
               className={classes.button}
             >
-              Submit
+              Search
             </Button>
-          </form>
-        </Container>
-      </Paper>
-    </Fragment>
+          </div>
+        </form>
+      </Container>
+    </Paper>
   );
 };
 
