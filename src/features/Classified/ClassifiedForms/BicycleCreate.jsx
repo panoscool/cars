@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
@@ -114,7 +114,7 @@ const ClassifiedCreate = () => {
 
   return (
     <Paper className={classes.paper}>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <form onSubmit={handleSubmit} className={classes.root}>
           <Typography variant="h6" gutterBottom>
             Vehicle Details
@@ -320,6 +320,7 @@ const ClassifiedCreate = () => {
                     key={extra.key}
                     handleChange={handleChange}
                     name={extra.key}
+                    value={extra.key}
                     label={extra.value}
                     labelPlacement="end"
                   />

@@ -26,6 +26,7 @@ const HomePage = () => {
   return (
     <Container maxWidth="lg">
       <div className={classes.buttons}>
+        <Typography>This is the place for some text.</Typography>
         <Button variant="contained" color="primary" className={classes.button}>
           <Search className={classes.leftIcon} />
           Search

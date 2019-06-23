@@ -57,6 +57,7 @@ function SimpleSelect(props) {
       <Select
         value={values}
         onChange={handleChange}
+        renderValue={value => value.charAt(0).toUpperCase() + value.slice(1)}
         input={
           <OutlinedInput
             labelWidth={labelWidth}

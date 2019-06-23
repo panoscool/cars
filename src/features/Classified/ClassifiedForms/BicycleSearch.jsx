@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -104,7 +104,7 @@ const ClassifiedSearch = () => {
 
   return (
     <Paper className={classes.paper}>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <form onSubmit={handleSubmit} className={classes.root}>
           <div className={classes.showButton}>
             <Typography variant="h6" gutterBottom>
