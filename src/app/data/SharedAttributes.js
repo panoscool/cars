@@ -1,10 +1,10 @@
-export const offerType = [
+export const offer = [
   { key: "sale", value: "Sale" },
   { key: "wanted", value: "Wanted" },
   { key: "rent", value: "Rent" }
 ];
 
-export const classifiedCondition = [
+export const condition = [
   { key: "used", value: "Used" },
   { key: "new", value: "New" }
 ];

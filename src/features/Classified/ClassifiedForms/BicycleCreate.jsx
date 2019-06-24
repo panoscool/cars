@@ -12,8 +12,8 @@ import SelectForm from "../../../app/common/forms/SelectForm";
 import InputForm from "../../../app/common/forms/InputForm";
 import CheckboxForm from "../../../app/common/forms/CheckboxForm";
 import {
-  offerType,
-  classifiedCondition,
+  offer,
+  condition,
   previousOwners,
   adDuration,
   months,
@@ -127,7 +127,7 @@ const ClassifiedCreate = () => {
                 name="offer"
                 label="Offer Type"
                 values={selectValues.offer}
-                attributes={offerType}
+                attributes={offer}
                 handleChange={handleSelectChange}
               />
               <SelectForm
@@ -135,7 +135,7 @@ const ClassifiedCreate = () => {
                 name="condition"
                 label="Condition"
                 values={selectValues.condition}
-                attributes={classifiedCondition}
+                attributes={condition}
                 handleChange={handleSelectChange}
               />
               <CheckboxForm

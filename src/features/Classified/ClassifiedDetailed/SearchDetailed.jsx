@@ -7,7 +7,8 @@ import {
   Typography,
   IconButton,
   Divider,
-  Button
+  Button,
+  Hidden
 } from "@material-ui/core";
 import {
   DirectionsBike,
@@ -15,10 +16,12 @@ import {
   ViewList,
   ViewModule
 } from "@material-ui/icons";
+import useWindowDimensions from "../../../app/common/hooks/useWindowDimensions";
 import SelectForm from "../../../app/common/forms/SelectForm";
 import { sort } from "../../../app/data/SharedAttributes";
 import ClassifiedList from "../ClassifiedList/ClassifiedList";
 import SideFilters from "../SideFilters/SideFilters";
+import Tooltip from "../../../app/common/tooltip/Tooltip";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -38,6 +41,8 @@ const useStyles = makeStyles(theme => ({
 
 const SearchDetailed = () => {
   const classes = useStyles();
+  const { width } = useWindowDimensions();
+
   const [selectValues, setSelectValues] = useState({
     sort: "newest"
   });
@@ -49,13 +54,19 @@ const SearchDetailed = () => {
     }));
   };
 
+  let gridSize = 9;
+  if (width < 960) {
+    gridSize = 12;
+  }
   return (
     <Container maxWidth="lg">
       <Grid container spacing={3}>
-        <Grid item xs={3}>
-          <SideFilters />
-        </Grid>
-        <Grid item xs={9}>
+        <Hidden smDown>
+          <Grid item xs={3}>
+            <SideFilters />
+          </Grid>
+        </Hidden>
+        <Grid item xs={gridSize}>
           <div className={classes.inline}>
             <Typography variant="h6" gutterBottom>
               <IconButton color="inherit">
@@ -107,6 +118,9 @@ const SearchDetailed = () => {
           <ClassifiedList />
         </Grid>
       </Grid>
+      <Hidden smUp>
+        <Tooltip />
+      </Hidden>
     </Container>
   );
 };

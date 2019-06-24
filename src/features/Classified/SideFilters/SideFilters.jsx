@@ -5,6 +5,11 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Grid } from "@material-ui/core";
+import CheckboxForm from "../../../app/common/forms/CheckboxForm";
+import SelectForm from "../../../app/common/forms/SelectForm";
+import { offer, condition, color } from "../../../app/data/SharedAttributes";
+import { manufacturers, brakeType } from "../../../app/data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,10 +35,20 @@ export default function SimpleExpansionPanel() {
           <Typography className={classes.heading}>Offer type</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Grid container spacing={3}>
+            {offer.map(obj => (
+              <Grid style={{ marginLeft: 16 }} xs={12}>
+                <CheckboxForm
+                  key={obj.key}
+                  name={obj.key}
+                  value={obj.key}
+                  label={obj.value}
+                  labelPlacement="end"
+                  // handleChange={handleChange}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel>
@@ -45,10 +60,16 @@ export default function SimpleExpansionPanel() {
           <Typography className={classes.heading}>Condition</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          {condition.map(obj => (
+            <CheckboxForm
+              key={obj.key}
+              name={obj.key}
+              value={obj.key}
+              label={obj.value}
+              labelPlacement="end"
+              // handleChange={handleChange}
+            />
+          ))}
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel>
@@ -60,10 +81,13 @@ export default function SimpleExpansionPanel() {
           <Typography className={classes.heading}>Manufacturer</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <SelectForm
+            name="manufacturer"
+            label="Manufacturers"
+            // values={selectValues.offer}
+            attributes={manufacturers}
+            // handleChange={handleSelectChange}
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel>
@@ -75,10 +99,38 @@ export default function SimpleExpansionPanel() {
           <Typography className={classes.heading}>Color</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <SelectForm
+            name="color"
+            label="Color"
+            // values={selectValues.offer}
+            attributes={color}
+            // handleChange={handleSelectChange}
+          />
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5a-content"
+          id="panel5a-header"
+        >
+          <Typography className={classes.heading}>Brakes</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Grid container spacing={3}>
+            {brakeType.map(obj => (
+              <Grid style={{ marginLeft: 16 }} xs={12}>
+                <CheckboxForm
+                  key={obj.key}
+                  name={obj.key}
+                  value={obj.key}
+                  label={obj.value}
+                  labelPlacement="end"
+                  // handleChange={handleChange}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

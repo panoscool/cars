@@ -13,8 +13,8 @@ import SelectForm from "../../../app/common/forms/SelectForm";
 import InputForm from "../../../app/common/forms/InputForm";
 import CheckboxForm from "../../../app/common/forms/CheckboxForm";
 import {
-  offerType,
-  classifiedCondition,
+  offer,
+  condition,
   months,
   color,
   sort,
@@ -127,14 +127,14 @@ const ClassifiedSearch = () => {
                 name="offer"
                 label="Offer Type"
                 values={selectValues.offer}
-                attributes={offerType}
+                attributes={offer}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="condition"
                 label="Condition"
                 values={selectValues.condition}
-                attributes={classifiedCondition}
+                attributes={condition}
                 handleChange={handleSelectChange}
               />
               <CheckboxForm
