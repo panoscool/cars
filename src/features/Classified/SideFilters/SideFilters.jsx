@@ -9,7 +9,11 @@ import { Grid } from "@material-ui/core";
 import CheckboxForm from "../../../app/common/forms/CheckboxForm";
 import SelectForm from "../../../app/common/forms/SelectForm";
 import { offer, condition, color } from "../../../app/data/SharedAttributes";
-import { manufacturers, brakeType } from "../../../app/data/bicycle/bicycle";
+import {
+  manufacturers,
+  brakeType,
+  category
+} from "../../../app/data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -131,6 +135,24 @@ export default function SimpleExpansionPanel() {
               </Grid>
             ))}
           </Grid>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5a-content"
+          id="panel5a-header"
+        >
+          <Typography className={classes.heading}>Category</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <SelectForm
+            name="category"
+            label="Category"
+            // values={selectValues.offer}
+            attributes={category}
+            // handleChange={handleSelectChange}
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
