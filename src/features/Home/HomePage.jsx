@@ -54,6 +54,15 @@ const HomePage = () => {
             <li>
               <ClassifiedLatest />
             </li>
+            <li>
+              <ClassifiedLatest />
+            </li>
+            <li>
+              <ClassifiedLatest />
+            </li>
+            <li>
+              <ClassifiedLatest />
+            </li>
           </ul>
         </div>
       </div>

@@ -18,7 +18,7 @@ import {
   months,
   color,
   sort,
-  lastEdit
+  modified
 } from "../../../app/data/SharedAttributes";
 import {
   category,
@@ -73,7 +73,7 @@ const ClassifiedSearch = () => {
     frameSizeTo: "",
     priceFrom: "",
     priceTo: "",
-    lastEdit: "",
+    modified: "",
     gears: "",
     color: "",
     brakes: "",
@@ -241,10 +241,10 @@ const ClassifiedSearch = () => {
             </Grid>
             <Grid item xs={12} sm={4}>
               <SelectForm
-                name="lastEdit"
-                label="Last edit"
-                values={selectValues.lastEdit}
-                attributes={lastEdit}
+                name="modified"
+                label="Modified"
+                values={selectValues.modified}
+                attributes={modified}
                 handleChange={handleSelectChange}
               />
               <SelectForm

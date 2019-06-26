@@ -8,11 +8,19 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Grid } from "@material-ui/core";
 import CheckboxForm from "../../../app/common/forms/CheckboxForm";
 import SelectForm from "../../../app/common/forms/SelectForm";
-import { offer, condition, color } from "../../../app/data/SharedAttributes";
+import InputForm from "../../../app/common/forms/InputForm";
+import {
+  offer,
+  condition,
+  color,
+  modified
+} from "../../../app/data/SharedAttributes";
 import {
   manufacturers,
   brakeType,
-  category
+  category,
+  gears,
+  priceRange
 } from "../../../app/data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
@@ -153,6 +161,99 @@ export default function SimpleExpansionPanel() {
             attributes={category}
             // handleChange={handleSelectChange}
           />
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5a-content"
+          id="panel5a-header"
+        >
+          <Typography className={classes.heading}>Modified</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Grid container spacing={3}>
+            {modified.map(obj => (
+              <Grid style={{ marginLeft: 16 }} xs={12}>
+                <CheckboxForm
+                  key={obj.key}
+                  name={obj.key}
+                  value={obj.key}
+                  label={obj.value}
+                  labelPlacement="end"
+                  // handleChange={handleChange}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5a-content"
+          id="panel5a-header"
+        >
+          <Typography className={classes.heading}>Gears</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Grid container spacing={3}>
+            {gears.map(obj => (
+              <Grid style={{ marginLeft: 16 }} xs={12}>
+                <CheckboxForm
+                  key={obj.key}
+                  name={obj.key}
+                  value={obj.key}
+                  label={obj.value}
+                  labelPlacement="end"
+                  // handleChange={handleChange}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5a-content"
+          id="panel5a-header"
+        >
+          <Typography className={classes.heading}>Variant</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <InputForm
+            name="variant"
+            label="Variant"
+            placeholder="eg. racing"
+            // values={inputValues.variant}
+            // handleChange={handleInputChange}
+          />
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5a-content"
+          id="panel5a-header"
+        >
+          <Typography className={classes.heading}>Price</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Grid container spacing={3}>
+            {priceRange.map(obj => (
+              <Grid style={{ marginLeft: 16 }} xs={12}>
+                <CheckboxForm
+                  key={obj.key}
+                  name={obj.key}
+                  value={obj.key}
+                  label={obj.value}
+                  labelPlacement="end"
+                  // handleChange={handleChange}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

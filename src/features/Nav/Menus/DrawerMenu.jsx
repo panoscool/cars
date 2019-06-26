@@ -67,7 +67,7 @@ const DrawerMenu = ({ handleDrawerToggle, location: { pathname } }) => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <MenuList>
-            <MenuItem
+            {/* <MenuItem
               component={Link}
               to="/cars/search"
               selected={"/cars/search" === pathname}
@@ -111,7 +111,7 @@ const DrawerMenu = ({ handleDrawerToggle, location: { pathname } }) => {
             >
               <IconButton color="inherit">{icons.boat}</IconButton>
               Boats
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               component={Link}
               to="/bicycles/search"
@@ -143,7 +143,7 @@ const DrawerMenu = ({ handleDrawerToggle, location: { pathname } }) => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <MenuList>
-            <MenuItem
+            {/* <MenuItem
               component={Link}
               to="/car/create"
               selected={"/car/create" === pathname}
@@ -183,7 +183,7 @@ const DrawerMenu = ({ handleDrawerToggle, location: { pathname } }) => {
               onClick={handleDrawerToggle}
             >
               <IconButton color="inherit">{icons.boat}</IconButton>Boat
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               component={Link}
               to="/bicycle/create"

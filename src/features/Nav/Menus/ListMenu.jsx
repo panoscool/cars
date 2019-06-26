@@ -43,7 +43,7 @@ const MenuItems = () => {
   return (
     <Hidden smDown implementation="css">
       <DropDown button="Search">
-        <MenuItem component={Link} to="/cars/search">
+        {/* <MenuItem component={Link} to="/cars/search">
           <IconButton color="inherit">{icons.car}</IconButton>
           Cars
         </MenuItem>
@@ -62,14 +62,14 @@ const MenuItems = () => {
         <MenuItem component={Link} to="/boats/search">
           <IconButton color="inherit">{icons.boat}</IconButton>
           Boats
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem component={Link} to="/bicycles/search">
           <IconButton color="inherit">{icons.bicycle}</IconButton>
           Bicycles
         </MenuItem>
       </DropDown>
       <DropDown button="Offer">
-        <MenuItem component={Link} to="/car/create">
+        {/* <MenuItem component={Link} to="/car/create">
           <IconButton color="inherit">{icons.car}</IconButton>Car
         </MenuItem>
         <MenuItem component={Link} to="/bike/create">
@@ -83,7 +83,7 @@ const MenuItems = () => {
         </MenuItem>
         <MenuItem component={Link} to="/boat/create">
           <IconButton color="inherit">{icons.boat}</IconButton>Boat
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem component={Link} to="/bicycle/create">
           <IconButton color="inherit">{icons.bicycle}</IconButton>
           Bicycle

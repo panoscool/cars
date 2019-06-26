@@ -22,6 +22,7 @@ import { sort } from "../../../app/data/SharedAttributes";
 import ClassifiedList from "../ClassifiedList/ClassifiedList";
 import SideFilters from "../SideFilters/SideFilters";
 import Tooltip from "../../../app/common/tooltip/Tooltip";
+import Wrapper from "../SideFilters/Wrapper";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -64,6 +65,33 @@ const SearchDetailed = () => {
         <Hidden smDown>
           <Grid item xs={3}>
             <SideFilters />
+            <Wrapper label="test1">
+              <SelectForm
+                name="sort"
+                label="Sort"
+                values={selectValues.sort}
+                attributes={sort}
+                handleChange={handleSelectChange}
+              />
+            </Wrapper>
+            <Wrapper label="test2">
+              <SelectForm
+                name="sort"
+                label="Sort"
+                values={selectValues.sort}
+                attributes={sort}
+                handleChange={handleSelectChange}
+              />
+            </Wrapper>
+            <Wrapper label="test3">
+              <SelectForm
+                name="sort"
+                label="Sort"
+                values={selectValues.sort}
+                attributes={sort}
+                handleChange={handleSelectChange}
+              />
+            </Wrapper>
           </Grid>
         </Hidden>
         <Grid item xs={gridSize}>

@@ -29,7 +29,8 @@ function OutlinedTextFields(props) {
     required,
     multiline,
     rows,
-    handleChange
+    handleChange,
+    inputProps
   } = props;
   return (
     <TextField
@@ -45,6 +46,7 @@ function OutlinedTextFields(props) {
       multiline={multiline}
       rows={rows}
       fullWidth
+      inputProps={inputProps}
       onChange={handleChange}
       className={clsx(classes.textField, classes.dense)}
     />

@@ -11,7 +11,13 @@ import bicycle from "../../../assets/images/bicycle.jfif";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 240
+    maxWidth: 340
+  },
+  media: {
+    height: "auto",
+    width: 100,
+    paddingTop: 20,
+    paddingLeft: 20
   }
 });
 
@@ -22,6 +28,7 @@ export default function ImgMediaCard() {
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
+          className={classes.media}
           component="img"
           alt="Contemplative Reptile"
           height="120"

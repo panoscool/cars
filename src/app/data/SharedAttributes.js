@@ -69,7 +69,7 @@ export const sort = [
   { key: "highest-price", value: "Highest Price" }
 ];
 
-export const lastEdit = [
+export const modified = [
   { key: "today", value: "Today" },
   { key: "3-days", value: "3 Days" },
   { key: "1-week", value: "1 Week" },
