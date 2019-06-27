@@ -114,8 +114,8 @@ const DrawerMenu = ({ handleDrawerToggle, location: { pathname } }) => {
             </MenuItem> */}
             <MenuItem
               component={Link}
-              to="/bicycles/search"
-              selected={"/bicycles/search" === pathname}
+              to="/bicycle/search"
+              selected={"/bicycle/search" === pathname}
               onClick={handleDrawerToggle}
             >
               <IconButton color="inherit">{icons.bicycle}</IconButton>

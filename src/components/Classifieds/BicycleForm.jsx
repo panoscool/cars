@@ -8,9 +8,9 @@ import {
   Divider,
   Typography
 } from "@material-ui/core";
-import SelectForm from "../../../app/common/forms/SelectForm";
-import InputForm from "../../../app/common/forms/InputForm";
-import CheckboxForm from "../../../app/common/forms/CheckboxForm";
+import SelectForm from "../../common/forms/SelectForm";
+import InputForm from "../../common/forms/InputForm";
+import CheckboxForm from "../../common/forms/CheckboxForm";
 import {
   offer,
   condition,
@@ -18,7 +18,7 @@ import {
   adDuration,
   months,
   color
-} from "../../../app/data/SharedAttributes";
+} from "../../data/SharedAttributes";
 import {
   category,
   manufacturers,
@@ -27,7 +27,7 @@ import {
   brakeType,
   extras,
   gears
-} from "../../../app/data/bicycle/bicycle";
+} from "../../data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,8 +46,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ClassifiedCreate = () => {
+const BicycleForm = props => {
   const classes = useStyles();
+  const { onSubmit } = props;
 
   const [inputValues, setInputValues] = useState({
     variant: "",
@@ -100,8 +101,6 @@ const ClassifiedCreate = () => {
   });
   const [state, setState] = useState(defaultCheckBoxState);
 
-  console.log(state);
-
   const handleChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
@@ -109,7 +108,7 @@ const ClassifiedCreate = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const formValues = { selectValues, inputValues, state };
-    console.log("formValues", formValues);
+    onSubmit(formValues);
   };
 
   return (
@@ -406,4 +405,4 @@ const ClassifiedCreate = () => {
   );
 };
 
-export default ClassifiedCreate;
+export default BicycleForm;

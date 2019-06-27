@@ -63,7 +63,7 @@ const MenuItems = () => {
           <IconButton color="inherit">{icons.boat}</IconButton>
           Boats
         </MenuItem> */}
-        <MenuItem component={Link} to="/bicycles/search">
+        <MenuItem component={Link} to="/bicycle/search">
           <IconButton color="inherit">{icons.bicycle}</IconButton>
           Bicycles
         </MenuItem>

@@ -7,7 +7,7 @@ import {
   CardMedia,
   Typography
 } from "@material-ui/core";
-import bicycle from "../../../assets/images/bicycle.jfif";
+import bicycle from "../../assets/images/bicycle.jfif";
 
 const useStyles = makeStyles({
   card: {

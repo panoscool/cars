@@ -9,9 +9,9 @@ import {
   Divider,
   Typography
 } from "@material-ui/core";
-import SelectForm from "../../../app/common/forms/SelectForm";
-import InputForm from "../../../app/common/forms/InputForm";
-import CheckboxForm from "../../../app/common/forms/CheckboxForm";
+import SelectForm from "../../../common/forms/SelectForm";
+import InputForm from "../../../common/forms/InputForm";
+import CheckboxForm from "../../../common/forms/CheckboxForm";
 import {
   offer,
   condition,
@@ -19,7 +19,7 @@ import {
   color,
   sort,
   modified
-} from "../../../app/data/SharedAttributes";
+} from "../../../data/SharedAttributes";
 import {
   category,
   manufacturers,
@@ -27,8 +27,8 @@ import {
   brakeType,
   extras,
   gears
-} from "../../../app/data/bicycle/bicycle";
-import { bicycles } from "../../../app/data/SampleData";
+} from "../../../data/bicycle/bicycle";
+import { bicycles } from "../../../data/SampleData";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -112,7 +112,7 @@ const ClassifiedSearch = () => {
             </Typography>
             <Button
               component={Link}
-              to="/search"
+              to="/bicycles"
               variant="contained"
               color="primary"
               className={classes.button}

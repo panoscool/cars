@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
-import ClassifiedLatest from "../Classified/ClassifiedList/ClassifiedLatest";
+import ClassifiedLatest from "./ClassifiedLatest";
 
 const useStyles = makeStyles(theme => ({
   button: {

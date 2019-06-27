@@ -16,13 +16,12 @@ import {
   ViewList,
   ViewModule
 } from "@material-ui/icons";
-import useWindowDimensions from "../../../app/common/hooks/useWindowDimensions";
-import SelectForm from "../../../app/common/forms/SelectForm";
-import { sort } from "../../../app/data/SharedAttributes";
-import ClassifiedList from "../ClassifiedList/ClassifiedList";
-import SideFilters from "../SideFilters/SideFilters";
-import Tooltip from "../../../app/common/tooltip/Tooltip";
-import Wrapper from "../SideFilters/Wrapper";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import SelectForm from "../../../common/forms/SelectForm";
+import { sort } from "../../../data/SharedAttributes";
+import BicycleList from "./BicycleList/BicycleList";
+import SideFilters from "./SideFilters/SideFilters";
+import Tooltip from "../../../common/tooltip/Tooltip";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -40,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SearchDetailed = () => {
+const SearchResults = () => {
   const classes = useStyles();
   const { width } = useWindowDimensions();
 
@@ -65,33 +64,6 @@ const SearchDetailed = () => {
         <Hidden smDown>
           <Grid item xs={3}>
             <SideFilters />
-            <Wrapper label="test1">
-              <SelectForm
-                name="sort"
-                label="Sort"
-                values={selectValues.sort}
-                attributes={sort}
-                handleChange={handleSelectChange}
-              />
-            </Wrapper>
-            <Wrapper label="test2">
-              <SelectForm
-                name="sort"
-                label="Sort"
-                values={selectValues.sort}
-                attributes={sort}
-                handleChange={handleSelectChange}
-              />
-            </Wrapper>
-            <Wrapper label="test3">
-              <SelectForm
-                name="sort"
-                label="Sort"
-                values={selectValues.sort}
-                attributes={sort}
-                handleChange={handleSelectChange}
-              />
-            </Wrapper>
           </Grid>
         </Hidden>
         <Grid item xs={gridSize}>
@@ -105,7 +77,7 @@ const SearchDetailed = () => {
             <Button
               component={Link}
               to="/bicycles/search"
-              variant="extended"
+              variant="text"
               size="small"
               className={classes.margin}
             >
@@ -116,19 +88,11 @@ const SearchDetailed = () => {
           <Divider variant="fullWidth" component="hr" />
           <div className={classes.inline}>
             <div>
-              <Button
-                variant="extended"
-                size="small"
-                className={classes.button}
-              >
+              <Button variant="text" size="small" className={classes.button}>
                 <ViewList className={classes.extendedIcon} />
                 List
               </Button>
-              <Button
-                variant="extended"
-                size="small"
-                className={classes.button}
-              >
+              <Button variant="text" size="small" className={classes.button}>
                 <ViewModule className={classes.extendedIcon} />
                 Gallery
               </Button>
@@ -143,7 +107,7 @@ const SearchDetailed = () => {
               />
             </div>
           </div>
-          <ClassifiedList />
+          <BicycleList />
         </Grid>
       </Grid>
       <Hidden smUp>
@@ -153,4 +117,4 @@ const SearchDetailed = () => {
   );
 };
 
-export default SearchDetailed;
+export default SearchResults;

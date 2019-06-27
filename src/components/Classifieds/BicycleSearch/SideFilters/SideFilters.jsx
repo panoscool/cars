@@ -6,22 +6,22 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Grid } from "@material-ui/core";
-import CheckboxForm from "../../../app/common/forms/CheckboxForm";
-import SelectForm from "../../../app/common/forms/SelectForm";
-import InputForm from "../../../app/common/forms/InputForm";
+import CheckboxForm from "../../../../common/forms/CheckboxForm";
+import SelectForm from "../../../../common/forms/SelectForm";
+import InputForm from "../../../../common/forms/InputForm";
 import {
   offer,
   condition,
   color,
   modified
-} from "../../../app/data/SharedAttributes";
+} from "../../../../data/SharedAttributes";
 import {
   manufacturers,
   brakeType,
   category,
   gears,
   priceRange
-} from "../../../app/data/bicycle/bicycle";
+} from "../../../../data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,9 +49,8 @@ export default function SimpleExpansionPanel() {
         <ExpansionPanelDetails>
           <Grid container spacing={3}>
             {offer.map(obj => (
-              <Grid style={{ marginLeft: 16 }} xs={12}>
+              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
                 <CheckboxForm
-                  key={obj.key}
                   name={obj.key}
                   value={obj.key}
                   label={obj.value}
@@ -131,9 +130,8 @@ export default function SimpleExpansionPanel() {
         <ExpansionPanelDetails>
           <Grid container spacing={3}>
             {brakeType.map(obj => (
-              <Grid style={{ marginLeft: 16 }} xs={12}>
+              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
                 <CheckboxForm
-                  key={obj.key}
                   name={obj.key}
                   value={obj.key}
                   label={obj.value}
@@ -174,9 +172,8 @@ export default function SimpleExpansionPanel() {
         <ExpansionPanelDetails>
           <Grid container spacing={3}>
             {modified.map(obj => (
-              <Grid style={{ marginLeft: 16 }} xs={12}>
+              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
                 <CheckboxForm
-                  key={obj.key}
                   name={obj.key}
                   value={obj.key}
                   label={obj.value}
@@ -199,9 +196,8 @@ export default function SimpleExpansionPanel() {
         <ExpansionPanelDetails>
           <Grid container spacing={3}>
             {gears.map(obj => (
-              <Grid style={{ marginLeft: 16 }} xs={12}>
+              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
                 <CheckboxForm
-                  key={obj.key}
                   name={obj.key}
                   value={obj.key}
                   label={obj.value}
@@ -242,9 +238,8 @@ export default function SimpleExpansionPanel() {
         <ExpansionPanelDetails>
           <Grid container spacing={3}>
             {priceRange.map(obj => (
-              <Grid style={{ marginLeft: 16 }} xs={12}>
+              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
                 <CheckboxForm
-                  key={obj.key}
                   name={obj.key}
                   value={obj.key}
                   label={obj.value}
