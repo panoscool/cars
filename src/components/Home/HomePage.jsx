@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
@@ -27,11 +28,23 @@ const HomePage = () => {
     <Container maxWidth="lg">
       <div className={classes.buttons}>
         <Typography>This is the place for some text.</Typography>
-        <Button variant="contained" color="primary" className={classes.button}>
+        <Button
+          component={Link}
+          to="/bicycle/search"
+          variant="contained"
+          color="primary"
+          className={classes.button}
+        >
           <Search className={classes.leftIcon} />
           Search
         </Button>
-        <Button variant="contained" color="primary" className={classes.button}>
+        <Button
+          component={Link}
+          to="/bicycle/create"
+          variant="contained"
+          color="primary"
+          className={classes.button}
+        >
           <Edit className={classes.leftIcon} />
           Offer
         </Button>

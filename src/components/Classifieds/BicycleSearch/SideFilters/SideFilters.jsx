@@ -19,8 +19,7 @@ import {
   manufacturers,
   brakeType,
   category,
-  gears,
-  priceRange
+  gears
 } from "../../../../data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
@@ -237,17 +236,20 @@ export default function SimpleExpansionPanel() {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container spacing={3}>
-            {priceRange.map(obj => (
-              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
-                <CheckboxForm
-                  name={obj.key}
-                  value={obj.key}
-                  label={obj.value}
-                  labelPlacement="end"
-                  // handleChange={handleChange}
-                />
-              </Grid>
-            ))}
+            <Grid item xs={12}>
+              <InputForm
+                name="priceFrom"
+                label="Price from"
+                // values={inputValues.priceFrom}
+                // handleChange={handleInputChange}
+              />
+              <InputForm
+                name="priceTo"
+                label="Price to"
+                // values={inputValues.priceTo}
+                // handleChange={handleInputChange}
+              />
+            </Grid>
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>

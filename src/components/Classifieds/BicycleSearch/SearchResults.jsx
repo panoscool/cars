@@ -8,20 +8,22 @@ import {
   IconButton,
   Divider,
   Button,
-  Hidden
+  Hidden,
+  Fab
 } from "@material-ui/core";
 import {
   DirectionsBike,
   Search,
   ViewList,
-  ViewModule
+  ViewModule,
+  FilterList
 } from "@material-ui/icons";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import SelectForm from "../../../common/forms/SelectForm";
 import { sort } from "../../../data/SharedAttributes";
 import BicycleList from "./BicycleList/BicycleList";
 import SideFilters from "./SideFilters/SideFilters";
-import Tooltip from "../../../common/tooltip/Tooltip";
+import { bicycles } from "../../../data/SampleData";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -54,10 +56,16 @@ const SearchResults = () => {
     }));
   };
 
+  const [view, setView] = useState(true);
+
+  const handleListView = () => setView(true);
+  const handleGridView = () => setView(false);
+
   let gridSize = 9;
   if (width < 960) {
     gridSize = 12;
   }
+
   return (
     <Container maxWidth="lg">
       <Grid container spacing={3}>
@@ -88,13 +96,23 @@ const SearchResults = () => {
           <Divider variant="fullWidth" component="hr" />
           <div className={classes.inline}>
             <div>
-              <Button variant="text" size="small" className={classes.button}>
+              <Button
+                onClick={handleListView}
+                variant="text"
+                size="small"
+                className={classes.button}
+              >
                 <ViewList className={classes.extendedIcon} />
                 List
               </Button>
-              <Button variant="text" size="small" className={classes.button}>
+              <Button
+                onClick={handleGridView}
+                variant="text"
+                size="small"
+                className={classes.button}
+              >
                 <ViewModule className={classes.extendedIcon} />
-                Gallery
+                Grid
               </Button>
             </div>
             <div>
@@ -107,11 +125,13 @@ const SearchResults = () => {
               />
             </div>
           </div>
-          <BicycleList />
+          <BicycleList view={view} bicycles={bicycles} />
         </Grid>
       </Grid>
       <Hidden smUp>
-        <Tooltip />
+        <Fab color="primary" className="filter-button">
+          <FilterList />
+        </Fab>
       </Hidden>
     </Container>
   );

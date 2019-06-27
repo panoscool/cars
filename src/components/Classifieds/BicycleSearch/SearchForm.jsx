@@ -55,7 +55,9 @@ const ClassifiedSearch = () => {
   const classes = useStyles();
 
   const [inputValues, setInputValues] = useState({
-    variant: ""
+    variant: "",
+    priceFrom: "",
+    priceTo: ""
   });
 
   const handleInputChange = event => {
@@ -71,8 +73,6 @@ const ClassifiedSearch = () => {
     purchasedTo: "",
     frameSizeFrom: "",
     frameSizeTo: "",
-    priceFrom: "",
-    priceTo: "",
     modified: "",
     gears: "",
     color: "",
@@ -201,19 +201,17 @@ const ClassifiedSearch = () => {
                 values={state.crashed}
                 handleChange={handleChange}
               />
-              <SelectForm
+              <InputForm
                 name="priceFrom"
                 label="Price from"
-                values={selectValues.priceFrom}
-                attributes={price}
-                handleChange={handleSelectChange}
+                values={inputValues.priceFrom}
+                handleChange={handleInputChange}
               />
-              <SelectForm
+              <InputForm
                 name="priceTo"
                 label="Price to"
-                values={selectValues.priceTo}
-                attributes={price}
-                handleChange={handleSelectChange}
+                values={inputValues.priceTo}
+                handleChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} sm={4}>

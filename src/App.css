@@ -16,6 +16,23 @@
   padding: 10px;
 }
 
+.grid-view {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+.grid-view > div {
+  flex: 0 1 auto;
+  margin: 5px;
+}
+
+.filter-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 30px;
+}
+
 @media (min-width: 768px) {
   .horizontal-list li {
     padding: 10px;

@@ -6,10 +6,11 @@ import {
   ListItem,
   ListItemText,
   ListItemAvatar,
-  Button,
+  ListItemSecondaryAction,
+  IconButton,
   Divider
 } from "@material-ui/core";
-import history from "../../../../history";
+import { Edit } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +30,7 @@ function AlignItemsList(props) {
     <List className={classes.root}>
       <ListItem component={Link} to={`/bicycle/${id}`} alignItems="flex-start">
         <ListItemAvatar>
-          <img className="image" alt="" src={img} />
+          <img className="image" alt={title} src={img} />
         </ListItemAvatar>
         <ListItemText
           primary={
@@ -43,9 +44,16 @@ function AlignItemsList(props) {
             </Fragment>
           }
         />
-        <Button onClick={() => history.push(`/bicycle/edit/${id}`)}>
-          Edit
-        </Button>
+        <ListItemSecondaryAction>
+          <IconButton
+            component={Link}
+            to={`/bicycle/edit/${id}`}
+            edge="end"
+            aria-label="Edit"
+          >
+            <Edit />
+          </IconButton>
+        </ListItemSecondaryAction>
       </ListItem>
       <Divider variant="inset" component="li" />
     </List>

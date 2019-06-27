@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
+import { Fab } from "@material-ui/core";
+import { FilterList } from "@material-ui/icons";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -44,13 +45,12 @@ function SimpleModal(props) {
   };
   const classes = useStyles();
 
-  const { children, clickBtn } = props;
+  const { children } = props;
   return (
     <div>
-      <Typography gutterBottom>
-        Click to get the full Modal experience!
-      </Typography>
-      <Button onClick={handleOpen}>{clickBtn}</Button>
+      <Fab onClick={handleOpen} color="primary" className="filter-button">
+        <FilterList />
+      </Fab>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

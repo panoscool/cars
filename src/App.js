@@ -5,8 +5,10 @@ import "./App.css";
 import Navbar from "./components/Nav/Navbar/Navbar";
 import HomePage from "./components/Home/HomePage";
 import BicycleCreate from "./components/Classifieds/BicycleCreate";
+import BicycleEdit from "./components/Classifieds/BicycleEdit";
 import SearchForm from "./components/Classifieds/BicycleSearch/SearchForm";
 import SearchResults from "./components/Classifieds//BicycleSearch/SearchResults";
+import BicycleDetails from "./components/Classifieds/BicycleDetails";
 
 function App() {
   return (
@@ -17,9 +19,9 @@ function App() {
         <Switch>
           <Route path="/bicycle/create" component={BicycleCreate} />
           <Route path="/bicycle/search" component={SearchForm} />
-          <Route path="/bicycle/edit/:id" component={BicycleCreate} />
+          <Route path="/bicycle/edit/:id" component={BicycleEdit} />
           <Route path="/bicycles" component={SearchResults} />
-          <Route path="/bicycle/:id" component={SearchResults} />
+          <Route path="/bicycle/:id" component={BicycleDetails} />
           <Route path="/" component={HomePage} />
         </Switch>
       </div>
