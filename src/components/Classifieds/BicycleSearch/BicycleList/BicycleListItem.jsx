@@ -30,7 +30,7 @@ function AlignItemsList(props) {
     <List className={classes.root}>
       <ListItem component={Link} to={`/bicycle/${id}`} alignItems="flex-start">
         <ListItemAvatar>
-          <img className="image" alt={title} src={img} />
+          <img className="list-view-image" alt={title} src={img} />
         </ListItemAvatar>
         <ListItemText
           primary={

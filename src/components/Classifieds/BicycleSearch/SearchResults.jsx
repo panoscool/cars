@@ -8,15 +8,13 @@ import {
   IconButton,
   Divider,
   Button,
-  Hidden,
-  Fab
+  Hidden
 } from "@material-ui/core";
 import {
   DirectionsBike,
   Search,
   ViewList,
-  ViewModule,
-  FilterList
+  ViewModule
 } from "@material-ui/icons";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import SelectForm from "../../../common/forms/SelectForm";
@@ -128,11 +126,6 @@ const SearchResults = () => {
           <BicycleList view={view} bicycles={bicycles} />
         </Grid>
       </Grid>
-      <Hidden smUp>
-        <Fab color="primary" className="filter-button">
-          <FilterList />
-        </Fab>
-      </Hidden>
     </Container>
   );
 };
