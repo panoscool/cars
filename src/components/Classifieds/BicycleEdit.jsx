@@ -8,7 +8,7 @@ const BicycleEdit = props => {
   };
 
   return (
-    <Container>
+    <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Edit your bicycle entry
       </Typography>
