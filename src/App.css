@@ -19,11 +19,12 @@
 .grid-view {
   display: flex;
   flex-wrap: wrap;
-  padding: 5px;
+  /* padding: 5px; */
+  justify-content: space-between;
 }
 .grid-view > div {
   flex: 0 1 auto;
-  margin: 5px;
+  margin-bottom: 10px;
 }
 
 .filter-button {

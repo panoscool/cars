@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
@@ -9,8 +10,10 @@ import {
   TableRow,
   Paper,
   Typography,
-  Divider
+  Divider,
+  Tooltip
 } from "@material-ui/core";
+import { DirectionsBike, CalendarToday } from "@material-ui/icons";
 import { bicycles } from "../../data/SampleData";
 
 const useStyles = makeStyles(theme => ({
@@ -24,23 +27,54 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(2)
   },
   table: {
-    minWidth: 350
+    width: "100%"
   },
   typography: {
     marginLeft: 16,
     marginTop: 16
+  },
+  attention: {
+    backgroundColor: "#FFFF66"
+  },
+  sideInfos: {
+    color: "green",
+    textAlign: "center"
+  },
+  align: {
+    textAlign: "center"
   }
 }));
 
+const infoArray = [
+  { label: "Manufacturer", key: "manufacturer" },
+  { label: "Category", key: "category" },
+  { label: "Purchased", key: "purchased" },
+  { label: "Price", key: "price" },
+  { label: "Previous owners", key: "owners" },
+  { label: "Color", key: "color" },
+  { label: "Frame size", key: "frameSize" },
+  { label: "Frame type", key: "frameType" },
+  { label: "Gears", key: "gears" },
+  { label: "Rim size", key: "rimSize" },
+  { label: "Modified", key: "modified" },
+  { label: "Times clicked", key: "timesClicked" },
+  { label: "Classified ID", key: "id" }
+];
+
+const userDetails = [
+  { label: "Name", key: "userName" },
+  { label: "Location", key: "location" },
+  { label: "Phone", key: "phone1" }
+];
+
 const BicycleDetails = props => {
   const classes = useStyles();
-  const bicycle = bicycles[props.match.params.id - 1];
-  console.log(bicycle);
+  const bicycleObj = bicycles[props.match.params.id - 1];
   return (
     <Container maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={9}>
-          <img src={bicycle.img} alt="" />
+          <img src={bicycleObj.img} alt="" />
           <div className={classes.root}>
             <Paper className={classes.paper}>
               <Typography
@@ -53,55 +87,93 @@ const BicycleDetails = props => {
               <Divider variant="fullWidth" />
               <Table className={classes.table} size="small">
                 <TableBody>
-                  <TableRow>
-                    <TableCell>Manufacturer:</TableCell>
-                    <TableCell align="left">{bicycle.manufacturer}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Category:</TableCell>
-                    <TableCell align="left">{bicycle.category}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      Price:
+                  {infoArray.map((info, index) => {
+                    return bicycleObj[info.key] ? (
+                      <TableRow key={index}>
+                        <TableCell component="th" scope="row">
+                          {info.label}:
+                        </TableCell>
+                        <TableCell align="left">
+                          {bicycleObj[info.key]}
+                        </TableCell>
+                      </TableRow>
+                    ) : null;
+                  })}
+                </TableBody>
+              </Table>
+            </Paper>
+          </div>
+          <div className={classes.root}>
+            <Paper className={classes.paper}>
+              <Table className={classes.table} size="small">
+                <TableBody>
+                  <TableRow className={classes.attention}>
+                    <TableCell colSpan="2">
+                      Do not send a downpayment if you haven't carefully read
+                      the market <Link to="/market-guide">guide</Link>!
                     </TableCell>
-                    <TableCell align="left">&euro; {bicycle.price}</TableCell>
                   </TableRow>
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      Purchase Date:
-                    </TableCell>
-                    <TableCell align="left">{bicycle.purchased}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      Color:
-                    </TableCell>
-                    <TableCell align="left">{bicycle.color}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      Modified:
-                    </TableCell>
-                    <TableCell align="left">1 week</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell component="th" scope="row">
-                      Times clicked:
-                    </TableCell>
-                    <TableCell align="left">100</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Classified ID:</TableCell>
-                    <TableCell align="left">{bicycle.id}</TableCell>
-                  </TableRow>
+                  {userDetails.map((info, index) => {
+                    return bicycleObj[info.key] ? (
+                      <TableRow key={index}>
+                        <TableCell component="th" scope="row">
+                          {info.label}:
+                        </TableCell>
+                        <TableCell align="left">
+                          {bicycleObj[info.key]}
+                        </TableCell>
+                      </TableRow>
+                    ) : null;
+                  })}
                 </TableBody>
               </Table>
             </Paper>
           </div>
         </Grid>
         <Grid item xs={3}>
-          right side
+          <div className={classes.root}>
+            <Paper className={classes.paper}>
+              <Table className={classes.table} size="small">
+                <TableBody>
+                  <TableRow>
+                    <TableCell colSpan="2">
+                      <h2 className={classes.sideInfos}>
+                        &euro; {bicycleObj.price}
+                      </h2>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className={classes.align}>
+                      <Tooltip title="Purchase Date" placement="right">
+                        <CalendarToday color="secondary" fontSize="large" />
+                      </Tooltip>
+                      <br />
+                      {bicycleObj.purchased}
+                    </TableCell>
+                    <TableCell className={classes.align}>
+                      <Tooltip title="Category" placement="left">
+                        <DirectionsBike color="primary" fontSize="large" />
+                      </Tooltip>
+                      <br />
+                      {bicycleObj.category}
+                    </TableCell>
+                  </TableRow>
+                  {userDetails.map((info, index) => {
+                    return bicycleObj[info.key] ? (
+                      <TableRow key={index}>
+                        <TableCell component="th" scope="row">
+                          {info.label}:
+                        </TableCell>
+                        <TableCell align="left">
+                          {bicycleObj[info.key]}
+                        </TableCell>
+                      </TableRow>
+                    ) : null;
+                  })}
+                </TableBody>
+              </Table>
+            </Paper>
+          </div>
         </Grid>
       </Grid>
     </Container>
