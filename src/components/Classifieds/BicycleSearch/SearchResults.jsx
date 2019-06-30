@@ -17,7 +17,7 @@ import {
   ViewModule
 } from "@material-ui/icons";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
-import SelectForm from "../../../common/forms/SelectForm";
+import SelectForm from "../../../shared/forms/SelectForm";
 import { sort } from "../../../data/SharedAttributes";
 import BicycleList from "./BicycleList/BicycleList";
 import SideFilters from "./SideFilters/SideFilters";

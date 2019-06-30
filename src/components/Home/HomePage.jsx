@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
 import ClassifiedLatest from "./ClassifiedLatest";
+import { bicycles } from "../../data/SampleData";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -58,24 +59,16 @@ const HomePage = () => {
         </div>
         <div className="latest-classifieds">
           <ul className="horizontal-list">
-            <li>
-              <ClassifiedLatest />
-            </li>
-            <li>
-              <ClassifiedLatest />
-            </li>
-            <li>
-              <ClassifiedLatest />
-            </li>
-            <li>
-              <ClassifiedLatest />
-            </li>
-            <li>
-              <ClassifiedLatest />
-            </li>
-            <li>
-              <ClassifiedLatest />
-            </li>
+            {bicycles.map(item => (
+              <li key={item.id}>
+                <ClassifiedLatest
+                  img={item.img}
+                  title={item.manufacturer}
+                  price={item.price}
+                  id={item.id}
+                />
+              </li>
+            ))}
           </ul>
         </div>
       </div>

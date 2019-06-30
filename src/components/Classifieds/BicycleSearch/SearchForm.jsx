@@ -9,9 +9,9 @@ import {
   Divider,
   Typography
 } from "@material-ui/core";
-import SelectForm from "../../../common/forms/SelectForm";
-import InputForm from "../../../common/forms/InputForm";
-import CheckboxForm from "../../../common/forms/CheckboxForm";
+import SelectForm from "../../../shared/forms/SelectForm";
+import InputForm from "../../../shared/forms/InputForm";
+import CheckboxForm from "../../../shared/forms/CheckboxForm";
 import {
   offer,
   condition,
@@ -23,7 +23,6 @@ import {
 import {
   category,
   manufacturers,
-  price,
   brakeType,
   extras,
   gears
@@ -87,10 +86,27 @@ const ClassifiedSearch = () => {
     }));
   };
 
-  const [state, setState] = useState({
+  const extraKeys = extras.map(obj => obj.key);
+  const defaultCheckBoxState = {
     crashed: false,
-    withPrice: false
+    negotiable: false,
+    womens: false,
+    mens: false,
+    dynamoLights: false,
+    ledLights: false,
+    shockAbsorber: false,
+    fenders: false,
+    singleSpeed: false,
+    interiorSpeed: false,
+    exteriorSpeed: false,
+    antique: false,
+    basket: false,
+    cargoRack: false
+  };
+  extraKeys.forEach(keyName => {
+    defaultCheckBoxState[keyName] = false;
   });
+  const [state, setState] = useState(defaultCheckBoxState);
 
   const handleChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -226,14 +242,14 @@ const ClassifiedSearch = () => {
                 name="frameSizeFrom"
                 label="Frame size from"
                 values={selectValues.frameSizeFrom}
-                attributes={price}
+                attributes={sort}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="frameSizeTo"
                 label="Frame size to"
                 values={selectValues.frameSizeTo}
-                attributes={price}
+                attributes={sort}
                 handleChange={handleSelectChange}
               />
             </Grid>
@@ -272,6 +288,7 @@ const ClassifiedSearch = () => {
                     name={extra.key}
                     label={extra.value}
                     labelPlacement="end"
+                    handleChange={handleChange}
                   />
                 );
               })}

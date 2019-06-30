@@ -9,22 +9,9 @@ export const condition = [
   { key: "new", value: "New" }
 ];
 
-export const previousOwners = [
-  { key: "zero-0", value: "0" },
-  { key: "one-1", value: "1" },
-  { key: "two-2", value: "2" },
-  { key: "three-3", value: "3" },
-  { key: "four-4", value: "4" },
-  { key: "five-5", value: "5" },
-  { key: "six-6", value: "6" },
-  { key: "seven-7", value: "7" },
-  { key: "eight-8", value: "8" },
-  { key: "nine-9", value: "9" }
-];
-
 export const adDuration = [
-  { key: "20-days", value: "20 Days" },
-  { key: "1-month", value: "1 Month" }
+  { key: "20days", value: "20 Days" },
+  { key: "1month", value: "1 Month" }
 ];
 
 export const exchangeWith = [
@@ -65,13 +52,13 @@ export const sort = [
   { key: "newest", value: "Newest" },
   { key: "oldest", value: "Oldest" },
   { key: "brand", value: "Brand" },
-  { key: "lowest-price", value: "Lowest Price" },
-  { key: "highest-price", value: "Highest Price" }
+  { key: "lowestPrice", value: "Lowest Price" },
+  { key: "highestPrice", value: "Highest Price" }
 ];
 
 export const modified = [
   { key: "today", value: "Today" },
-  { key: "3-days", value: "3 Days" },
-  { key: "1-week", value: "1 Week" },
-  { key: "2-weeks", value: "2 Weeks" }
+  { key: "days3", value: "3 Days" },
+  { key: "week1", value: "1 Week" },
+  { key: "weeks2", value: "2 Weeks" }
 ];

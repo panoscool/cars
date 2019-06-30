@@ -6,9 +6,9 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Grid } from "@material-ui/core";
-import CheckboxForm from "../../../../common/forms/CheckboxForm";
-import SelectForm from "../../../../common/forms/SelectForm";
-import InputForm from "../../../../common/forms/InputForm";
+import CheckboxForm from "../../../../shared/forms/CheckboxForm";
+import SelectForm from "../../../../shared/forms/SelectForm";
+import InputForm from "../../../../shared/forms/InputForm";
 import {
   offer,
   condition,
@@ -24,7 +24,8 @@ import {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%"
+    width: "100%",
+    overflowY: "auto"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

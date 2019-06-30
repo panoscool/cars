@@ -8,7 +8,7 @@ import BicycleCreate from "./components/Classifieds/BicycleCreate";
 import BicycleEdit from "./components/Classifieds/BicycleEdit";
 import SearchForm from "./components/Classifieds/BicycleSearch/SearchForm";
 import SearchResults from "./components/Classifieds//BicycleSearch/SearchResults";
-import BicycleDetails from "./components/Classifieds/BicycleDetails";
+import BicycleDetails from "./components/Classifieds/BicycleDetails/BicycleDetails";
 
 function App() {
   return (

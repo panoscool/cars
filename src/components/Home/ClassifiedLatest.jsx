@@ -7,6 +7,7 @@ import {
   CardMedia,
   Typography
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   card: {
@@ -20,26 +21,27 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ImgMediaCard() {
+export default function ImgMediaCard(props) {
   const classes = useStyles();
+  const { img, title, price, id } = props;
 
   return (
     <Card className={classes.card}>
-      <CardActionArea>
+      <CardActionArea component={Link} to={`/bicycle/${id}`}>
         <CardMedia
           className={classes.media}
           component="img"
-          alt="Contemplative Reptile"
+          alt={title}
           height="120"
-          image="https://i5.walmartimages.ca/images/Large/304/711/999999-690995304711.jpg"
-          title="Contemplative Reptile"
+          image={img}
+          title={title}
         />
         <CardContent>
           <Typography gutterBottom variant="subtitle1" component="h2">
-            Lizard
+            {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <span> &euro; 10 &bull; 5 seconds </span>
+            <span> &euro; {price} &bull; 5 seconds </span>
           </Typography>
         </CardContent>
       </CardActionArea>

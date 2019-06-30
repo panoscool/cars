@@ -8,13 +8,12 @@ import {
   Divider,
   Typography
 } from "@material-ui/core";
-import SelectForm from "../../common/forms/SelectForm";
-import InputForm from "../../common/forms/InputForm";
-import CheckboxForm from "../../common/forms/CheckboxForm";
+import SelectForm from "../../shared/forms/SelectForm";
+import InputForm from "../../shared/forms/InputForm";
+import CheckboxForm from "../../shared/forms/CheckboxForm";
 import {
   offer,
   condition,
-  previousOwners,
   adDuration,
   months,
   color
@@ -52,6 +51,7 @@ const BicycleForm = props => {
 
   const [inputValues, setInputValues] = useState({
     variant: "",
+    owners: "",
     price: "",
     description: "",
     youTube: "",
@@ -73,7 +73,6 @@ const BicycleForm = props => {
     condition: "",
     month: "",
     purchased: "",
-    owners: "",
     frameType: "",
     frameSize: "",
     gears: "",
@@ -94,7 +93,19 @@ const BicycleForm = props => {
   const extraKeys = extras.map(obj => obj.key);
   const defaultCheckBoxState = {
     crashed: false,
-    negotiable: false
+    negotiable: false,
+    womens: false,
+    mens: false,
+    dynamoLights: false,
+    ledLights: false,
+    shockAbsorber: false,
+    fenders: false,
+    singleSpeed: false,
+    interiorSpeed: false,
+    exteriorSpeed: false,
+    antique: false,
+    basket: false,
+    cargoRack: false
   };
   extraKeys.forEach(keyName => {
     defaultCheckBoxState[keyName] = false;
@@ -186,12 +197,13 @@ const BicycleForm = props => {
                 attributes={months}
                 handleChange={handleSelectChange}
               />
-              <SelectForm
+              <InputForm
                 name="owners"
+                type="number"
                 label="Previous owners"
-                values={selectValues.owners}
-                attributes={previousOwners}
-                handleChange={handleSelectChange}
+                placeholder="Number 0-9"
+                values={inputValues.owners}
+                handleChange={handleInputChange}
               />
             </Grid>
           </Grid>
@@ -317,11 +329,11 @@ const BicycleForm = props => {
                 return (
                   <CheckboxForm
                     key={extra.key}
-                    handleChange={handleChange}
                     name={extra.key}
                     value={extra.key}
                     label={extra.value}
                     labelPlacement="end"
+                    handleChange={handleChange}
                   />
                 );
               })}
