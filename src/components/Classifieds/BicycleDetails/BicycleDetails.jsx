@@ -68,7 +68,7 @@ const userDetails = [
 
 const BicycleDetails = props => {
   const classes = useStyles();
-  const width = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const bicycleObj = bicycles[props.match.params.id - 1];
 
   let gridSize = 9;
@@ -80,7 +80,7 @@ const BicycleDetails = props => {
     <Container maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={gridSize}>
-          <img src={bicycleObj.img} alt="" />
+          {/* <img src={bicycleObj.img} alt="" /> */}
           <div className={classes.root}>
             <Paper className={classes.paper}>
               <Typography

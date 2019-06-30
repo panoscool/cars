@@ -34,15 +34,7 @@ function SimpleSelect(props) {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  const {
-    name,
-    values,
-    attributes,
-    label,
-    required,
-
-    handleChange
-  } = props;
+  const { name, values, attributes, label, required, handleChange } = props;
 
   return (
     <FormControl

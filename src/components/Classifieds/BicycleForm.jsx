@@ -11,11 +11,11 @@ import {
 import SelectForm from "../../shared/forms/SelectForm";
 import InputForm from "../../shared/forms/InputForm";
 import CheckboxForm from "../../shared/forms/CheckboxForm";
+import SelectDate from "../../shared/forms/SelectDate";
 import {
   offer,
   condition,
   adDuration,
-  months,
   color
 } from "../../data/SharedAttributes";
 import {
@@ -53,6 +53,8 @@ const BicycleForm = props => {
     variant: "",
     owners: "",
     price: "",
+    frameSize: "",
+    rimSize: "",
     description: "",
     youTube: "",
     password: "",
@@ -71,14 +73,11 @@ const BicycleForm = props => {
     category: "",
     manufacturer: "",
     condition: "",
-    month: "",
     purchased: "",
     frameType: "",
-    frameSize: "",
     gears: "",
     color: "",
     brakes: "",
-    rimSize: "",
     duration: "",
     exchange: ""
   });
@@ -88,6 +87,12 @@ const BicycleForm = props => {
       ...oldValues,
       [event.target.name]: event.target.value
     }));
+  };
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = date => {
+    setSelectedDate(date);
   };
 
   const extraKeys = extras.map(obj => obj.key);
@@ -173,6 +178,14 @@ const BicycleForm = props => {
                 attributes={manufacturers}
                 handleChange={handleSelectChange}
               />
+              <SelectDate
+                required
+                label="Purchased"
+                values={selectedDate}
+                handleChange={handleDateChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
               <InputForm
                 name="variant"
                 label="Variant"
@@ -180,28 +193,12 @@ const BicycleForm = props => {
                 values={inputValues.variant}
                 handleChange={handleInputChange}
               />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <SelectForm
-                required
-                name="purchased"
-                label="Purchased"
-                values={selectValues.purchased}
-                attributes={months}
-                handleChange={handleSelectChange}
-              />
-              <SelectForm
-                name="month"
-                label="Month"
-                values={selectValues.month}
-                attributes={months}
-                handleChange={handleSelectChange}
-              />
               <InputForm
                 name="owners"
                 type="number"
                 label="Previous owners"
-                placeholder="Number 0-9"
+                placeholder="number 0-9"
+                inputProps={{ min: 0, max: 9 }}
                 values={inputValues.owners}
                 handleChange={handleInputChange}
               />
@@ -230,19 +227,23 @@ const BicycleForm = props => {
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <SelectForm
+              <InputForm
+                type="number"
                 name="frameSize"
                 label="Frame size (cm)"
-                values={selectValues.frameSize}
-                attributes={gears}
-                handleChange={handleSelectChange}
+                placeholder="number 30-70"
+                inputProps={{ min: 30, max: 70 }}
+                values={inputValues.frameSize}
+                handleChange={handleInputChange}
               />
-              <SelectForm
+              <InputForm
+                type="number"
                 name="rimSize"
                 label="Rim size (inches)"
-                values={selectValues.rimSize}
-                attributes={gears}
-                handleChange={handleSelectChange}
+                placeholder="number 10-30"
+                inputProps={{ min: 10, max: 30 }}
+                values={inputValues.rimSize}
+                handleChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} sm={4}>

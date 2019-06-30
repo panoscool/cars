@@ -1,45 +1,40 @@
-import 'date-fns';
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import DateFnsUtils from '@date-io/date-fns';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 const useStyles = makeStyles({
-  grid: {
-    width: '60%',
-  },
+  picker: {
+    paddingTop: 8,
+    paddingLeft: 10
+  }
 });
 
-export default function MaterialUIPickers() {
+export default function MaterialUIPickers(props) {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
-  function handleDateChange(date) {
-    setSelectedDate(date);
-  }
-
-  console.log(selectedDate)
-
+  const { label, values, required, handleChange } = props;
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container className={classes.grid} justify="space-around">
+      <div className={classes.picker}>
         <KeyboardDatePicker
-          margin="normal"
+          required={required}
+          fullWidth
+          margin="dense"
           inputVariant="outlined"
           id="mui-pickers-date"
-          label="Date picker"
+          label={label}
           format="dd/MMMM/yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
+          value={values}
+          onChange={handleChange}
           KeyboardButtonProps={{
-            'aria-label': 'change date',
+            "aria-label": "change date"
           }}
         />
-      </Grid>
+      </div>
     </MuiPickersUtilsProvider>
   );
 }

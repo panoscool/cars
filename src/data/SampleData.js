@@ -27,6 +27,8 @@ export const bicycles = [
     rimSize: "22-30",
     crashed: false,
     negotiable: true,
+    womens: true,
+    mans: true,
     img:
       "https://i5.walmartimages.ca/images/Large/304/711/999999-690995304711.jpg"
   },
