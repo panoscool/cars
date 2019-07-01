@@ -22,6 +22,8 @@ export const sellerDetails = [
 ];
 
 export const checkBoxes = [
+  { label: "Crashed", key: "crashed" },
+  { label: "Negotiable", key: "negotiable" },
   { label: "Women's", key: "womens" },
   { label: "Men's", key: "mens" },
   { label: "Dynamo Lights", key: "dynamoLights" },

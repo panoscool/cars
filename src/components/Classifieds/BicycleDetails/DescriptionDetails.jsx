@@ -27,7 +27,7 @@ const DescriptionDetails = props => {
 
   return (
     <div className={classes.root}>
-      {bicycleObj.description !== "" ? (
+      {bicycleObj.description ? (
         <Paper className={classes.paper}>
           <Typography variant="h6" gutterBottom className={classes.title}>
             Descritpion

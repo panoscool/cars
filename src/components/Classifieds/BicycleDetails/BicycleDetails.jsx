@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Grid, Hidden } from "@material-ui/core";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import ImageDetails from "./ImageDetails";
 import ClassifiedDetails from "./ClassifiedDetails";
 import ExtraDetails from "./ExtrasDetails";
 import DescriptionDetails from "./DescriptionDetails";
@@ -24,7 +25,7 @@ const BicycleDetails = props => {
     <Container maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={gridSize}>
-          {/* <img src={bicycleObj.img} alt="" /> */}
+          <ImageDetails />
           <ClassifiedDetails infoArray={infoArray} bicycleObj={bicycleObj} />
           <ExtraDetails checkBoxes={checkBoxes} bicycleObj={bicycleObj} />
           <DescriptionDetails bicycleObj={bicycleObj} />
@@ -42,6 +43,7 @@ const BicycleDetails = props => {
             {bicycles.map(item => (
               <SimilarClassifieds
                 key={item.id}
+                id={item.id}
                 img={item.img}
                 title={item.manufacturer}
                 price={item.price}

@@ -18,6 +18,9 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     padding: 16
+  },
+  extras: {
+    paddingRight: 8
   }
 }));
 
@@ -31,7 +34,7 @@ const ExtraDetails = props => {
 
   return (
     <div className={classes.root}>
-      {displayCheckBoxInfos.length !== 0 ? (
+      {displayCheckBoxInfos.length ? (
         <Paper className={classes.paper}>
           <Typography variant="h6" gutterBottom className={classes.title}>
             Extras
@@ -39,7 +42,9 @@ const ExtraDetails = props => {
           <Divider variant="fullWidth" />
           <Typography variant="body2" className={classes.text}>
             {displayCheckBoxInfos.map(obj => (
-              <span key={obj.key}>{obj.label}</span>
+              <span key={obj.key} className={classes.extras}>
+                &#10003; {obj.label}
+              </span>
             ))}
           </Typography>
         </Paper>
