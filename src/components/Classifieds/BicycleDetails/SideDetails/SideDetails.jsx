@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 const SideDetails = props => {
   const classes = useStyles();
-  const { bicycleObj, userDetails } = props;
+  const { bicycleObj, sellerDetails } = props;
 
   return (
     <div className={classes.root}>
@@ -62,7 +62,7 @@ const SideDetails = props => {
                 {bicycleObj.manufacturer}
               </TableCell>
             </TableRow>
-            {userDetails.map((info, index) => {
+            {sellerDetails.map((info, index) => {
               return bicycleObj[info.key] ? (
                 <TableRow key={index}>
                   <TableCell component="th" scope="row">
