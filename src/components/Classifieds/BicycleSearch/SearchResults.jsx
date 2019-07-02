@@ -118,7 +118,7 @@ const SearchResults = () => {
                 name="sort"
                 label="Sort"
                 values={selectValues.sort}
-                attributes={sort}
+                optionsArray={sort}
                 handleChange={handleSelectChange}
               />
             </div>

@@ -1,12 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Grid } from "@material-ui/core";
+import { Paper, Typography, Divider } from "@material-ui/core";
 import CheckboxForm from "../../../../shared/forms/CheckboxForm";
+import RadioForm from "../../../../shared/forms/RadioForm";
 import SelectForm from "../../../../shared/forms/SelectForm";
 import InputForm from "../../../../shared/forms/InputForm";
 import {
@@ -19,241 +15,225 @@ import {
   manufacturers,
   brakeType,
   category,
-  gears
+  gears,
+  extras
 } from "../../../../data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
     overflowY: "auto"
+  },
+  paper: {
+    width: "100%",
+    padding: theme.spacing(3, 2),
+    margin: theme.spacing(1, 0)
+  },
+  list: {
+    listStyle: "none"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular
+  },
+  right: {
+    marginRight: theme.spacing(2)
   }
 }));
 
-export default function SimpleExpansionPanel() {
+const SideFilters = props => {
   const classes = useStyles();
 
+  const [inputValues, setInputValues] = useState({
+    variant: "",
+    priceFrom: "",
+    priceTo: ""
+  });
+
+  const handleInputChange = event => {
+    setInputValues({ ...inputValues, [event.target.name]: event.target.value });
+  };
+
+  const [selectValues, setSelectValues] = useState({
+    offer: "",
+    category: "",
+    manufacturer: "",
+    condition: "",
+    purchasedFrom: "",
+    purchasedTo: "",
+    frameSizeFrom: "",
+    frameSizeTo: "",
+    modified: "",
+    gears: "",
+    color: "",
+    brakes: "",
+    sort: ""
+  });
+
+  const handleSelectChange = event => {
+    setSelectValues(oldValues => ({
+      ...oldValues,
+      [event.target.name]: event.target.value
+    }));
+  };
+
+  const extraKeys = extras.map(obj => obj.key);
+  const defaultCheckBoxState = {
+    crashed: false,
+    negotiable: false,
+    womens: false,
+    mens: false,
+    dynamoLights: false,
+    ledLights: false,
+    shockAbsorber: false,
+    fenders: false,
+    singleSpeed: false,
+    interiorSpeed: false,
+    exteriorSpeed: false,
+    antique: false,
+    basket: false,
+    cargoRack: false
+  };
+  extraKeys.forEach(keyName => {
+    defaultCheckBoxState[keyName] = false;
+  });
+  const [state, setState] = useState(defaultCheckBoxState);
+
+  const handleChange = event => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
+
+  const [value, setValue] = useState(null);
+
+  const handleRadioChange = event => {
+    setValue(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const formValues = { selectValues, inputValues, state };
+    console.log("formValues", formValues);
+  };
+
   return (
-    <div className={classes.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Offer type</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container spacing={3}>
-            {offer.map(obj => (
-              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
-                <CheckboxForm
-                  name={obj.key}
-                  value={obj.key}
-                  label={obj.value}
-                  labelPlacement="end"
-                  // handleChange={handleChange}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className={classes.heading}>Condition</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          {condition.map(obj => (
-            <CheckboxForm
-              key={obj.key}
-              name={obj.key}
-              value={obj.key}
-              label={obj.value}
-              labelPlacement="end"
-              // handleChange={handleChange}
-            />
-          ))}
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography className={classes.heading}>Manufacturer</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+    <form onSubmit={handleSubmit} className={classes.root}>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Offer Type</Typography>
+        <Divider variant="fullWidth" />
+        <CheckboxForm
+          optionsType="optionsArray"
+          optionsArray={offer}
+          handleChange={handleChange}
+        />
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Condition</Typography>
+        <Divider variant="fullWidth" />
+        <CheckboxForm
+          optionsType="optionsArray"
+          optionsArray={condition}
+          handleChange={handleChange}
+        />
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Manufacturer</Typography>
+        <Divider variant="fullWidth" />
+        <div className={classes.right}>
           <SelectForm
             name="manufacturer"
             label="Manufacturers"
             // values={selectValues.offer}
-            attributes={manufacturers}
-            // handleChange={handleSelectChange}
+            optionsArray={manufacturers}
+            handleChange={handleSelectChange}
           />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel4a-content"
-          id="panel4a-header"
-        >
-          <Typography className={classes.heading}>Color</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <SelectForm
-            name="color"
-            label="Color"
-            // values={selectValues.offer}
-            attributes={color}
-            // handleChange={handleSelectChange}
-          />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel5a-content"
-          id="panel5a-header"
-        >
-          <Typography className={classes.heading}>Brakes</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container spacing={3}>
-            {brakeType.map(obj => (
-              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
-                <CheckboxForm
-                  name={obj.key}
-                  value={obj.key}
-                  label={obj.value}
-                  labelPlacement="end"
-                  // handleChange={handleChange}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel5a-content"
-          id="panel5a-header"
-        >
-          <Typography className={classes.heading}>Category</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </div>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Category</Typography>
+        <Divider variant="fullWidth" />
+        <div className={classes.right}>
           <SelectForm
             name="category"
             label="Category"
             // values={selectValues.offer}
-            attributes={category}
-            // handleChange={handleSelectChange}
+            optionsArray={category}
+            handleChange={handleSelectChange}
           />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel5a-content"
-          id="panel5a-header"
-        >
-          <Typography className={classes.heading}>Modified</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container spacing={3}>
-            {modified.map(obj => (
-              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
-                <CheckboxForm
-                  name={obj.key}
-                  value={obj.key}
-                  label={obj.value}
-                  labelPlacement="end"
-                  // handleChange={handleChange}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel5a-content"
-          id="panel5a-header"
-        >
-          <Typography className={classes.heading}>Gears</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container spacing={3}>
-            {gears.map(obj => (
-              <Grid item xs={12} key={obj.key} style={{ marginLeft: 16 }}>
-                <CheckboxForm
-                  name={obj.key}
-                  value={obj.key}
-                  label={obj.value}
-                  labelPlacement="end"
-                  // handleChange={handleChange}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel5a-content"
-          id="panel5a-header"
-        >
-          <Typography className={classes.heading}>Variant</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </div>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Price</Typography>
+        <Divider variant="fullWidth" />
+        <div className={classes.right}>
+          <InputForm
+            name="priceFrom"
+            label="Price from"
+            // values={inputValues.priceFrom}
+            handleChange={handleInputChange}
+          />
+          <InputForm
+            name="priceTo"
+            label="Price to"
+            // values={inputValues.priceTo}
+            handleChange={handleInputChange}
+          />
+        </div>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Modified</Typography>
+        <Divider variant="fullWidth" />
+        <RadioForm
+          name="modified"
+          value={value}
+          optionsArray={modified}
+          handleChange={handleRadioChange}
+        />
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Variant</Typography>
+        <Divider variant="fullWidth" />
+        <div className={classes.right}>
           <InputForm
             name="variant"
             label="Variant"
             placeholder="eg. racing"
             // values={inputValues.variant}
-            // handleChange={handleInputChange}
+            handleChange={handleInputChange}
           />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel5a-content"
-          id="panel5a-header"
-        >
-          <Typography className={classes.heading}>Price</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <InputForm
-                name="priceFrom"
-                label="Price from"
-                // values={inputValues.priceFrom}
-                // handleChange={handleInputChange}
-              />
-              <InputForm
-                name="priceTo"
-                label="Price to"
-                // values={inputValues.priceTo}
-                // handleChange={handleInputChange}
-              />
-            </Grid>
-          </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
+        </div>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Color</Typography>
+        <Divider variant="fullWidth" />
+        <div className={classes.right}>
+          <SelectForm
+            name="color"
+            label="Color"
+            // values={selectValues.offer}
+            optionsArray={color}
+            handleChange={handleSelectChange}
+          />
+        </div>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Brakes</Typography>
+        <Divider variant="fullWidth" />
+        <CheckboxForm
+          optionsType="optionsArray"
+          optionsArray={brakeType}
+          handleChange={handleChange}
+        />
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Gears</Typography>
+        <Divider variant="fullWidth" />
+        <CheckboxForm
+          optionsType="optionsArray"
+          optionsArray={gears}
+          handleChange={handleChange}
+        />
+      </Paper>
+    </form>
   );
-}
+};
+
+export default SideFilters;

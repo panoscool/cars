@@ -34,7 +34,7 @@ function SimpleSelect(props) {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  const { name, values, attributes, label, required, handleChange } = props;
+  const { name, values, optionsArray, label, required, handleChange } = props;
 
   return (
     <FormControl
@@ -58,10 +58,10 @@ function SimpleSelect(props) {
           />
         }
       >
-        {attributes.map(attribute => {
+        {optionsArray.map(obj => {
           return (
-            <MenuItem key={attribute.key} value={attribute.value}>
-              {attribute.value}
+            <MenuItem key={obj.key} value={obj.value}>
+              {obj.value}
             </MenuItem>
           );
         })}

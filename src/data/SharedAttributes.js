@@ -5,8 +5,9 @@ export const offer = [
 ];
 
 export const condition = [
+  { key: "new", value: "New" },
   { key: "used", value: "Used" },
-  { key: "new", value: "New" }
+  { key: "crashed", value: "Crashed" }
 ];
 
 export const adDuration = [

@@ -143,14 +143,14 @@ const ClassifiedSearch = () => {
                 name="offer"
                 label="Offer Type"
                 values={selectValues.offer}
-                attributes={offer}
+                optionsArray={offer}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="condition"
                 label="Condition"
                 values={selectValues.condition}
-                attributes={condition}
+                optionsArray={condition}
                 handleChange={handleSelectChange}
               />
               <CheckboxForm
@@ -166,21 +166,21 @@ const ClassifiedSearch = () => {
                 name="category"
                 label="Category"
                 values={selectValues.category}
-                attributes={category}
+                optionsArray={category}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="manufacturer"
                 label="Manufacturer"
                 values={selectValues.manufacturer}
-                attributes={manufacturers}
+                optionsArray={manufacturers}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="color"
                 label="Color"
                 values={selectValues.color}
-                attributes={color}
+                optionsArray={color}
                 handleChange={handleSelectChange}
               />
             </Grid>
@@ -189,14 +189,14 @@ const ClassifiedSearch = () => {
                 name="brakes"
                 label="Brakes"
                 values={selectValues.brakes}
-                attributes={brakeType}
+                optionsArray={brakeType}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="gears"
                 label="Gears"
                 values={selectValues.gears}
-                attributes={gears}
+                optionsArray={gears}
                 handleChange={handleSelectChange}
               />
               <InputForm
@@ -235,21 +235,21 @@ const ClassifiedSearch = () => {
                 name="sort"
                 label="Sort"
                 values={selectValues.sort}
-                attributes={sort}
+                optionsArray={sort}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="frameSizeFrom"
                 label="Frame size from"
                 values={selectValues.frameSizeFrom}
-                attributes={sort}
+                optionsArray={sort}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="frameSizeTo"
                 label="Frame size to"
                 values={selectValues.frameSizeTo}
-                attributes={sort}
+                optionsArray={sort}
                 handleChange={handleSelectChange}
               />
             </Grid>
@@ -258,21 +258,21 @@ const ClassifiedSearch = () => {
                 name="modified"
                 label="Modified"
                 values={selectValues.modified}
-                attributes={modified}
+                optionsArray={modified}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="purchasedFrom"
                 label="Purchased from"
                 values={selectValues.purchasedFrom}
-                attributes={months}
+                optionsArray={months}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="purchasedTo"
                 label="Purchased to"
                 values={selectValues.purchasedTo}
-                attributes={months}
+                optionsArray={months}
                 handleChange={handleSelectChange}
               />
             </Grid>

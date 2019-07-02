@@ -142,7 +142,7 @@ const BicycleForm = props => {
                 name="offer"
                 label="Offer Type"
                 values={selectValues.offer}
-                attributes={offer}
+                optionsArray={offer}
                 handleChange={handleSelectChange}
               />
               <SelectForm
@@ -150,7 +150,7 @@ const BicycleForm = props => {
                 name="condition"
                 label="Condition"
                 values={selectValues.condition}
-                attributes={condition}
+                optionsArray={condition}
                 handleChange={handleSelectChange}
               />
               <CheckboxForm
@@ -167,7 +167,7 @@ const BicycleForm = props => {
                 name="category"
                 label="Category"
                 values={selectValues.category}
-                attributes={category}
+                optionsArray={category}
                 handleChange={handleSelectChange}
               />
               <SelectForm
@@ -175,7 +175,7 @@ const BicycleForm = props => {
                 name="manufacturer"
                 label="Manufacturer"
                 values={selectValues.manufacturer}
-                attributes={manufacturers}
+                optionsArray={manufacturers}
                 handleChange={handleSelectChange}
               />
               <SelectDate
@@ -215,14 +215,14 @@ const BicycleForm = props => {
                 name="color"
                 label="Color"
                 values={selectValues.color}
-                attributes={color}
+                optionsArray={color}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="frameType"
                 label="Frame type"
                 values={selectValues.frameType}
-                attributes={frameType}
+                optionsArray={frameType}
                 handleChange={handleSelectChange}
               />
             </Grid>
@@ -251,14 +251,14 @@ const BicycleForm = props => {
                 name="brakes"
                 label="Brakes"
                 values={selectValues.brakes}
-                attributes={brakeType}
+                optionsArray={brakeType}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="gears"
                 label="Gears"
                 values={selectValues.gears}
-                attributes={gears}
+                optionsArray={gears}
                 handleChange={handleSelectChange}
               />
             </Grid>
@@ -282,7 +282,7 @@ const BicycleForm = props => {
                 name="exchange"
                 label="Exchange with"
                 values={selectValues.exchange}
-                attributes={exchange}
+                optionsArray={exchange}
                 handleChange={handleSelectChange}
               />
             </Grid>
@@ -351,7 +351,7 @@ const BicycleForm = props => {
                 name="duration"
                 label="Ad Duration"
                 values={selectValues.duration}
-                attributes={adDuration}
+                optionsArray={adDuration}
                 handleChange={handleSelectChange}
               />
             </Grid>
