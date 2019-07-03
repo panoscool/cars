@@ -13,6 +13,7 @@ import {
 } from "../../../../data/SharedAttributes";
 import {
   manufacturers,
+  frameType,
   brakeType,
   category,
   gears,
@@ -165,12 +166,14 @@ const SideFilters = props => {
         <Divider variant="fullWidth" />
         <div className={classes.right}>
           <InputForm
+            type="number"
             name="priceFrom"
             label="Price from"
             // values={inputValues.priceFrom}
             handleChange={handleInputChange}
           />
           <InputForm
+            type="number"
             name="priceTo"
             label="Price to"
             // values={inputValues.priceTo}
@@ -215,22 +218,77 @@ const SideFilters = props => {
         </div>
       </Paper>
       <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Frame Type</Typography>
+        <Divider variant="fullWidth" />
+        <RadioForm
+          name="frameType"
+          optionsArray={frameType}
+          handleChange={handleRadioChange}
+        />
+      </Paper>
+      <Paper className={classes.paper}>
         <Typography className={classes.heading}>Brakes</Typography>
         <Divider variant="fullWidth" />
-        <CheckboxForm
-          optionsType="optionsArray"
+        <RadioForm
+          name="brakes"
           optionsArray={brakeType}
-          handleChange={handleChange}
+          handleChange={handleRadioChange}
         />
       </Paper>
       <Paper className={classes.paper}>
         <Typography className={classes.heading}>Gears</Typography>
         <Divider variant="fullWidth" />
-        <CheckboxForm
-          optionsType="optionsArray"
+        <RadioForm
+          name="gears"
           optionsArray={gears}
-          handleChange={handleChange}
+          handleChange={handleRadioChange}
         />
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Frame Size</Typography>
+        <Divider variant="fullWidth" />
+        <div className={classes.right}>
+          <InputForm
+            type="number"
+            name="frameSizeFrom"
+            label="Frame size from"
+            placeholder="number 30-69"
+            // values={inputValues.variant}
+            handleChange={handleInputChange}
+          />
+          <InputForm
+            type="number"
+            name="frameSizeTo"
+            label="Frame size to"
+            placeholder="number 30-69"
+            inputProps={{ min: 30, max: 69 }}
+            // values={inputValues.variant}
+            handleChange={handleInputChange}
+          />
+        </div>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Rim Size</Typography>
+        <Divider variant="fullWidth" />
+        <div className={classes.right}>
+          <InputForm
+            type="number"
+            name="frameSizeFrom"
+            label="Frame size from"
+            placeholder="number 30-69"
+            // values={inputValues.variant}
+            handleChange={handleInputChange}
+          />
+          <InputForm
+            type="number"
+            name="frameSizeTo"
+            label="Frame size to"
+            placeholder="number 30-69"
+            inputProps={{ min: 30, max: 69 }}
+            // values={inputValues.variant}
+            handleChange={handleInputChange}
+          />
+        </div>
       </Paper>
     </form>
   );

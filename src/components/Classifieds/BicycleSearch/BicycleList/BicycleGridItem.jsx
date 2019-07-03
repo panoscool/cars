@@ -10,14 +10,11 @@ import {
 } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  card: {
-    maxWidth: 340
-  },
   media: {
     height: "auto",
-    width: 210,
     paddingLeft: 16,
-    paddingRight: 16
+    paddingRight: 16,
+    objectFit: "fill"
   }
 });
 
@@ -25,7 +22,7 @@ export default function ImgMediaCard(props) {
   const classes = useStyles();
   const { title, price, category, img, id } = props;
   return (
-    <Card className={classes.card}>
+    <Card className="card">
       <CardActionArea component={Link} to={`/bicycle/${id}`}>
         <CardMedia
           className={classes.media}

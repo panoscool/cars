@@ -10,14 +10,9 @@ import {
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
-  card: {
-    maxWidth: 340
-  },
   media: {
     height: "auto",
-    width: 100,
-    paddingTop: 20,
-    paddingLeft: 20
+    objectFit: "fill"
   }
 });
 
@@ -26,7 +21,7 @@ export default function ImgMediaCard(props) {
   const { img, title, price, id } = props;
 
   return (
-    <Card className={classes.card}>
+    <Card className="card">
       <CardActionArea component={Link} to={`/bicycle/${id}`}>
         <CardMedia
           className={classes.media}

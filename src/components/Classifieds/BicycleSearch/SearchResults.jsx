@@ -22,6 +22,7 @@ import { sort } from "../../../data/SharedAttributes";
 import BicycleList from "./BicycleList/BicycleList";
 import SideFilters from "./SideFilters/SideFilters";
 import { bicycles } from "../../../data/SampleData";
+import Modal from "../../../shared/modal/Modal";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -126,6 +127,11 @@ const SearchResults = () => {
           <BicycleList view={view} bicycles={bicycles} />
         </Grid>
       </Grid>
+      <div className="filter-button">
+        <Modal>
+          <SideFilters />
+        </Modal>
+      </div>
     </Container>
   );
 };
