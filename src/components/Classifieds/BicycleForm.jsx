@@ -23,7 +23,7 @@ import {
   manufacturers,
   frameType,
   exchange,
-  brakeType,
+  brakes,
   extras,
   gears
 } from "../../data/bicycle/bicycle";
@@ -251,7 +251,7 @@ const BicycleForm = props => {
                 name="brakes"
                 label="Brakes"
                 values={selectValues.brakes}
-                optionsArray={brakeType}
+                optionsArray={brakes}
                 handleChange={handleSelectChange}
               />
               <SelectForm

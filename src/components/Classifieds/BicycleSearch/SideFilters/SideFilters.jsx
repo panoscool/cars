@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Typography, Divider } from "@material-ui/core";
+import { Paper, Typography, Divider, Button, Hidden } from "@material-ui/core";
 import CheckboxForm from "../../../../shared/forms/CheckboxForm";
 import RadioForm from "../../../../shared/forms/RadioForm";
 import SelectForm from "../../../../shared/forms/SelectForm";
@@ -14,7 +14,7 @@ import {
 import {
   manufacturers,
   frameType,
-  brakeType,
+  brakes,
   category,
   gears,
   extras
@@ -41,13 +41,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SideFilters = props => {
+const SideFilters = ({ onSubmit }) => {
   const classes = useStyles();
 
   const [inputValues, setInputValues] = useState({
     variant: "",
     priceFrom: "",
-    priceTo: ""
+    priceTo: "",
+    frameSizeFrom: "",
+    frameSizeTo: "",
+    rimSizeFrom: "",
+    rimSizeTo: ""
   });
 
   const handleInputChange = event => {
@@ -55,14 +59,9 @@ const SideFilters = props => {
   };
 
   const [selectValues, setSelectValues] = useState({
-    offer: "",
     category: "",
     manufacturer: "",
     condition: "",
-    purchasedFrom: "",
-    purchasedTo: "",
-    frameSizeFrom: "",
-    frameSizeTo: "",
     modified: "",
     gears: "",
     color: "",
@@ -79,8 +78,6 @@ const SideFilters = props => {
 
   const extraKeys = extras.map(obj => obj.key);
   const defaultCheckBoxState = {
-    crashed: false,
-    negotiable: false,
     womens: false,
     mens: false,
     dynamoLights: false,
@@ -106,13 +103,13 @@ const SideFilters = props => {
   const [value, setValue] = useState(null);
 
   const handleRadioChange = event => {
-    setValue(event.target.value);
+    setValue({ ...value, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    const formValues = { selectValues, inputValues, state };
-    console.log("formValues", formValues);
+    const formValues = { selectValues, inputValues, state, value };
+    onSubmit(formValues);
   };
 
   return (
@@ -142,7 +139,7 @@ const SideFilters = props => {
           <SelectForm
             name="manufacturer"
             label="Manufacturers"
-            // values={selectValues.offer}
+            values={selectValues.manufacturer}
             optionsArray={manufacturers}
             handleChange={handleSelectChange}
           />
@@ -155,7 +152,7 @@ const SideFilters = props => {
           <SelectForm
             name="category"
             label="Category"
-            // values={selectValues.offer}
+            values={selectValues.category}
             optionsArray={category}
             handleChange={handleSelectChange}
           />
@@ -199,7 +196,7 @@ const SideFilters = props => {
             name="variant"
             label="Variant"
             placeholder="eg. racing"
-            // values={inputValues.variant}
+            values={inputValues.variant}
             handleChange={handleInputChange}
           />
         </div>
@@ -211,7 +208,7 @@ const SideFilters = props => {
           <SelectForm
             name="color"
             label="Color"
-            // values={selectValues.offer}
+            values={selectValues.color}
             optionsArray={color}
             handleChange={handleSelectChange}
           />
@@ -231,7 +228,7 @@ const SideFilters = props => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="brakes"
-          optionsArray={brakeType}
+          optionsArray={brakes}
           handleChange={handleRadioChange}
         />
       </Paper>
@@ -253,7 +250,8 @@ const SideFilters = props => {
             name="frameSizeFrom"
             label="Frame size from"
             placeholder="number 30-69"
-            // values={inputValues.variant}
+            values={inputValues.frameSizeFrom}
+            inputProps={{ min: 30, max: 69 }}
             handleChange={handleInputChange}
           />
           <InputForm
@@ -261,8 +259,8 @@ const SideFilters = props => {
             name="frameSizeTo"
             label="Frame size to"
             placeholder="number 30-69"
+            values={inputValues.frameSizeTo}
             inputProps={{ min: 30, max: 69 }}
-            // values={inputValues.variant}
             handleChange={handleInputChange}
           />
         </div>
@@ -273,23 +271,29 @@ const SideFilters = props => {
         <div className={classes.right}>
           <InputForm
             type="number"
-            name="frameSizeFrom"
-            label="Frame size from"
-            placeholder="number 30-69"
-            // values={inputValues.variant}
+            name="rimSizeFrom"
+            label="Rim size from"
+            placeholder="number 10-30"
+            values={inputValues.rimSizeFrom}
+            inputProps={{ min: 10, max: 30 }}
             handleChange={handleInputChange}
           />
           <InputForm
             type="number"
-            name="frameSizeTo"
-            label="Frame size to"
-            placeholder="number 30-69"
-            inputProps={{ min: 30, max: 69 }}
-            // values={inputValues.variant}
+            name="rimSizeTo"
+            label="Rim size to"
+            placeholder="number 10-30"
+            values={inputValues.rimSizeTo}
+            inputProps={{ min: 10, max: 30 }}
             handleChange={handleInputChange}
           />
         </div>
       </Paper>
+      <Hidden smDown>
+        <Button fullWidth variant="contained" color="primary" type="submit">
+          Show (100)
+        </Button>
+      </Hidden>
     </form>
   );
 };

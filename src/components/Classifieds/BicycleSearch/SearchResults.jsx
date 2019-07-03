@@ -60,6 +60,10 @@ const SearchResults = () => {
   const handleListView = () => setView(true);
   const handleGridView = () => setView(false);
 
+  const onSubmit = formValues => {
+    console.log(formValues);
+  };
+
   let gridSize = 9;
   if (width < 960) {
     gridSize = 12;
@@ -70,7 +74,7 @@ const SearchResults = () => {
       <Grid container spacing={3}>
         <Hidden smDown>
           <Grid item xs={3}>
-            <SideFilters />
+            <SideFilters onSubmit={onSubmit} />
           </Grid>
         </Hidden>
         <Grid item xs={gridSize}>
@@ -128,7 +132,7 @@ const SearchResults = () => {
         </Grid>
       </Grid>
       <div className="filter-button">
-        <Modal>
+        <Modal onFormSubmit={onSubmit}>
           <SideFilters />
         </Modal>
       </div>

@@ -23,7 +23,7 @@ import {
 import {
   category,
   manufacturers,
-  brakeType,
+  brakes,
   extras,
   gears
 } from "../../../data/bicycle/bicycle";
@@ -189,7 +189,7 @@ const ClassifiedSearch = () => {
                 name="brakes"
                 label="Brakes"
                 values={selectValues.brakes}
-                optionsArray={brakeType}
+                optionsArray={brakes}
                 handleChange={handleSelectChange}
               />
               <SelectForm
