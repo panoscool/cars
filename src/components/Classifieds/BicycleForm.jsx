@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 
 const BicycleForm = props => {
   const classes = useStyles();
-  const { onSubmit } = props;
+  const { onSubmit, requiredInfos } = props;
 
   const [inputValues, setInputValues] = useState({
     variant: "",
@@ -73,7 +73,6 @@ const BicycleForm = props => {
     category: "",
     manufacturer: "",
     condition: "",
-    purchased: "",
     frameType: "",
     gears: "",
     color: "",
@@ -89,10 +88,10 @@ const BicycleForm = props => {
     }));
   };
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [purchasedDate, setPurchasedDate] = useState(new Date());
 
   const handleDateChange = date => {
-    setSelectedDate(date);
+    setPurchasedDate(date);
   };
 
   const extraKeys = extras.map(obj => obj.key);
@@ -123,7 +122,12 @@ const BicycleForm = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const formValues = { selectValues, inputValues, state };
+    const formValues = {
+      ...inputValues,
+      ...selectValues,
+      ...state,
+      purchasedDate
+    };
     onSubmit(formValues);
   };
 
@@ -174,7 +178,7 @@ const BicycleForm = props => {
               <SelectDate
                 required
                 label="Purchased"
-                values={selectedDate}
+                values={purchasedDate}
                 handleChange={handleDateChange}
               />
             </Grid>
@@ -264,6 +268,7 @@ const BicycleForm = props => {
             <Grid item xs={12} sm={4}>
               <InputForm
                 required
+                type="number"
                 name="price"
                 label="Price"
                 values={inputValues.price}
@@ -305,6 +310,7 @@ const BicycleForm = props => {
                 handleChange={handleInputChange}
               />
               <InputForm
+                type="url"
                 name="youTube"
                 label="YouTube"
                 values={inputValues.youTube}
@@ -397,15 +403,18 @@ const BicycleForm = props => {
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
-            Submit
-          </Button>
+          <div style={{ textAlign: "right" }}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Submit
+            </Button>
+          </div>
         </form>
+        {requiredInfos}
       </Container>
     </Paper>
   );

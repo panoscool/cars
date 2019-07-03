@@ -3,7 +3,6 @@ export const infoArray = [
   { label: "Price", key: "price" },
   { label: "Condition", key: "condition" },
   { label: "Category", key: "category" },
-  { label: "Purchased", key: "purchased" },
   { label: "Previous owners", key: "owners" },
   { label: "Color", key: "color" },
   { label: "Frame size", key: "frameSize" },

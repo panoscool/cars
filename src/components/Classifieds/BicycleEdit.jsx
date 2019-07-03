@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Typography } from "@material-ui/core";
 import BicycleForm from "./BicycleForm";
 
 const BicycleEdit = props => {
@@ -7,14 +6,7 @@ const BicycleEdit = props => {
     console.log(formValues);
   };
 
-  return (
-    <Container maxWidth="lg">
-      <Typography variant="h6" gutterBottom>
-        Edit your bicycle entry
-      </Typography>
-      <BicycleForm onSubmit={onSubmit} />
-    </Container>
-  );
+  return <BicycleForm onSubmit={onSubmit} />;
 };
 
 export default BicycleEdit;
