@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     margin: theme.spacing(2),
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     color: theme.palette.text.secondary
   },
   button: {
@@ -153,15 +153,6 @@ const ClassifiedSearch = () => {
                 optionsArray={condition}
                 handleChange={handleSelectChange}
               />
-              <CheckboxForm
-                name="crashed"
-                label="Crashed"
-                labelPlacement="start"
-                values={state.crashed}
-                handleChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={4}>
               <SelectForm
                 name="category"
                 label="Category"
@@ -169,6 +160,8 @@ const ClassifiedSearch = () => {
                 optionsArray={category}
                 handleChange={handleSelectChange}
               />
+            </Grid>
+            <Grid item xs={12} sm={4}>
               <SelectForm
                 name="manufacturer"
                 label="Manufacturer"
@@ -182,6 +175,13 @@ const ClassifiedSearch = () => {
                 values={selectValues.color}
                 optionsArray={color}
                 handleChange={handleSelectChange}
+              />
+              <InputForm
+                name="variant"
+                label="Variant"
+                placeholder="eg. racing"
+                values={inputValues.variant}
+                handleChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -198,13 +198,6 @@ const ClassifiedSearch = () => {
                 values={selectValues.gears}
                 optionsArray={gears}
                 handleChange={handleSelectChange}
-              />
-              <InputForm
-                name="variant"
-                label="Variant"
-                placeholder="eg. racing"
-                values={inputValues.variant}
-                handleChange={handleInputChange}
               />
             </Grid>
           </Grid>

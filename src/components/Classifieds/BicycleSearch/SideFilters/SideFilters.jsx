@@ -61,12 +61,7 @@ const SideFilters = ({ onSubmit }) => {
   const [selectValues, setSelectValues] = useState({
     category: "",
     manufacturer: "",
-    condition: "",
-    modified: "",
-    gears: "",
-    color: "",
-    brakes: "",
-    sort: ""
+    color: ""
   });
 
   const handleSelectChange = event => {
@@ -100,7 +95,11 @@ const SideFilters = ({ onSubmit }) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState({
+    modified: "",
+    brakes: "",
+    frameType: ""
+  });
 
   const handleRadioChange = event => {
     setValue({ ...value, [event.target.name]: event.target.value });
@@ -166,14 +165,14 @@ const SideFilters = ({ onSubmit }) => {
             type="number"
             name="priceFrom"
             label="Price from"
-            // values={inputValues.priceFrom}
+            values={inputValues.priceFrom}
             handleChange={handleInputChange}
           />
           <InputForm
             type="number"
             name="priceTo"
             label="Price to"
-            // values={inputValues.priceTo}
+            values={inputValues.priceTo}
             handleChange={handleInputChange}
           />
         </div>
@@ -183,7 +182,7 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="modified"
-          value={value}
+          values={value.modified}
           optionsArray={modified}
           handleChange={handleRadioChange}
         />
@@ -219,6 +218,7 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="frameType"
+          values={value.frameType}
           optionsArray={frameType}
           handleChange={handleRadioChange}
         />
@@ -228,6 +228,7 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="brakes"
+          values={value.brakes}
           optionsArray={brakes}
           handleChange={handleRadioChange}
         />
@@ -237,6 +238,7 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="gears"
+          values={value.gears}
           optionsArray={gears}
           handleChange={handleRadioChange}
         />

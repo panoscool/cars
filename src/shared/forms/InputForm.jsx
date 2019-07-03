@@ -5,8 +5,8 @@ import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
+    minWidth: 120,
+    width: "100%"
   },
   dense: {
     marginTop: theme.spacing(2)

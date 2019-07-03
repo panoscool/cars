@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1, 3)
+  },
+  formControlLabel: {
+    marginTop: theme.spacing(1)
   }
 }));
 
@@ -55,6 +58,7 @@ function Checkboxes(props) {
       <FormControlLabel
         label={label}
         labelPlacement={labelPlacement}
+        className={classes.formControlLabel}
         control={
           <Checkbox
             name={name}

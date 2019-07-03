@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     margin: theme.spacing(2),
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     color: theme.palette.text.secondary
   },
   button: {
@@ -153,15 +153,6 @@ const BicycleForm = props => {
                 optionsArray={condition}
                 handleChange={handleSelectChange}
               />
-              <CheckboxForm
-                name="crashed"
-                label="Crashed"
-                labelPlacement="start"
-                values={state.crashed}
-                handleChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={4}>
               <SelectForm
                 required
                 name="category"
@@ -170,6 +161,8 @@ const BicycleForm = props => {
                 optionsArray={category}
                 handleChange={handleSelectChange}
               />
+            </Grid>
+            <Grid item xs={12} sm={4}>
               <SelectForm
                 required
                 name="manufacturer"

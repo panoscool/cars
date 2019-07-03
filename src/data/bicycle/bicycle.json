@@ -29,16 +29,16 @@
     { "key": "magnesium", "value": "Magnesium" }
   ],
   "brakes": [
-    { "key": "brake-drums", "value": "Brake Drums" },
-    { "key": "hydraulic-disc", "value": "Hydraulic Disk Brakes" },
-    { "key": "mechanical-disc", "value": "Mechanical Disk Brakes" },
+    { "key": "brakeDrums", "value": "Brake Drums" },
+    { "key": "hydraulicDisc", "value": "Hydraulic Disk Brakes" },
+    { "key": "mechanicalDisc", "value": "Mechanical Disk Brakes" },
     { "key": "vBrakes", "value": "V-Brakes" }
   ],
   "manufacturers": [
     { "key": "4ever", "value": "4ever" },
     { "key": "aOK", "value": "A-OK" },
     { "key": "a2b", "value": "A2B" },
-    { "key": "accell-group", "value": "Accell Group" },
+    { "key": "accellGroup", "value": "Accell Group" },
     { "key": "adriatica", "value": "Adriatica" },
     { "key": "airbike", "value": "Airbike" },
     { "key": "airnimal", "value": "Airnimal" },
