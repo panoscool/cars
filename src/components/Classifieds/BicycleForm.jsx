@@ -305,7 +305,7 @@ const BicycleForm = props => {
                 rows={5}
                 name="description"
                 label="Description"
-                placeholder="No phones, emails or links are allowed in the description. Otherwise the classified will be deleted."
+                placeholder="No phones, emails or links are allowed in the description, otherwise the classified will be deleted."
                 values={inputValues.description}
                 handleChange={handleInputChange}
               />

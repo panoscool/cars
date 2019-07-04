@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import cuid from "cuid";
+// import cuid from "cuid";
 import BicycleForm from "./BicycleForm";
 import { bicycles } from "../../data/SampleData";
 
@@ -7,7 +7,7 @@ const BicycleCreate = props => {
   const [classifieds, setClassified] = useState(bicycles);
 
   const onSubmit = formValues => {
-    formValues.id = cuid();
+    // formValues.id = cuid();
     setClassified({ ...classifieds, formValues });
   };
   console.log(classifieds);

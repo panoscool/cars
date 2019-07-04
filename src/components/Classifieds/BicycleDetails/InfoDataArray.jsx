@@ -1,7 +1,7 @@
 export const infoArray = [
-  { label: "Manufacturer", key: "manufacturer" },
   { label: "Price", key: "price" },
   { label: "Condition", key: "condition" },
+  { label: "Manufacturer", key: "manufacturer" },
   { label: "Category", key: "category" },
   { label: "Previous owners", key: "owners" },
   { label: "Color", key: "color" },

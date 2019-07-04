@@ -10,6 +10,7 @@ import SideDetails from "./SideDetails/SideDetails";
 import SimilarClassifieds from "./SideDetails/SimilarClassifieds";
 import { infoArray, sellerDetails, checkBoxes } from "./InfoDataArray";
 import { bicycles } from "../../../data/SampleData";
+import ImageCarousel from "./ImageCarousel";
 
 const BicycleDetails = props => {
   const { width } = useWindowDimensions();
@@ -25,7 +26,8 @@ const BicycleDetails = props => {
     <Container maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={gridSize}>
-          <ImageDetails />
+          {/* <ImageDetails /> */}
+          <ImageCarousel />
           <ClassifiedDetails infoArray={infoArray} bicycleObj={bicycleObj} />
           <ExtraDetails checkBoxes={checkBoxes} bicycleObj={bicycleObj} />
           <DescriptionDetails bicycleObj={bicycleObj} />
