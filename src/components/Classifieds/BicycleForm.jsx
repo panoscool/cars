@@ -96,7 +96,6 @@ const BicycleForm = props => {
 
   const extraKeys = extras.map(obj => obj.key);
   const defaultCheckBoxState = {
-    crashed: false,
     negotiable: false,
     womens: false,
     mens: false,
@@ -116,7 +115,7 @@ const BicycleForm = props => {
   });
   const [state, setState] = useState(defaultCheckBoxState);
 
-  const handleChange = event => {
+  const handleCheckboxChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
@@ -290,7 +289,7 @@ const BicycleForm = props => {
                 label="Negotiable"
                 labelPlacement="start"
                 values={state.negotiable}
-                handleChange={handleChange}
+                handleChange={handleCheckboxChange}
               />
             </Grid>
           </Grid>
@@ -333,7 +332,7 @@ const BicycleForm = props => {
                     value={extra.key}
                     label={extra.value}
                     labelPlacement="end"
-                    handleChange={handleChange}
+                    handleChange={handleCheckboxChange}
                   />
                 );
               })}

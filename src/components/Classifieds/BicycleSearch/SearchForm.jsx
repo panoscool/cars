@@ -88,7 +88,7 @@ const ClassifiedSearch = () => {
 
   const extraKeys = extras.map(obj => obj.key);
   const defaultCheckBoxState = {
-    crashed: false,
+    withPrice: true,
     negotiable: false,
     womens: false,
     mens: false,
@@ -108,15 +108,17 @@ const ClassifiedSearch = () => {
   });
   const [state, setState] = useState(defaultCheckBoxState);
 
-  const handleChange = event => {
+  const handleCheckboxChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    const formValues = { selectValues, inputValues, state };
+    const formValues = { ...selectValues, ...inputValues, state };
     console.log("formValues", formValues);
   };
+
+  console.log(state);
 
   return (
     <Paper className={classes.paper}>
@@ -207,8 +209,8 @@ const ClassifiedSearch = () => {
                 name="withPrice"
                 label="With price only"
                 labelPlacement="start"
-                values={state.crashed}
-                handleChange={handleChange}
+                values={state.withPrice}
+                handleChange={handleCheckboxChange}
               />
               <InputForm
                 name="priceFrom"
@@ -281,7 +283,7 @@ const ClassifiedSearch = () => {
                     name={extra.key}
                     label={extra.value}
                     labelPlacement="end"
-                    handleChange={handleChange}
+                    handleChange={handleCheckboxChange}
                   />
                 );
               })}

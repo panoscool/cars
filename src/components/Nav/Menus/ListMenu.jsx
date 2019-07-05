@@ -118,6 +118,8 @@ const MenuItems = () => {
       <ColorButton
         variant="contained"
         color="primary"
+        component={Link}
+        to="/bicycle/create"
         className={classes.margin}
       >
         Free Classified

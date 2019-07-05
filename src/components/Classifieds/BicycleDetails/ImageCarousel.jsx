@@ -46,4 +46,9 @@ const images = [
   }
 ];
 
-export default () => <ImageGallery showIndex items={images} />;
+const ImageCarousel = () => (
+  <div style={{ marginTop: 16 }}>
+    <ImageGallery showIndex items={images} />
+  </div>
+);
+export default ImageCarousel;

@@ -73,6 +73,12 @@ const SideFilters = ({ onSubmit }) => {
 
   const extraKeys = extras.map(obj => obj.key);
   const defaultCheckBoxState = {
+    sale: true,
+    rent: false,
+    wanted: false,
+    new: false,
+    used: false,
+    crashed: false,
     womens: false,
     mens: false,
     dynamoLights: false,
@@ -91,7 +97,7 @@ const SideFilters = ({ onSubmit }) => {
   });
   const [state, setState] = useState(defaultCheckBoxState);
 
-  const handleChange = event => {
+  const handleCheckboxChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
@@ -118,8 +124,9 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <CheckboxForm
           optionsType="optionsArray"
+          name={offer.key}
           optionsArray={offer}
-          handleChange={handleChange}
+          handleChange={handleCheckboxChange}
         />
       </Paper>
       <Paper className={classes.paper}>
@@ -128,7 +135,7 @@ const SideFilters = ({ onSubmit }) => {
         <CheckboxForm
           optionsType="optionsArray"
           optionsArray={condition}
-          handleChange={handleChange}
+          handleChange={handleCheckboxChange}
         />
       </Paper>
       <Paper className={classes.paper}>

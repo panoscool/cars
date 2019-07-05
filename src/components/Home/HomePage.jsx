@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
-import ClassifiedLatest from "./ClassifiedLatest";
+import LatestClassifiedList from "../Classifieds/LatestClassifieds/LatestClassifiedList";
 import { bicycles } from "../../data/SampleData";
 
 const useStyles = makeStyles(theme => ({
@@ -61,7 +61,7 @@ const HomePage = () => {
           <ul className="horizontal-list">
             {bicycles.map(item => (
               <li key={item.id}>
-                <ClassifiedLatest
+                <LatestClassifiedList
                   img={item.img}
                   title={item.manufacturer}
                   price={item.price}

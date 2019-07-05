@@ -131,11 +131,13 @@ const SearchResults = () => {
           <BicycleList view={view} bicycles={bicycles} />
         </Grid>
       </Grid>
-      <div className="filter-button">
-        <Modal onFormSubmit={onSubmit}>
-          <SideFilters />
-        </Modal>
-      </div>
+      <Hidden mdUp>
+        <div className="filter-button">
+          <Modal onFormSubmit={onSubmit}>
+            <SideFilters />
+          </Modal>
+        </div>
+      </Hidden>
     </Container>
   );
 };
