@@ -59,14 +59,9 @@ const HomePage = () => {
         </div>
         <div className="latest-classifieds">
           <ul className="horizontal-list">
-            {bicycles.map(item => (
-              <li key={item.id}>
-                <LatestClassifiedList
-                  img={item.img}
-                  title={item.manufacturer}
-                  price={item.price}
-                  id={item.id}
-                />
+            {bicycles.map((item, idx) => (
+              <li key={idx}>
+                <LatestClassifiedList {...item} />
               </li>
             ))}
           </ul>

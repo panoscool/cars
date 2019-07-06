@@ -11,6 +11,7 @@ import {
   Divider
 } from "@material-ui/core";
 import { Edit } from "@material-ui/icons";
+import queryString from "query-string";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,7 +48,7 @@ function AlignItemsList(props) {
         <ListItemSecondaryAction>
           <IconButton
             component={Link}
-            to={`/bicycle/edit/${id}`}
+            to={`/bicycle/edit/${id}?${queryString.stringify(props)}`}
             edge="end"
             aria-label="Edit"
           >

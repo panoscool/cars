@@ -61,6 +61,7 @@ function Checkboxes(props) {
         className={classes.formControlLabel}
         control={
           <Checkbox
+            defaultChecked={props.defaultChecked}
             name={name}
             value={values}
             onChange={handleChange}

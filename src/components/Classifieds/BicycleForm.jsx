@@ -61,7 +61,8 @@ const BicycleForm = props => {
     userName: "",
     email: "",
     phone1: "",
-    location: ""
+    location: "",
+    ...props.inputValues
   });
 
   const handleInputChange = event => {
@@ -78,7 +79,8 @@ const BicycleForm = props => {
     color: "",
     brakes: "",
     duration: "",
-    exchange: ""
+    exchange: "",
+    ...props.selectValues
   });
 
   const handleSelectChange = event => {
@@ -113,7 +115,10 @@ const BicycleForm = props => {
   extraKeys.forEach(keyName => {
     defaultCheckBoxState[keyName] = false;
   });
-  const [state, setState] = useState(defaultCheckBoxState);
+  const [state, setState] = useState({
+    ...defaultCheckBoxState,
+    ...props.defaultCheckBoxState
+  });
 
   const handleCheckboxChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -327,6 +332,7 @@ const BicycleForm = props => {
               {extras.map(extra => {
                 return (
                   <CheckboxForm
+                    defaultChecked={state[extra.key]}
                     key={extra.key}
                     name={extra.key}
                     value={extra.key}
