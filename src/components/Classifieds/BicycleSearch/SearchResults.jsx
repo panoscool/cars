@@ -72,7 +72,7 @@ const SearchResults = () => {
           </Grid>
         </Hidden>
         <Grid item xs={gridSize}>
-          <Typography variant="h6">
+          <Typography variant="h6" style={{ marginTop: 6 }}>
             <IconButton color="inherit">
               <DirectionsBike />
             </IconButton>

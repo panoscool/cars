@@ -10,6 +10,10 @@ import SearchForm from "./components/Classifieds/BicycleSearch/SearchForm";
 import SearchResults from "./components/Classifieds//BicycleSearch/SearchResults";
 import BicycleDetails from "./components/Classifieds/BicycleDetails/BicycleDetails";
 import LatestClassifiedsPage from "./components/Classifieds/LatestClassifieds/LatestClassifiedsPage";
+import Contact from "./components/Informations/Contact";
+import MarketGuide from "./components/Informations/MarketGuide";
+import UsersFAQ from "./components/Informations/UsersFAQ";
+import DealersFAQ from "./components/Informations/DealersFAQ";
 
 function App() {
   return (
@@ -24,6 +28,10 @@ function App() {
           <Route path="/bicycles" component={SearchResults} />
           <Route path="/bicycle/:id" component={BicycleDetails} />
           <Route path="/classifieds/latest" component={LatestClassifiedsPage} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/market-guide" component={MarketGuide} />
+          <Route path="/users-faq" component={UsersFAQ} />
+          <Route path="/dealers-faq" component={DealersFAQ} />
           <Route path="/" component={HomePage} />
         </Switch>
       </div>
