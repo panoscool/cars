@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Typography, Divider, Button, Hidden } from "@material-ui/core";
+import { Paper, Typography, Divider } from "@material-ui/core";
 import CheckboxForm from "../../../../shared/forms/CheckboxForm";
 import RadioForm from "../../../../shared/forms/RadioForm";
 import SelectForm from "../../../../shared/forms/SelectForm";
@@ -298,11 +298,6 @@ const SideFilters = ({ onSubmit }) => {
           />
         </div>
       </Paper>
-      <Hidden smDown>
-        <Button fullWidth variant="contained" color="primary" type="submit">
-          Show (100)
-        </Button>
-      </Hidden>
     </form>
   );
 };

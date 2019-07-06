@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -10,19 +9,14 @@ import {
   Button,
   Hidden
 } from "@material-ui/core";
-import {
-  DirectionsBike,
-  Search,
-  ViewList,
-  ViewModule
-} from "@material-ui/icons";
+import { DirectionsBike, ViewList, ViewModule } from "@material-ui/icons";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import SelectForm from "../../../shared/forms/SelectForm";
 import { sort } from "../../../data/SharedAttributes";
 import BicycleList from "./BicycleList/BicycleList";
 import SideFilters from "./SideFilters/SideFilters";
-import { bicycles } from "../../../data/SampleData";
 import Modal from "../../../shared/modal/Modal";
+import { bicycles } from "../../../data/SampleData";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -78,24 +72,12 @@ const SearchResults = () => {
           </Grid>
         </Hidden>
         <Grid item xs={gridSize}>
-          <div className={classes.inline}>
-            <Typography variant="h6" gutterBottom>
-              <IconButton color="inherit">
-                <DirectionsBike />
-              </IconButton>
-              Search Results
-            </Typography>
-            <Button
-              component={Link}
-              to="/bicycles/search"
-              variant="text"
-              size="small"
-              className={classes.margin}
-            >
-              <Search className={classes.extendedIcon} />
-              Change Search
-            </Button>
-          </div>
+          <Typography variant="h6">
+            <IconButton color="inherit">
+              <DirectionsBike />
+            </IconButton>
+            Search Results
+          </Typography>
           <Divider variant="fullWidth" component="hr" />
           <div className={classes.inline}>
             <div>

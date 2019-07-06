@@ -8,16 +8,16 @@ import {
   Divider,
   Typography
 } from "@material-ui/core";
-import SelectForm from "../../shared/forms/SelectForm";
-import InputForm from "../../shared/forms/InputForm";
-import CheckboxForm from "../../shared/forms/CheckboxForm";
-import SelectDate from "../../shared/forms/SelectDate";
+import SelectForm from "../../../shared/forms/SelectForm";
+import InputForm from "../../../shared/forms/InputForm";
+import CheckboxForm from "../../../shared/forms/CheckboxForm";
+import SelectDate from "../../../shared/forms/SelectDate";
 import {
   offer,
   condition,
   adDuration,
   color
-} from "../../data/SharedAttributes";
+} from "../../../data/SharedAttributes";
 import {
   category,
   manufacturers,
@@ -26,7 +26,7 @@ import {
   brakes,
   extras,
   gears
-} from "../../data/bicycle/bicycle";
+} from "../../../data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   title: {
-    paddingTop: 14
+    paddingTop: 16
   }
 }));
 
@@ -139,9 +139,7 @@ const BicycleForm = props => {
     <Paper className={classes.paper}>
       <Container maxWidth="lg">
         <form onSubmit={handleSubmit} className={classes.root}>
-          <Typography variant="h6" gutterBottom>
-            Vehicle Details
-          </Typography>
+          <Typography variant="h6">Βicycle Details</Typography>
           <Divider variant="fullWidth" />
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4}>
@@ -299,7 +297,7 @@ const BicycleForm = props => {
             </Grid>
           </Grid>
           <Typography className={classes.title} variant="h6" gutterBottom>
-            Classified Description
+            Description
           </Typography>
           <Divider variant="fullWidth" />
           <Grid container spacing={3}>
@@ -317,6 +315,7 @@ const BicycleForm = props => {
                 type="url"
                 name="youTube"
                 label="YouTube"
+                placeholder="https://youtube.com"
                 values={inputValues.youTube}
                 handleChange={handleInputChange}
               />

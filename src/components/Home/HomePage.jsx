@@ -28,7 +28,6 @@ const HomePage = () => {
   return (
     <Container maxWidth="lg">
       <div className={classes.buttons}>
-        <Typography>This is the place for some text.</Typography>
         <Button
           component={Link}
           to="/bicycle/search"
@@ -53,8 +52,14 @@ const HomePage = () => {
           <Typography gutterBottom variant="h5" component="h2">
             Latest Classifieds
           </Typography>
-          <Button size="small" variant="outlined" color="primary">
-            See latest classifieds
+          <Button
+            component={Link}
+            to="/classifieds/latest"
+            size="small"
+            variant="outlined"
+            color="primary"
+          >
+            Show latest
           </Button>
         </div>
         <div className="latest-classifieds">

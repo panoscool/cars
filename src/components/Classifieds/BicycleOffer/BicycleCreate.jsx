@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import cuid from "cuid";
 import BicycleForm from "./BicycleForm";
-import { bicycles } from "../../data/SampleData";
+import { bicycles } from "../../../data/SampleData";
 
 const BicycleCreate = props => {
   const [classifieds, setClassified] = useState(bicycles);

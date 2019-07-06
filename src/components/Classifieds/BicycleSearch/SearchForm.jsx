@@ -27,7 +27,6 @@ import {
   extras,
   gears
 } from "../../../data/bicycle/bicycle";
-import { bicycles } from "../../../data/SampleData";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   title: {
-    paddingTop: 14
+    paddingTop: 12
   },
   showButton: {
     display: "flex",
@@ -125,7 +124,7 @@ const ClassifiedSearch = () => {
       <Container maxWidth="lg">
         <form onSubmit={handleSubmit} className={classes.root}>
           <div className={classes.showButton}>
-            <Typography variant="h6" gutterBottom>
+            <Typography className={classes.title} variant="h6">
               Search for bicycle
             </Typography>
             <Button
@@ -135,7 +134,7 @@ const ClassifiedSearch = () => {
               color="primary"
               className={classes.button}
             >
-              Show all {bicycles.length}
+              Show all
             </Button>
           </div>
           <Divider variant="fullWidth" />

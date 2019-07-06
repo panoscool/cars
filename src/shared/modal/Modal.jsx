@@ -1,16 +1,27 @@
 import React, { Fragment, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { Button, Fab } from "@material-ui/core";
-import { FilterList } from "@material-ui/icons";
+import { IconButton, Fab } from "@material-ui/core";
+import { FilterList, Close } from "@material-ui/icons";
 
-function ScrollDialog({ children, onFormSubmit }) {
+const useStyles = makeStyles(theme => ({
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500]
+  }
+}));
+
+function ScrollDialog({ children }) {
+  const classes = useStyles();
+
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
-  const handleClickOpen = scrollType => () => {
+  const handleOpen = scrollType => () => {
     setOpen(true);
     setScroll(scrollType);
   };
@@ -22,7 +33,7 @@ function ScrollDialog({ children, onFormSubmit }) {
   return (
     <Fragment>
       <Fab
-        onClick={handleClickOpen("paper")}
+        onClick={handleOpen("paper")}
         color="primary"
         className="filter-button"
       >
@@ -35,26 +46,17 @@ function ScrollDialog({ children, onFormSubmit }) {
         scroll={scroll}
         aria-labelledby="scroll-dialog-title"
       >
-        <DialogTitle id="scroll-dialog-title">Filters</DialogTitle>
-        <DialogContent dividers={scroll === "paper"}>{children}</DialogContent>
-        <DialogActions>
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            onClick={onFormSubmit}
-          >
-            Show (1000)
-          </Button>
-          <Button
-            fullWidth
-            variant="contained"
-            color="secondary"
+        <DialogTitle id="scroll-dialog-title">
+          Filters
+          <IconButton
+            aria-label="close"
+            className={classes.closeButton}
             onClick={handleClose}
           >
-            Cancel
-          </Button>
-        </DialogActions>
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers={scroll === "paper"}>{children}</DialogContent>
       </Dialog>
     </Fragment>
   );
