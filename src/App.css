@@ -38,6 +38,12 @@
   max-width: 220px;
 }
 
+.side-filters {
+  margin-top: 5px;
+  overflow-y: auto;
+  max-height: calc(100vh - 65px)
+}
+
 @media only screen and (max-width: 600px) {
   .card {
     max-width: 100%;

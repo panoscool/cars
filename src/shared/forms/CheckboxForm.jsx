@@ -19,64 +19,27 @@ const useStyles = makeStyles(theme => ({
 
 function Checkboxes(props) {
   const classes = useStyles();
-  const {
-    name,
-    label,
-    value,
-    checked,
-    labelPlacement,
-    handleChange,
-    optionsType,
-    optionsArray
-  } = props;
+  const { name, label, value, checked, labelPlacement, handleChange } = props;
 
-  if (optionsType === "optionsArray") {
-    return (
-      <div className={classes.root}>
-        <FormControl component="fieldset" className={classes.formControl}>
-          <FormGroup>
-            {optionsArray.map(obj => (
-              <FormControlLabel
-                key={obj.key}
-                name={obj.key}
-                value={obj.key}
-                label={obj.value}
-                labelPlacement="end"
-                control={
-                  <Checkbox
-                    name={obj.key}
-                    value={obj.value}
-                    onChange={handleChange}
-                    color="primary"
-                  />
-                }
-              />
-            ))}
-          </FormGroup>
-        </FormControl>
-      </div>
-    );
-  } else {
-    return (
-      <FormControlLabel
-        label={label}
-        labelPlacement={labelPlacement}
-        className={classes.formControlLabel}
-        control={
-          <Checkbox
-            name={name}
-            value={value}
-            checked={checked}
-            onChange={handleChange}
-            color="primary"
-            inputProps={{
-              "aria-label": "primary checkbox"
-            }}
-          />
-        }
-      />
-    );
-  }
+  return (
+    <FormControlLabel
+      label={label}
+      labelPlacement={labelPlacement}
+      className={classes.formControlLabel}
+      control={
+        <Checkbox
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={handleChange}
+          color="primary"
+          inputProps={{
+            "aria-label": "primary checkbox"
+          }}
+        />
+      }
+    />
+  );
 }
 
 export default Checkboxes;

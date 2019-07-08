@@ -21,9 +21,6 @@ import {
 } from "../../../../data/bicycle/bicycle";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    overflowY: "auto"
-  },
   paper: {
     width: "100%",
     padding: theme.spacing(3, 2),
@@ -71,8 +68,7 @@ const SideFilters = ({ onSubmit }) => {
     }));
   };
 
-  const extraKeys = extras.map(obj => obj.key);
-  const defaultCheckBoxState = {
+  const [checkboxState, setCheckboxState] = useState({
     sale: true,
     rent: false,
     wanted: false,
@@ -91,14 +87,13 @@ const SideFilters = ({ onSubmit }) => {
     antique: false,
     basket: false,
     cargoRack: false
-  };
-  extraKeys.forEach(keyName => {
-    defaultCheckBoxState[keyName] = false;
   });
-  const [state, setState] = useState(defaultCheckBoxState);
 
   const handleCheckboxChange = event => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setCheckboxState({
+      ...checkboxState,
+      [event.target.name]: event.target.checked
+    });
   };
 
   const [value, setValue] = useState({
@@ -113,21 +108,29 @@ const SideFilters = ({ onSubmit }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const formValues = { selectValues, inputValues, state, value };
+    const formValues = { selectValues, inputValues, checkboxState, value };
     onSubmit(formValues);
   };
 
   return (
-    <form onSubmit={handleSubmit} className={classes.root}>
+    <form onSubmit={handleSubmit} className="side-filters">
       <Paper className={classes.paper}>
         <Typography className={classes.heading}>Offer Type</Typography>
         <Divider variant="fullWidth" />
-        <CheckboxForm
-          optionsType="optionsArray"
-          name={offer.key}
-          optionsArray={offer}
-          handleChange={handleCheckboxChange}
-        />
+        {Object.keys(checkboxState).map(key => {
+          const obj = offer.find(obj => obj.key === key);
+          return offer[key] ? (
+            <CheckboxForm
+              key={obj.key}
+              name={obj.key}
+              value={obj.key}
+              label={obj.value}
+              labelPlacement="end"
+              checked={checkboxState[key]}
+              handleChange={handleCheckboxChange}
+            />
+          ) : null;
+        })}
       </Paper>
       <Paper className={classes.paper}>
         <Typography className={classes.heading}>Condition</Typography>
