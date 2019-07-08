@@ -22,7 +22,8 @@ function Checkboxes(props) {
   const {
     name,
     label,
-    values,
+    value,
+    checked,
     labelPlacement,
     handleChange,
     optionsType,
@@ -37,6 +38,8 @@ function Checkboxes(props) {
             {optionsArray.map(obj => (
               <FormControlLabel
                 key={obj.key}
+                name={obj.key}
+                value={obj.key}
                 label={obj.value}
                 labelPlacement="end"
                 control={
@@ -61,9 +64,9 @@ function Checkboxes(props) {
         className={classes.formControlLabel}
         control={
           <Checkbox
-            defaultChecked={props.defaultChecked}
             name={name}
-            value={values}
+            value={value}
+            checked={checked}
             onChange={handleChange}
             color="primary"
             inputProps={{

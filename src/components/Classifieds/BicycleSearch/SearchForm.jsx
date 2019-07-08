@@ -9,6 +9,7 @@ import {
   Divider,
   Typography
 } from "@material-ui/core";
+import queryString from "query-string";
 import SelectForm from "../../../shared/forms/SelectForm";
 import InputForm from "../../../shared/forms/InputForm";
 import CheckboxForm from "../../../shared/forms/CheckboxForm";
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ClassifiedSearch = () => {
+const ClassifiedSearch = props => {
   const classes = useStyles();
 
   const [inputValues, setInputValues] = useState({
@@ -85,10 +86,9 @@ const ClassifiedSearch = () => {
     }));
   };
 
-  const extraKeys = extras.map(obj => obj.key);
-  const defaultCheckBoxState = {
-    withPrice: true,
-    negotiable: false,
+  const [checkboxState, setCheckboxState] = useState({
+    // withPrice: true,
+    // negotiable: false,
     womens: false,
     mens: false,
     dynamoLights: false,
@@ -101,23 +101,21 @@ const ClassifiedSearch = () => {
     antique: false,
     basket: false,
     cargoRack: false
-  };
-  extraKeys.forEach(keyName => {
-    defaultCheckBoxState[keyName] = false;
   });
-  const [state, setState] = useState(defaultCheckBoxState);
 
   const handleCheckboxChange = event => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setCheckboxState({
+      ...checkboxState,
+      [event.target.name]: event.target.checked
+    });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    const formValues = { ...selectValues, ...inputValues, state };
+    const formValues = { ...selectValues, ...inputValues, checkboxState };
+    props.history.push(`/bicycles/?${queryString.stringify(formValues)}`);
     console.log("formValues", formValues);
   };
-
-  console.log(state);
 
   return (
     <Paper className={classes.paper}>
@@ -125,7 +123,7 @@ const ClassifiedSearch = () => {
         <form onSubmit={handleSubmit} className={classes.root}>
           <div className={classes.showButton}>
             <Typography className={classes.title} variant="h6">
-              Search for bicycle
+              Bicycle Search
             </Typography>
             <Button
               component={Link}
@@ -208,7 +206,7 @@ const ClassifiedSearch = () => {
                 name="withPrice"
                 label="With price only"
                 labelPlacement="start"
-                values={state.withPrice}
+                values={setCheckboxState.withPrice}
                 handleChange={handleCheckboxChange}
               />
               <InputForm
@@ -275,13 +273,16 @@ const ClassifiedSearch = () => {
           <Divider variant="fullWidth" style={{ margin: 16 }} />
           <Grid container spacing={3}>
             <Grid item xs>
-              {extras.map(extra => {
+              {Object.keys(checkboxState).map(key => {
+                const extra = extras.find(extra => extra.key === key);
                 return (
                   <CheckboxForm
                     key={extra.key}
                     name={extra.key}
+                    value={extra.key}
                     label={extra.value}
                     labelPlacement="end"
+                    checked={checkboxState[key]}
                     handleChange={handleCheckboxChange}
                   />
                 );

@@ -96,10 +96,9 @@ const BicycleForm = props => {
     setPurchasedDate(date);
   };
 
-  const extraKeys = extras.map(obj => obj.key);
-  const defaultCheckBoxState = {
-    negotiable: false,
-    womens: false,
+  const [checkboxState, setCheckboxState] = useState({
+    // negotiable: false,
+    womens: true,
     mens: false,
     dynamoLights: false,
     ledLights: false,
@@ -111,17 +110,13 @@ const BicycleForm = props => {
     antique: false,
     basket: false,
     cargoRack: false
-  };
-  extraKeys.forEach(keyName => {
-    defaultCheckBoxState[keyName] = false;
-  });
-  const [state, setState] = useState({
-    ...defaultCheckBoxState,
-    ...props.defaultCheckBoxState
   });
 
   const handleCheckboxChange = event => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setCheckboxState({
+      ...checkboxState,
+      [event.target.name]: event.target.checked
+    });
   };
 
   const handleSubmit = event => {
@@ -129,7 +124,7 @@ const BicycleForm = props => {
     const formValues = {
       ...inputValues,
       ...selectValues,
-      ...state,
+      ...checkboxState,
       purchasedDate
     };
     onSubmit(formValues);
@@ -291,7 +286,7 @@ const BicycleForm = props => {
                 name="negotiable"
                 label="Negotiable"
                 labelPlacement="start"
-                values={state.negotiable}
+                values={checkboxState.negotiable}
                 handleChange={handleCheckboxChange}
               />
             </Grid>
@@ -328,15 +323,16 @@ const BicycleForm = props => {
           <Divider variant="fullWidth" />
           <Grid container spacing={3}>
             <Grid item xs>
-              {extras.map(extra => {
+              {Object.keys(checkboxState).map(key => {
+                const extra = extras.find(extra => extra.key === key);
                 return (
                   <CheckboxForm
-                    defaultChecked={state[extra.key]}
                     key={extra.key}
                     name={extra.key}
                     value={extra.key}
                     label={extra.value}
                     labelPlacement="end"
+                    checked={checkboxState[key]}
                     handleChange={handleCheckboxChange}
                   />
                 );
