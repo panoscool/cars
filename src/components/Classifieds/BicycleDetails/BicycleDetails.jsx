@@ -16,15 +16,10 @@ const BicycleDetails = props => {
 
   const bicycleObj = bicycles[props.match.params.id - 1];
 
-  let gridSize = 9;
-  if (width < 960) {
-    gridSize = 12;
-  }
-
   return (
     <Container maxWidth="lg">
       <Grid container spacing={3}>
-        <Grid item xs={gridSize}>
+        <Grid item xs={width < 960 ? 12 : 9}>
           <ImageCarousel />
           <ClassifiedDetails infoArray={infoArray} bicycleObj={bicycleObj} />
           <ExtraDetails checkBoxes={checkBoxes} bicycleObj={bicycleObj} />

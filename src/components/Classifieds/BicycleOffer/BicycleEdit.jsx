@@ -1,60 +1,65 @@
 import React from "react";
 import BicycleForm from "./BicycleForm";
+import { bicycles } from "../../../data/SampleData";
 
 const BicycleEdit = props => {
+  const bicycleObj = bicycles[props.match.params.id - 1];
+
+  console.log(bicycleObj);
+
   const onSubmit = formValues => {
     console.log(formValues);
   };
 
-  const inputValues = {
-    variant: "",
-    owners: "",
-    price: "",
-    frameSize: "",
-    rimSize: "",
-    description: "",
-    youTube: "",
-    password: "",
-    userName: "",
-    email: "",
-    phone1: "",
-    location: ""
+  const currentInputValues = {
+    variant: bicycleObj.variant,
+    owners: bicycleObj.owners,
+    price: bicycleObj.price,
+    frameSize: bicycleObj.frameSize,
+    rimSize: bicycleObj.rimSize,
+    description: bicycleObj.description,
+    youTube: bicycleObj.youTube,
+    password: bicycleObj.password,
+    userName: bicycleObj.userName,
+    email: bicycleObj.email,
+    phone1: bicycleObj.phone1,
+    location: bicycleObj.location
   };
 
-  const selectedValues = {
-    offer: "",
-    category: "",
-    manufacturer: "",
-    condition: "",
-    frameType: "",
-    gears: "",
-    color: "",
-    brakes: "",
-    duration: "",
-    exchange: ""
+  const currentSelectedValues = {
+    offer: bicycleObj.offer,
+    category: bicycleObj.category,
+    manufacturer: bicycleObj.manufacturer,
+    condition: bicycleObj.condition,
+    frameType: bicycleObj.frameType,
+    gears: bicycleObj.gears,
+    color: bicycleObj.color,
+    brakes: bicycleObj.brakes,
+    duration: bicycleObj.duration,
+    exchange: bicycleObj.exchange
   };
 
-  const defaultCheckBoxState = {
-    negotiable: false,
-    womens: true,
-    mens: true,
-    dynamoLights: true,
-    ledLights: true,
-    shockAbsorber: true,
-    fenders: true,
-    singleSpeed: true,
-    interiorSpeed: true,
-    exteriorSpeed: true,
-    antique: false,
-    basket: false,
-    cargoRack: false
+  const currentCheckBoxState = {
+    negotiable: bicycleObj.negotiable,
+    womens: bicycleObj.womens,
+    mens: bicycleObj.mens,
+    dynamoLights: bicycleObj.dynamoLights,
+    ledLights: bicycleObj.ledLights,
+    shockAbsorber: bicycleObj.shockAbsorber,
+    fenders: bicycleObj.fenders,
+    singleSpeed: bicycleObj.singleSpeed,
+    interiorSpeed: bicycleObj.interiorSpeed,
+    exteriorSpeed: bicycleObj.exteriorSpeed,
+    antique: bicycleObj.antique,
+    basket: bicycleObj.basket,
+    cargoRack: bicycleObj.cargoRack
   };
 
   return (
     <BicycleForm
-      selectedValues={selectedValues}
-      inputValues={inputValues}
-      defaultCheckBoxState={defaultCheckBoxState}
+      currentInputValues={currentInputValues}
+      currentSelectedValues={currentSelectedValues}
+      currentCheckBoxState={currentCheckBoxState}
       onSubmit={onSubmit}
     />
   );

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
@@ -49,6 +50,12 @@ const BicycleForm = props => {
   const classes = useStyles();
   const { onSubmit, requiredInfos } = props;
 
+  useEffect(() => {
+    if (props.match.params.id) {
+      setInputValues(...props.currentInputValues);
+    }
+  }, [props.currentInputValues, props.match.params.id]);
+
   const [inputValues, setInputValues] = useState({
     variant: "",
     owners: "",
@@ -61,8 +68,7 @@ const BicycleForm = props => {
     userName: "",
     email: "",
     phone1: "",
-    location: "",
-    ...props.inputValues
+    location: ""
   });
 
   const handleInputChange = event => {
@@ -79,8 +85,7 @@ const BicycleForm = props => {
     color: "",
     brakes: "",
     duration: "",
-    exchange: "",
-    ...props.selectValues
+    exchange: ""
   });
 
   const handleSelectChange = event => {
@@ -198,7 +203,6 @@ const BicycleForm = props => {
               />
             </Grid>
           </Grid>
-
           <Typography className={classes.title} variant="h6" gutterBottom>
             Body Details
           </Typography>
@@ -317,7 +321,6 @@ const BicycleForm = props => {
               />
             </Grid>
           </Grid>
-
           <Typography className={classes.title} variant="h6" gutterBottom>
             Extras
           </Typography>
@@ -423,4 +426,4 @@ const BicycleForm = props => {
   );
 };
 
-export default BicycleForm;
+export default withRouter(BicycleForm);
