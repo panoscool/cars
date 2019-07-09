@@ -97,8 +97,8 @@ const BicycleForm = props => {
   };
 
   const [checkboxState, setCheckboxState] = useState({
-    // negotiable: false,
-    womens: true,
+    negotiable: false,
+    womens: false,
     mens: false,
     dynamoLights: false,
     ledLights: false,
@@ -286,7 +286,8 @@ const BicycleForm = props => {
                 name="negotiable"
                 label="Negotiable"
                 labelPlacement="start"
-                values={checkboxState.negotiable}
+                checked={checkboxState.negotiable}
+                value={checkboxState.negotiable}
                 handleChange={handleCheckboxChange}
               />
             </Grid>
@@ -323,20 +324,22 @@ const BicycleForm = props => {
           <Divider variant="fullWidth" />
           <Grid container spacing={3}>
             <Grid item xs>
-              {Object.keys(checkboxState).map(key => {
-                const extra = extras.find(extra => extra.key === key);
-                return (
-                  <CheckboxForm
-                    key={extra.key}
-                    name={extra.key}
-                    value={extra.key}
-                    label={extra.value}
-                    labelPlacement="end"
-                    checked={checkboxState[key]}
-                    handleChange={handleCheckboxChange}
-                  />
-                );
-              })}
+              {Object.keys(checkboxState)
+                .slice(1)
+                .map(key => {
+                  const extra = extras.find(extra => extra.key === key);
+                  return (
+                    <CheckboxForm
+                      key={extra.key}
+                      name={extra.key}
+                      value={extra.key}
+                      label={extra.value}
+                      labelPlacement="end"
+                      checked={checkboxState[key]}
+                      handleChange={handleCheckboxChange}
+                    />
+                  );
+                })}
             </Grid>
           </Grid>
           <Typography className={classes.title} variant="h6" gutterBottom>

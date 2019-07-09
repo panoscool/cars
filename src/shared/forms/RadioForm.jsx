@@ -17,14 +17,14 @@ const useStyles = makeStyles(theme => ({
 function RadioButtonsGroup(props) {
   const classes = useStyles();
 
-  const { name, values, optionsArray, handleChange } = props;
+  const { name, value, optionsArray, handleChange } = props;
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
         <RadioGroup
           aria-label="radio-buttons"
           name={name}
-          value={values}
+          value={value}
           onChange={handleChange}
         >
           {optionsArray.map(obj => (

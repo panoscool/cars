@@ -58,11 +58,6 @@ const SearchResults = () => {
     console.log(formValues);
   };
 
-  let gridSize = 9;
-  if (width < 960) {
-    gridSize = 12;
-  }
-
   return (
     <Container maxWidth="lg">
       <Grid container spacing={3}>
@@ -71,7 +66,7 @@ const SearchResults = () => {
             <SideFilters onSubmit={onSubmit} />
           </Grid>
         </Hidden>
-        <Grid item xs={gridSize}>
+        <Grid item xs={width < 960 ? 12 : 9}>
           <Typography variant="h6" style={{ marginTop: 6 }}>
             <IconButton color="inherit">
               <DirectionsBike />

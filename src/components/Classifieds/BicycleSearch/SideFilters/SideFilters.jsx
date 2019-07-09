@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Typography, Divider } from "@material-ui/core";
+import { Paper, Typography, Divider, FormGroup } from "@material-ui/core";
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import CheckboxForm from "../../../../shared/forms/CheckboxForm";
 import RadioForm from "../../../../shared/forms/RadioForm";
 import SelectForm from "../../../../shared/forms/SelectForm";
@@ -19,12 +20,17 @@ import {
   gears,
   extras
 } from "../../../../data/bicycle/bicycle";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles(theme => ({
   paper: {
     width: "100%",
-    padding: theme.spacing(3, 2),
-    margin: theme.spacing(1, 0)
+    padding: theme.spacing(2),
+    margin: theme.spacing(1, 0),
+    boxShadow: "none"
   },
   list: {
     listStyle: "none"
@@ -35,11 +41,18 @@ const useStyles = makeStyles(theme => ({
   },
   right: {
     marginRight: theme.spacing(2)
+  },
+  formControl: {
+    margin: theme.spacing(1, 3)
+  },
+  expansionPanel: {
+    boxShadow: "none"
   }
 }));
 
-const SideFilters = ({ onSubmit }) => {
+const SideFilters = props => {
   const classes = useStyles();
+  const { width } = useWindowDimensions();
 
   const [inputValues, setInputValues] = useState({
     variant: "",
@@ -69,7 +82,7 @@ const SideFilters = ({ onSubmit }) => {
   };
 
   const [checkboxState, setCheckboxState] = useState({
-    sale: true,
+    sale: false,
     rent: false,
     wanted: false,
     new: false,
@@ -106,40 +119,51 @@ const SideFilters = ({ onSubmit }) => {
     setValue({ ...value, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const formValues = { selectValues, inputValues, checkboxState, value };
-    onSubmit(formValues);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="side-filters">
+    <div className={width < 960 ? "" : "side-filters"}>
       <Paper className={classes.paper}>
         <Typography className={classes.heading}>Offer Type</Typography>
         <Divider variant="fullWidth" />
-        {Object.keys(checkboxState).map(key => {
-          const obj = offer.find(obj => obj.key === key);
-          return offer[key] ? (
-            <CheckboxForm
-              key={obj.key}
-              name={obj.key}
-              value={obj.key}
-              label={obj.value}
-              labelPlacement="end"
-              checked={checkboxState[key]}
-              handleChange={handleCheckboxChange}
-            />
-          ) : null;
-        })}
+        <FormGroup className={classes.formControl}>
+          {Object.keys(checkboxState)
+            .slice(0, 3)
+            .map(key => {
+              const obj = offer.find(obj => obj.key === key);
+              return (
+                <CheckboxForm
+                  key={obj.key}
+                  name={obj.key}
+                  value={obj.key}
+                  label={obj.value}
+                  labelPlacement="end"
+                  checked={checkboxState[key]}
+                  handleChange={handleCheckboxChange}
+                />
+              );
+            })}
+        </FormGroup>
       </Paper>
       <Paper className={classes.paper}>
         <Typography className={classes.heading}>Condition</Typography>
         <Divider variant="fullWidth" />
-        <CheckboxForm
-          optionsType="optionsArray"
-          optionsArray={condition}
-          handleChange={handleCheckboxChange}
-        />
+        <FormGroup className={classes.formControl}>
+          {Object.keys(checkboxState)
+            .slice(3, 6)
+            .map(key => {
+              const obj = condition.find(obj => obj.key === key);
+              return (
+                <CheckboxForm
+                  key={obj.key}
+                  name={obj.key}
+                  value={obj.key}
+                  label={obj.value}
+                  labelPlacement="end"
+                  checked={checkboxState[key]}
+                  handleChange={handleCheckboxChange}
+                />
+              );
+            })}
+        </FormGroup>
       </Paper>
       <Paper className={classes.paper}>
         <Typography className={classes.heading}>Manufacturer</Typography>
@@ -192,7 +216,7 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="modified"
-          values={value.modified}
+          value={value.modified}
           optionsArray={modified}
           handleChange={handleRadioChange}
         />
@@ -228,7 +252,7 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="frameType"
-          values={value.frameType}
+          value={value.frameType}
           optionsArray={frameType}
           handleChange={handleRadioChange}
         />
@@ -238,7 +262,7 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="brakes"
-          values={value.brakes}
+          value={value.brakes}
           optionsArray={brakes}
           handleChange={handleRadioChange}
         />
@@ -248,11 +272,40 @@ const SideFilters = ({ onSubmit }) => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="gears"
-          values={value.gears}
+          value={value.gears}
           optionsArray={gears}
           handleChange={handleRadioChange}
         />
       </Paper>
+      <ExpansionPanel className={classes.expansionPanel}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>Extras</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <FormGroup className={classes.formControl}>
+            {Object.keys(checkboxState)
+              .slice(7)
+              .map(key => {
+                const obj = extras.find(obj => obj.key === key);
+                return (
+                  <CheckboxForm
+                    key={obj.key}
+                    name={obj.key}
+                    value={obj.key}
+                    label={obj.value}
+                    labelPlacement="end"
+                    checked={checkboxState[key]}
+                    handleChange={handleCheckboxChange}
+                  />
+                );
+              })}
+          </FormGroup>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
       <Paper className={classes.paper}>
         <Typography className={classes.heading}>Frame Size</Typography>
         <Divider variant="fullWidth" />
@@ -301,7 +354,7 @@ const SideFilters = ({ onSubmit }) => {
           />
         </div>
       </Paper>
-    </form>
+    </div>
   );
 };
 
