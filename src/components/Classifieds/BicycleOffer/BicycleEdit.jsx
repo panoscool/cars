@@ -55,11 +55,16 @@ const BicycleEdit = props => {
     cargoRack: bicycleObj.cargoRack
   };
 
+  const currentSelectedDate = {
+    purchasedDate: bicycleObj.purchasedDate
+  };
+
   return (
     <BicycleForm
       currentInputValues={currentInputValues}
       currentSelectedValues={currentSelectedValues}
       currentCheckBoxState={currentCheckBoxState}
+      currentSelectedDate={currentSelectedDate}
       onSubmit={onSubmit}
     />
   );

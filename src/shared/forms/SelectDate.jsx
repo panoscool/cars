@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 export default function MaterialUIPickers(props) {
   const classes = useStyles();
 
-  const { label, values, required, handleChange } = props;
+  const { label, value, required, handleChange } = props;
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <div className={clsx(classes.picker, classes.dense)}>
@@ -32,7 +32,7 @@ export default function MaterialUIPickers(props) {
           id="mui-pickers-date"
           label={label}
           format="dd/MMMM/yyyy"
-          value={values}
+          value={value}
           onChange={handleChange}
           KeyboardButtonProps={{
             "aria-label": "change date"

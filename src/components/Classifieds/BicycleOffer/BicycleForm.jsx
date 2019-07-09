@@ -48,13 +48,29 @@ const useStyles = makeStyles(theme => ({
 
 const BicycleForm = props => {
   const classes = useStyles();
-  const { onSubmit, requiredInfos } = props;
+  const {
+    onSubmit,
+    requiredInfos,
+    currentInputValues,
+    currentSelectedValues,
+    currentCheckBoxState,
+    currentSelectedDate
+  } = props;
 
   useEffect(() => {
     if (props.match.params.id) {
-      setInputValues(...props.currentInputValues);
+      setInputValues(currentInputValues);
+      setSelectValues(currentSelectedValues);
+      setCheckboxState(currentCheckBoxState);
+      setPurchasedDate(currentSelectedDate);
     }
-  }, [props.currentInputValues, props.match.params.id]);
+  }, [
+    props.match.params.id,
+    currentInputValues,
+    currentSelectedValues,
+    currentCheckBoxState,
+    currentSelectedDate
+  ]);
 
   const [inputValues, setInputValues] = useState({
     variant: "",
@@ -180,7 +196,7 @@ const BicycleForm = props => {
               <SelectDate
                 required
                 label="Purchased"
-                values={purchasedDate}
+                value={purchasedDate}
                 handleChange={handleDateChange}
               />
             </Grid>
