@@ -27,11 +27,12 @@ export default function MaterialUIPickers(props) {
         <KeyboardDatePicker
           required={required}
           fullWidth
+          type="date"
           margin="dense"
           inputVariant="outlined"
           id="mui-pickers-date"
           label={label}
-          format="dd/MMMM/yyyy"
+          // format="dd/MMMM/yyyy"
           value={value}
           onChange={handleChange}
           KeyboardButtonProps={{

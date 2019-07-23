@@ -12,12 +12,12 @@ import {
 import SelectForm from "../../../shared/forms/SelectForm";
 import InputForm from "../../../shared/forms/InputForm";
 import CheckboxForm from "../../../shared/forms/CheckboxForm";
-import SelectDate from "../../../shared/forms/SelectDate";
 import {
   offer,
   condition,
   adDuration,
-  color
+  color,
+  months
 } from "../../../data/SharedAttributes";
 import {
   category,
@@ -28,6 +28,7 @@ import {
   extras,
   gears
 } from "../../../data/bicycle/bicycle";
+import getYear from "date-fns/getYear";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,8 +54,7 @@ const BicycleForm = props => {
     requiredInfos,
     currentInputValues,
     currentSelectedValues,
-    currentCheckBoxState,
-    currentSelectedDate
+    currentCheckBoxState
   } = props;
 
   useEffect(() => {
@@ -62,14 +62,12 @@ const BicycleForm = props => {
       setInputValues(currentInputValues);
       setSelectValues(currentSelectedValues);
       setCheckboxState(currentCheckBoxState);
-      setPurchasedDate(currentSelectedDate);
     }
   }, [
     props.match.params.id,
     currentInputValues,
     currentSelectedValues,
-    currentCheckBoxState,
-    currentSelectedDate
+    currentCheckBoxState
   ]);
 
   const [inputValues, setInputValues] = useState({
@@ -84,7 +82,8 @@ const BicycleForm = props => {
     userName: "",
     email: "",
     phone1: "",
-    location: ""
+    location: "",
+    year: ""
   });
 
   const handleInputChange = event => {
@@ -101,7 +100,8 @@ const BicycleForm = props => {
     color: "",
     brakes: "",
     duration: "",
-    exchange: ""
+    exchange: "",
+    month: ""
   });
 
   const handleSelectChange = event => {
@@ -109,12 +109,6 @@ const BicycleForm = props => {
       ...oldValues,
       [event.target.name]: event.target.value
     }));
-  };
-
-  const [purchasedDate, setPurchasedDate] = useState(new Date());
-
-  const handleDateChange = date => {
-    setPurchasedDate(date);
   };
 
   const [checkboxState, setCheckboxState] = useState({
@@ -145,11 +139,12 @@ const BicycleForm = props => {
     const formValues = {
       ...inputValues,
       ...selectValues,
-      ...checkboxState,
-      purchasedDate
+      ...checkboxState
     };
     onSubmit(formValues);
   };
+
+  const year = getYear(new Date());
 
   return (
     <Paper className={classes.paper}>
@@ -193,11 +188,21 @@ const BicycleForm = props => {
                 optionsArray={manufacturers}
                 handleChange={handleSelectChange}
               />
-              <SelectDate
+              <SelectForm
                 required
-                label="Purchased"
-                value={purchasedDate}
-                handleChange={handleDateChange}
+                label="Purchased Month"
+                optionsArray={months}
+                value={selectValues.purchasedMonth}
+                handleChange={handleSelectChange}
+              />
+              <InputForm
+                required
+                name="year"
+                label="Purchased Year"
+                placeholder={`1990 - ${year.toString()}`}
+                values={inputValues.year}
+                inputProps={{ min: 1990 }}
+                handleChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} sm={4}>

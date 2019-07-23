@@ -23,7 +23,8 @@ const BicycleEdit = props => {
     userName: bicycleObj.userName,
     email: bicycleObj.email,
     phone1: bicycleObj.phone1,
-    location: bicycleObj.location
+    location: bicycleObj.location,
+    year: bicycleObj.year
   };
 
   const currentSelectedValues = {
@@ -36,7 +37,8 @@ const BicycleEdit = props => {
     color: bicycleObj.color,
     brakes: bicycleObj.brakes,
     duration: bicycleObj.duration,
-    exchange: bicycleObj.exchange
+    exchange: bicycleObj.exchange,
+    month: bicycleObj.month
   };
 
   const currentCheckBoxState = {
@@ -55,16 +57,11 @@ const BicycleEdit = props => {
     cargoRack: bicycleObj.cargoRack
   };
 
-  const currentSelectedDate = {
-    purchasedDate: bicycleObj.purchasedDate
-  };
-
   return (
     <BicycleForm
       currentInputValues={currentInputValues}
       currentSelectedValues={currentSelectedValues}
       currentCheckBoxState={currentCheckBoxState}
-      currentSelectedDate={currentSelectedDate}
       onSubmit={onSubmit}
     />
   );
