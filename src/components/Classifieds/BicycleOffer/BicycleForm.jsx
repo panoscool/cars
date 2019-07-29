@@ -1,33 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Container,
-  Grid,
-  Paper,
-  Button,
-  Divider,
-  Typography
-} from "@material-ui/core";
+import { Container, Grid, Paper, Button, Divider, Typography } from "@material-ui/core";
 import SelectForm from "../../../shared/forms/SelectForm";
 import InputForm from "../../../shared/forms/InputForm";
 import CheckboxForm from "../../../shared/forms/CheckboxForm";
-import {
-  offer,
-  condition,
-  adDuration,
-  color,
-  months
-} from "../../../data/SharedAttributes";
-import {
-  category,
-  manufacturers,
-  frameType,
-  exchange,
-  brakes,
-  extras,
-  gears
-} from "../../../data/bicycle/bicycle";
+import { offer, condition, adDuration, color, months } from "../../../data/SharedAttributes";
+import { category, manufacturers, frameType, exchange, brakes, extras, gears } from "../../../data/bicycle/bicycle";
 import getYear from "date-fns/getYear";
 
 const useStyles = makeStyles(theme => ({

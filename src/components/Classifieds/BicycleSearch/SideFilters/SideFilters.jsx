@@ -6,24 +6,13 @@ import CheckboxForm from "../../../../shared/forms/CheckboxForm";
 import RadioForm from "../../../../shared/forms/RadioForm";
 import SelectForm from "../../../../shared/forms/SelectForm";
 import InputForm from "../../../../shared/forms/InputForm";
-import {
-  offer,
-  condition,
-  color,
-  modified
-} from "../../../../data/SharedAttributes";
-import {
-  manufacturers,
-  frameType,
-  brakes,
-  category,
-  gears,
-  extras
-} from "../../../../data/bicycle/bicycle";
+import { offer, condition, color, modified } from "../../../../data/SharedAttributes";
+import { manufacturers, frameType, brakes, category, gears, extras } from "../../../../data/bicycle/bicycle";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import getYear from "date-fns/getYear";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -61,7 +50,9 @@ const SideFilters = props => {
     frameSizeFrom: "",
     frameSizeTo: "",
     rimSizeFrom: "",
-    rimSizeTo: ""
+    rimSizeTo: "",
+    yearFrom: "",
+    yearTo: ""
   });
 
   const handleInputChange = event => {
@@ -118,6 +109,8 @@ const SideFilters = props => {
   const handleRadioChange = event => {
     setValue({ ...value, [event.target.name]: event.target.value });
   };
+
+  const year = getYear(new Date());
 
   return (
     <div className={width < 960 ? "" : "side-filters"}>
@@ -220,6 +213,28 @@ const SideFilters = props => {
           optionsArray={modified}
           handleChange={handleRadioChange}
         />
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>Purchased</Typography>
+        <Divider variant="fullWidth" />
+        <div className={classes.right}>
+          <InputForm
+            name="yearFrom"
+            label="Purchased from"
+            placeholder={`1990 - ${year.toString()}`}
+            values={inputValues.year}
+            inputProps={{ min: 1990 }}
+            handleChange={handleInputChange}
+          />
+          <InputForm
+            name="yearTo"
+            label="Purchased to"
+            placeholder={`1990 - ${year.toString()}`}
+            values={inputValues.year}
+            inputProps={{ min: 1990 }}
+            handleChange={handleInputChange}
+          />
+        </div>
       </Paper>
       <Paper className={classes.paper}>
         <Typography className={classes.heading}>Variant</Typography>

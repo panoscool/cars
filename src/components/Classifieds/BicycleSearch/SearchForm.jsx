@@ -1,33 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Container,
-  Grid,
-  Paper,
-  Button,
-  Divider,
-  Typography
-} from "@material-ui/core";
+import { Container, Grid, Paper, Button, Divider, Typography } from "@material-ui/core";
 import queryString from "query-string";
 import SelectForm from "../../../shared/forms/SelectForm";
 import InputForm from "../../../shared/forms/InputForm";
 import CheckboxForm from "../../../shared/forms/CheckboxForm";
-import {
-  offer,
-  condition,
-  months,
-  color,
-  sort,
-  modified
-} from "../../../data/SharedAttributes";
-import {
-  category,
-  manufacturers,
-  brakes,
-  extras,
-  gears
-} from "../../../data/bicycle/bicycle";
+import { offer, condition, color, sort, modified } from "../../../data/SharedAttributes";
+import { category, manufacturers, brakes, extras, gears } from "../../../data/bicycle/bicycle";
+import getYear from "date-fns/getYear";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,7 +37,9 @@ const ClassifiedSearch = props => {
   const [inputValues, setInputValues] = useState({
     variant: "",
     priceFrom: "",
-    priceTo: ""
+    priceTo: "",
+    yearFrom: "",
+    yearTo: ""
   });
 
   const handleInputChange = event => {
@@ -116,6 +99,8 @@ const ClassifiedSearch = props => {
     props.history.push(`/bicycles/?${queryString.stringify(formValues)}`);
     console.log("formValues", formValues);
   };
+
+  const year = getYear(new Date());
 
   return (
     <Paper className={classes.paper}>
@@ -229,19 +214,21 @@ const ClassifiedSearch = props => {
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <SelectForm
-                name="purchasedFrom"
+              <InputForm
+                name="yearFrom"
                 label="Purchased from"
-                values={selectValues.purchasedFrom}
-                optionsArray={months}
-                handleChange={handleSelectChange}
+                placeholder={`1990 - ${year.toString()}`}
+                values={inputValues.yearFrom}
+                inputProps={{ min: 1990 }}
+                handleChange={handleInputChange}
               />
-              <SelectForm
-                name="purchasedTo"
+              <InputForm
+                name="yearTo"
                 label="Purchased to"
-                values={selectValues.purchasedTo}
-                optionsArray={months}
-                handleChange={handleSelectChange}
+                placeholder={`1990 - ${year.toString()}`}
+                values={inputValues.yearTo}
+                inputProps={{ min: 1990 }}
+                handleChange={handleInputChange}
               />
               <SelectForm
                 name="modified"
