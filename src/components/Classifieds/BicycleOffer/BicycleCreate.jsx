@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-// import cuid from "cuid";
+import React from "react";
+import { connect } from 'react-redux'
 import BicycleForm from "./BicycleForm";
-import { bicycles } from "../../../data/SampleData";
+import { createBicycle } from '../../../store/actions/bicyclesActions'
 
 const BicycleCreate = props => {
-  const [classifieds, setClassified] = useState(bicycles);
 
-  const onSubmit = formValues => {
-    // formValues.id = cuid();
-    setClassified({ ...classifieds, formValues });
+  const onSubmit = data => {
+    props.createBicycle(data)
   };
-  console.log(classifieds);
+
   const requiredInfos = (
     <span>
       The fields marked with * are required. <br /> Photographs are entered
@@ -21,4 +19,4 @@ const BicycleCreate = props => {
   return <BicycleForm onSubmit={onSubmit} requiredInfos={requiredInfos} />;
 };
 
-export default BicycleCreate;
+export default connect(null, { createBicycle })(BicycleCreate);

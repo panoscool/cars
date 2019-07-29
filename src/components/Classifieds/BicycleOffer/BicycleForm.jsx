@@ -43,11 +43,11 @@ const BicycleForm = props => {
       setCheckboxState(currentCheckBoxState);
     }
   }, [
-    props.match.params.id,
-    currentInputValues,
-    currentSelectedValues,
-    currentCheckBoxState
-  ]);
+      props.match.params.id,
+      currentInputValues,
+      currentSelectedValues,
+      currentCheckBoxState
+    ]);
 
   const [inputValues, setInputValues] = useState({
     variant: "",
@@ -169,9 +169,10 @@ const BicycleForm = props => {
               />
               <SelectForm
                 required
+                name='month'
                 label="Purchased Month"
                 optionsArray={months}
-                value={selectValues.purchasedMonth}
+                values={selectValues.month}
                 handleChange={handleSelectChange}
               />
               <InputForm
