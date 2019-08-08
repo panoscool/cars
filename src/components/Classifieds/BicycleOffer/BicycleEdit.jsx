@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from 'react-redux'
 import BicycleForm from "./BicycleForm";
-import { bicycles } from "../../../data/SampleData";
+import { fetchBicycle, updateBicycle } from '../../../store/actions/bicycleActions'
 
 const BicycleEdit = props => {
-  const bicycleObj = bicycles[props.match.params.id - 1];
+  const { fetchBicycle, updateBicycle, match: { params }, bicycleObj } = props
 
-  console.log(bicycleObj);
+  useEffect(() => {
+    fetchBicycle(params.id)
+  }, [params.id, fetchBicycle])
 
-  const onSubmit = formValues => {
-    console.log(formValues);
+  const onSubmit = data => {
+    updateBicycle(data);
   };
 
   const currentInputValues = {
@@ -67,4 +70,9 @@ const BicycleEdit = props => {
   );
 };
 
-export default BicycleEdit;
+const mapStateToProps = ({ bicycle }) => ({
+  bicycleObj: bicycle.bicycle
+})
+
+
+export default connect(mapStateToProps, { fetchBicycle, updateBicycle })(BicycleEdit);

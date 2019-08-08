@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from 'react-redux'
 import { Container, Grid, Hidden } from "@material-ui/core";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import ClassifiedDetails from "./ClassifiedDetails";
@@ -8,43 +9,38 @@ import SellerDetails from "./SellerDetails";
 import SideDetails from "./SideDetails/SideDetails";
 import SimilarClassifieds from "./SideDetails/SimilarClassifieds";
 import { infoArray, sellerDetails, checkBoxes } from "./InfoDataArray";
-import { bicycles } from "../../../data/SampleData";
 import ImageCarousel from "./ImageCarousel";
+import { fetchBicycle } from '../../../store/actions/bicycleActions'
 
 const BicycleDetails = props => {
   const { width } = useWindowDimensions();
 
-  const bicycleObj = bicycles[props.match.params.id - 1];
+  const { fetchBicycle, match: { params }, bicycle } = props
+
+  useEffect(() => {
+    fetchBicycle(params.id)
+  }, [params.id, fetchBicycle])
 
   return (
     <Container maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={width < 960 ? 12 : 9}>
           <ImageCarousel />
-          <ClassifiedDetails infoArray={infoArray} bicycleObj={bicycleObj} />
-          <ExtraDetails checkBoxes={checkBoxes} bicycleObj={bicycleObj} />
-          <DescriptionDetails bicycleObj={bicycleObj} />
+          <ClassifiedDetails infoArray={infoArray} bicycleObj={bicycle} />
+          <ExtraDetails checkBoxes={checkBoxes} bicycleObj={bicycle} />
+          <DescriptionDetails bicycleObj={bicycle} />
           <SellerDetails
             sellerDetails={sellerDetails}
-            bicycleObj={bicycleObj}
+            bicycleObj={bicycle}
           />
         </Grid>
         <Hidden smDown>
           <Grid item xs={3}>
             <SideDetails
-              bicycleObj={bicycleObj}
+              bicycleObj={bicycle}
               sellerDetails={sellerDetails}
             />
-            {bicycles.map(item => (
-              <SimilarClassifieds
-                key={item.id}
-                id={item.id}
-                img={item.img}
-                title={item.manufacturer}
-                price={item.price}
-                purchased={item.purchased}
-              />
-            ))}
+            <SimilarClassifieds />
           </Grid>
         </Hidden>
       </Grid>
@@ -52,4 +48,8 @@ const BicycleDetails = props => {
   );
 };
 
-export default BicycleDetails;
+const mapStateToProps = ({ bicycle }) => ({
+  bicycle: bicycle.bicycle
+})
+
+export default connect(mapStateToProps, { fetchBicycle })(BicycleDetails);

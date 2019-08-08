@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import bicyclesReducer from "./bicyclesReducer";
+import bicycleReducer from "./bicycleReducer";
 import asyncReducer from './asyncReducer'
 
 export default combineReducers({
-  bicycle: bicyclesReducer,
+  bicycle: bicycleReducer,
   async: asyncReducer
 });

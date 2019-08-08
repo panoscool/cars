@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -51,14 +51,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Navbar = ({ children }) => {
+const Navbar = (props) => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
+  console.log(props)
   return (
     <Fragment>
       <CssBaseline />
@@ -107,11 +107,11 @@ const Navbar = ({ children }) => {
         </Hidden>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {children}
+          {props.children}
         </main>
       </div>
     </Fragment>
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

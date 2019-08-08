@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
 import LatestClassifiedList from "../Classifieds/LatestClassifieds/LatestClassifiedList";
-import { bicycles } from "../../data/SampleData";
+import { fetchBicycles } from '../../store/actions/bicycleActions'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -23,8 +24,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const HomePage = () => {
+const HomePage = ({ fetchBicycles, bicycles }) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    fetchBicycles()
+  }, [fetchBicycles])
+
   return (
     <Container maxWidth="lg">
       <div className={classes.buttons}>
@@ -76,4 +82,8 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+const mapStateToProps = ({ bicycle }) => ({
+  bicycles: bicycle.bicycles
+})
+
+export default connect(mapStateToProps, { fetchBicycles })(HomePage);

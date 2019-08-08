@@ -1,46 +1,31 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
-  Divider
-} from "@material-ui/core";
+import React, { Fragment, useEffect } from 'react'
+import { connect } from 'react-redux'
+import SimilarClassifiedsList from './SimilarClassifiedsList'
+import { fetchBicycles } from '../../../../store/actions/bicycleActions'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%",
-    backgroundColor: theme.palette.background.paper
-  },
-  inline: {
-    display: "inline"
-  }
-}));
-
-const SimilarClassifieds = props => {
-  const classes = useStyles();
-  const { title, price, purchased, img, id } = props;
+const SimilarClassifieds = ({ bicycles, fetchBicycles }) => {
+  useEffect(() => {
+    fetchBicycles()
+  }, [fetchBicycles])
 
   return (
-    <List className={classes.root}>
-      <ListItem component={Link} to={`/bicycle/${id}`} alignItems="flex-start">
-        <ListItemAvatar>
-          <img className="list-view-image" alt={title} src={img} />
-        </ListItemAvatar>
-        <ListItemText
-          primary={
-            <Fragment>
-              {title} {purchased}
-            </Fragment>
-          }
-          secondary={<Fragment>&euro; {price}</Fragment>}
+    <Fragment>
+      {bicycles.map(item => (
+        <SimilarClassifiedsList
+          key={item.id}
+          id={item.id}
+          img={item.img}
+          title={item.manufacturer}
+          price={item.price}
+          purchased={item.purchased}
         />
-      </ListItem>
-      <Divider variant="fullWidth" component="li" />
-    </List>
-  );
-};
+      ))}
+    </Fragment>
+  )
+}
 
-export default SimilarClassifieds;
+const mapStateToProps = ({ bicycle }) => ({
+  bicycles: bicycle.bicycles
+})
+
+export default connect(mapStateToProps, { fetchBicycles })(SimilarClassifieds)

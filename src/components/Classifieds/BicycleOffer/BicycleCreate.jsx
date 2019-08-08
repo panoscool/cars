@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from 'react-redux'
 import BicycleForm from "./BicycleForm";
-import { createBicycle } from '../../../store/actions/bicyclesActions'
+import { createBicycle } from '../../../store/actions/bicycleActions'
 
-const BicycleCreate = props => {
+const BicycleCreate = ({ createBicycle }) => {
 
   const onSubmit = data => {
-    props.createBicycle(data)
+    createBicycle(data)
   };
 
   const requiredInfos = (
