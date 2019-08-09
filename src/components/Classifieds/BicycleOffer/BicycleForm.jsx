@@ -137,7 +137,7 @@ const BicycleForm = props => {
                 required
                 name="offer"
                 label="Offer Type"
-                values={selectValues.offer}
+                values={selectValues.offer || ""}
                 optionsArray={offer}
                 handleChange={handleSelectChange}
               />
@@ -145,7 +145,7 @@ const BicycleForm = props => {
                 required
                 name="condition"
                 label="Condition"
-                values={selectValues.condition}
+                values={selectValues.condition || ""}
                 optionsArray={condition}
                 handleChange={handleSelectChange}
               />
@@ -153,7 +153,7 @@ const BicycleForm = props => {
                 required
                 name="category"
                 label="Category"
-                values={selectValues.category}
+                values={selectValues.category || ""}
                 optionsArray={category}
                 handleChange={handleSelectChange}
               />
@@ -163,7 +163,7 @@ const BicycleForm = props => {
                 required
                 name="manufacturer"
                 label="Manufacturer"
-                values={selectValues.manufacturer}
+                values={selectValues.manufacturer || ""}
                 optionsArray={manufacturers}
                 handleChange={handleSelectChange}
               />
@@ -172,7 +172,7 @@ const BicycleForm = props => {
                 name='month'
                 label="Purchased Month"
                 optionsArray={months}
-                values={selectValues.month}
+                values={selectValues.month || ""}
                 handleChange={handleSelectChange}
               />
               <InputForm
@@ -180,7 +180,7 @@ const BicycleForm = props => {
                 name="year"
                 label="Purchased Year"
                 placeholder={`1990 - ${year.toString()}`}
-                values={inputValues.year}
+                values={inputValues.year || ""}
                 inputProps={{ min: 1990 }}
                 handleChange={handleInputChange}
               />
@@ -190,7 +190,7 @@ const BicycleForm = props => {
                 name="variant"
                 label="Variant"
                 placeholder="eg. racing"
-                values={inputValues.variant}
+                values={inputValues.variant || ""}
                 handleChange={handleInputChange}
               />
               <InputForm
@@ -199,7 +199,7 @@ const BicycleForm = props => {
                 label="Previous owners"
                 placeholder="number 0-9"
                 inputProps={{ min: 0, max: 9 }}
-                values={inputValues.owners}
+                values={inputValues.owners || ""}
                 handleChange={handleInputChange}
               />
             </Grid>
@@ -213,14 +213,14 @@ const BicycleForm = props => {
               <SelectForm
                 name="color"
                 label="Color"
-                values={selectValues.color}
+                values={selectValues.color || ""}
                 optionsArray={color}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="frameType"
                 label="Frame type"
-                values={selectValues.frameType}
+                values={selectValues.frameType || ""}
                 optionsArray={frameType}
                 handleChange={handleSelectChange}
               />
@@ -232,7 +232,7 @@ const BicycleForm = props => {
                 label="Frame size (cm)"
                 placeholder="number 30-70"
                 inputProps={{ min: 30, max: 70 }}
-                values={inputValues.frameSize}
+                values={inputValues.frameSize || ""}
                 handleChange={handleInputChange}
               />
               <InputForm
@@ -241,7 +241,7 @@ const BicycleForm = props => {
                 label="Rim size (inches)"
                 placeholder="number 10-30"
                 inputProps={{ min: 10, max: 30 }}
-                values={inputValues.rimSize}
+                values={inputValues.rimSize || ""}
                 handleChange={handleInputChange}
               />
             </Grid>
@@ -249,14 +249,14 @@ const BicycleForm = props => {
               <SelectForm
                 name="brakes"
                 label="Brakes"
-                values={selectValues.brakes}
+                values={selectValues.brakes || ""}
                 optionsArray={brakes}
                 handleChange={handleSelectChange}
               />
               <SelectForm
                 name="gears"
                 label="Gears"
-                values={selectValues.gears}
+                values={selectValues.gears || ""}
                 optionsArray={gears}
                 handleChange={handleSelectChange}
               />
@@ -273,7 +273,7 @@ const BicycleForm = props => {
                 type="number"
                 name="price"
                 label="Price"
-                values={inputValues.price}
+                values={inputValues.price || ""}
                 handleChange={handleInputChange}
               />
             </Grid>
@@ -281,7 +281,7 @@ const BicycleForm = props => {
               <SelectForm
                 name="exchange"
                 label="Exchange with"
-                values={selectValues.exchange}
+                values={selectValues.exchange || ""}
                 optionsArray={exchange}
                 handleChange={handleSelectChange}
               />
@@ -309,7 +309,7 @@ const BicycleForm = props => {
                 name="description"
                 label="Description"
                 placeholder="No phones, emails or links are allowed in the description, otherwise the classified will be deleted."
-                values={inputValues.description}
+                values={inputValues.description || ""}
                 handleChange={handleInputChange}
               />
               <InputForm
@@ -317,7 +317,7 @@ const BicycleForm = props => {
                 name="youTube"
                 label="YouTube"
                 placeholder="https://youtube.com"
-                values={inputValues.youTube}
+                values={inputValues.youTube || ""}
                 handleChange={handleInputChange}
               />
             </Grid>
@@ -356,7 +356,7 @@ const BicycleForm = props => {
                 required
                 name="duration"
                 label="Ad Duration"
-                values={selectValues.duration}
+                values={selectValues.duration || ""}
                 optionsArray={adDuration}
                 handleChange={handleSelectChange}
               />
@@ -366,7 +366,7 @@ const BicycleForm = props => {
                 required
                 name="password"
                 label="Password"
-                values={inputValues.password}
+                values={inputValues.password || ""}
                 handleChange={handleInputChange}
               />
             </Grid>
@@ -381,7 +381,7 @@ const BicycleForm = props => {
                 required
                 name="userName"
                 label="Name"
-                values={inputValues.userName}
+                values={inputValues.userName || ""}
                 handleChange={handleInputChange}
               />
               <InputForm
@@ -389,7 +389,7 @@ const BicycleForm = props => {
                 type="tel"
                 name="phone1"
                 label="Phone 1"
-                values={inputValues.phone1}
+                values={inputValues.phone1 || ""}
                 handleChange={handleInputChange}
               />
             </Grid>
@@ -398,14 +398,14 @@ const BicycleForm = props => {
                 required
                 name="location"
                 label="Location"
-                values={inputValues.location}
+                values={inputValues.location || ""}
                 handleChange={handleInputChange}
               />
               <InputForm
                 type="email"
                 name="email"
                 label="Email"
-                values={inputValues.email}
+                values={inputValues.email || ""}
                 handleChange={handleInputChange}
               />
             </Grid>
