@@ -1,10 +1,18 @@
 import React, { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { AppBar, Toolbar, IconButton, Typography, Hidden, Drawer, CssBaseline } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Hidden,
+  Drawer,
+  CssBaseline
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Menu } from "@material-ui/icons";
-import ListMenu from "../Menus/ListMenu";
-import DrawerMenu from "../Menus/DrawerMenu";
+import ListMenu from "./Menus/ListMenu";
+import DrawerMenu from "./Menus/DrawerMenu";
 
 const drawerWidth = 240;
 
@@ -55,8 +63,15 @@ function Navbar() {
           >
             <Menu />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow} noWrap>
-            <Link to="/" className={classes.link}>logo</Link>
+          <Typography
+            variant="h6"
+            color="inherit"
+            className={classes.grow}
+            noWrap
+          >
+            <Link to="/" className={classes.link}>
+              logo
+            </Link>
           </Typography>
           <ListMenu />
         </Toolbar>
@@ -74,6 +89,6 @@ function Navbar() {
       </Hidden>
     </Fragment>
   );
-};
+}
 
 export default withRouter(Navbar);

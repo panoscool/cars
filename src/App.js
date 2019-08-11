@@ -13,6 +13,7 @@ import Contact from "./components/Informations/Contact";
 import MarketGuide from "./components/Informations/MarketGuide";
 import UsersFAQ from "./components/Informations/UsersFAQ";
 import DealersFAQ from "./components/Informations/DealersFAQ";
+import TestComponent from "./testarea/TestComponent";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/market-guide" component={MarketGuide} />
         <Route path="/users-faq" component={UsersFAQ} />
         <Route path="/dealers-faq" component={DealersFAQ} />
+        <Route path="/test" component={TestComponent} />
         <Route path="/" component={HomePage} />
       </Switch>
     </Layout>
