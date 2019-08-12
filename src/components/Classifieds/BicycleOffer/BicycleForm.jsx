@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Divider, Typography } from "@material-ui/core";
+import moment from 'moment'
 import SelectForm from "../../../shared/forms/SelectForm";
 import InputForm from "../../../shared/forms/InputForm";
 import CheckboxForm from "../../../shared/forms/CheckboxForm";
@@ -21,7 +22,6 @@ import {
   extras,
   gears
 } from "../../../data/bicycle/bicycle";
-import getYear from "date-fns/getYear";
 import PaperPage from "../../Layout/PaperPage";
 
 const useStyles = makeStyles(theme => ({
@@ -56,11 +56,11 @@ const BicycleForm = props => {
       setCheckboxState(currentCheckBoxState);
     }
   }, [
-    props.match.params.id,
-    currentInputValues,
-    currentSelectedValues,
-    currentCheckBoxState
-  ]);
+      props.match.params.id,
+      currentInputValues,
+      currentSelectedValues,
+      currentCheckBoxState
+    ]);
 
   const [inputValues, setInputValues] = useState({
     variant: "",
@@ -129,14 +129,15 @@ const BicycleForm = props => {
   const handleSubmit = event => {
     event.preventDefault();
     const formValues = {
-      ...inputValues,
+      inputValues,
       ...selectValues,
       ...checkboxState
     };
     onSubmit(formValues);
+    console.log(formValues)
   };
 
-  const year = getYear(new Date());
+  const year = moment().year();
 
   return (
     <PaperPage>

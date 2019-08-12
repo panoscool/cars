@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography, Divider, FormGroup } from "@material-ui/core";
+import moment from 'moment'
 import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import CheckboxForm from "../../../../shared/forms/CheckboxForm";
 import RadioForm from "../../../../shared/forms/RadioForm";
@@ -12,12 +13,11 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import getYear from "date-fns/getYear";
 
 const useStyles = makeStyles(theme => ({
   paper: {
     width: "100%",
-    padding: theme.spacing(2),
+    padding: theme.spacing(2, 2, 2, 3),
     margin: theme.spacing(1, 0),
     boxShadow: "none"
   },
@@ -110,7 +110,7 @@ const SideFilters = props => {
     setValue({ ...value, [event.target.name]: event.target.value });
   };
 
-  const year = getYear(new Date());
+  const year = moment().year();
 
   return (
     <div className={width < 960 ? "" : "side-filters"}>

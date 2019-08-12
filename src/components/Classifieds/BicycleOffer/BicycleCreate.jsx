@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import BicycleForm from "./BicycleForm";
 import { createBicycle } from '../../../store/actions/bicycleActions'
 
-const BicycleCreate = ({ createBicycle }) => {
+const BicycleCreate = ({ createBicycle, history, bicycleObj }) => {
 
   const onSubmit = data => {
     createBicycle(data)
+    history.push(`/bicycle/${bicycleObj.id}`)
   };
 
   const requiredInfos = (
@@ -19,4 +20,8 @@ const BicycleCreate = ({ createBicycle }) => {
   return <BicycleForm onSubmit={onSubmit} requiredInfos={requiredInfos} />;
 };
 
-export default connect(null, { createBicycle })(BicycleCreate);
+const mapStateToProps = ({ bicycle }) => ({
+  bicycleObj: bicycle.bicycle
+})
+
+export default connect(mapStateToProps, { createBicycle })(BicycleCreate);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Divider, Typography } from "@material-ui/core";
+import moment from 'moment'
 import queryString from "query-string";
 import SelectForm from "../../../shared/forms/SelectForm";
 import InputForm from "../../../shared/forms/InputForm";
@@ -20,7 +21,6 @@ import {
   extras,
   gears
 } from "../../../data/bicycle/bicycle";
-import getYear from "date-fns/getYear";
 import PaperPage from "../../Layout/PaperPage";
 
 const useStyles = makeStyles(theme => ({
@@ -112,7 +112,7 @@ const ClassifiedSearch = props => {
     console.log("formValues", formValues);
   };
 
-  const year = getYear(new Date());
+  const year = moment().year();
 
   return (
     <PaperPage>
