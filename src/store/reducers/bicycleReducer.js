@@ -7,12 +7,9 @@ const reducer = (state = initialState, action) => {
     case CREATE_BICYCLE:
       return { ...state, bicycles: action.payload }
     case UPDATE_BICYCLE:
-      return {
-        ...state.bicycles.filter(obj => obj.id !== action.payload.id),
-        bicycles: action.payload
-      }
+      return { ...state, bicycle: action.payload}
     case DELETE_BICYCLE:
-      return { ...state.bicycles.filter(obj => obj.id !== action.payload) }
+      return { ...state, bicycle: action.payload }
     case FETCH_BICYCLE:
       return { ...state, bicycle: action.payload }
     case FETCH_BICYCLES:

@@ -1,63 +1,70 @@
-import { CREATE_BICYCLE, UPDATE_BICYCLE, DELETE_BICYCLE, FETCH_BICYCLE, FETCH_BICYCLES } from './actionTypes'
-import { asyncActionStart, asyncActionFinish, asyncActionError } from './asyncActions'
-import bicycle from '../../mockApi'
+import {
+  CREATE_BICYCLE,
+  UPDATE_BICYCLE,
+  DELETE_BICYCLE,
+  FETCH_BICYCLE,
+  FETCH_BICYCLES
+} from "./actionTypes";
+import {
+  asyncActionStart,
+  asyncActionFinish,
+  asyncActionError
+} from "./asyncActions";
+import { asyncAction } from "./helper";
+import bicycle from "../../mockApi";
 
-export const createBicycle = (data) => async dispatch => {
-  dispatch(asyncActionStart())
-  try {
-    const response = await bicycle.post('/bicycles', data)
+export const createBicycle = data => async dispatch => {
+  asyncAction(dispatch, async () => {
+    const response = await bicycle.post("/bicycles", data);
 
-    dispatch({ type: CREATE_BICYCLE, payload: response.data })
-    dispatch(asyncActionFinish())
-  } catch (err) {
-    dispatch(asyncActionError(err.response.error))
-  }
-}
+    dispatch({ type: CREATE_BICYCLE, payload: response.data });
+  });
+};
 
 export const updateBicycle = (id, data) => async dispatch => {
-  dispatch(asyncActionStart())
+  dispatch(asyncActionStart());
   try {
-    const response = await bicycle.put(`/bicycles/${id}`, data)
+    const response = await bicycle.put(`/bicycles/${id}`, data);
 
-    dispatch({ type: UPDATE_BICYCLE, payload: response.data })
-    dispatch(asyncActionFinish())
+    dispatch({ type: UPDATE_BICYCLE, payload: response.data });
+    dispatch(asyncActionFinish());
   } catch (err) {
-    dispatch(asyncActionError(err.response.error))
+    dispatch(asyncActionError(err.response.error));
   }
-}
+};
 
-export const deleteBicycle = (id) => async dispatch => {
-  dispatch(asyncActionStart())
+export const deleteBicycle = id => async dispatch => {
+  dispatch(asyncActionStart());
   try {
-    const response = await bicycle.delete(`/bicycles/${id}`)
+    await bicycle.delete(`/bicycles/${id}`);
 
-    dispatch({ type: DELETE_BICYCLE, payload: response.id })
-    dispatch(asyncActionFinish())
+    dispatch({ type: DELETE_BICYCLE, payload: id });
+    dispatch(asyncActionFinish());
   } catch (err) {
-    dispatch(asyncActionError(err.response.error))
+    dispatch(asyncActionError(err.response.error));
   }
-}
+};
 
-export const fetchBicycle = (id) => async dispatch => {
-  dispatch(asyncActionStart())
+export const fetchBicycle = id => async dispatch => {
+  dispatch(asyncActionStart());
   try {
-    const response = await bicycle.get(`/bicycles/${id}`)
+    const response = await bicycle.get(`/bicycles/${id}`);
 
-    dispatch({ type: FETCH_BICYCLE, payload: response.data })
-    dispatch(asyncActionFinish())
+    dispatch({ type: FETCH_BICYCLE, payload: response.data });
+    dispatch(asyncActionFinish());
   } catch (err) {
-    dispatch(asyncActionError(err.response.error))
+    dispatch(asyncActionError(err.response.error));
   }
-}
+};
 
 export const fetchBicycles = () => async dispatch => {
-  dispatch(asyncActionStart())
+  dispatch(asyncActionStart());
   try {
-    const response = await bicycle.get(`/bicycles`)
+    const response = await bicycle.get(`/bicycles`);
 
-    dispatch({ type: FETCH_BICYCLES, payload: response.data })
-    dispatch(asyncActionFinish())
+    dispatch({ type: FETCH_BICYCLES, payload: response.data });
+    dispatch(asyncActionFinish());
   } catch (err) {
-    dispatch(asyncActionError(err.response.error))
+    dispatch(asyncActionError(err.response.error));
   }
-}
+};

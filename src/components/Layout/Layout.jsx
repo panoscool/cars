@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Navbar from '../Nav/Navbar/Navbar'
+import Navbar from "../Navigation/Navbar";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Layout(props) {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -30,7 +30,7 @@ function Layout(props) {
         {props.children}
       </main>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
