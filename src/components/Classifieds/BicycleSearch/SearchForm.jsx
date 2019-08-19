@@ -7,20 +7,8 @@ import queryString from "query-string";
 import SelectForm from "../../../shared/forms/SelectForm";
 import InputForm from "../../../shared/forms/InputForm";
 import CheckboxForm from "../../../shared/forms/CheckboxForm";
-import {
-  offer,
-  condition,
-  color,
-  sort,
-  modified
-} from "../../../data/SharedAttributes";
-import {
-  category,
-  manufacturers,
-  brakes,
-  extras,
-  gears
-} from "../../../data/bicycle/bicycle";
+import { offer, condition, color, sort, modified } from "../../../data/SharedAttributes";
+import { category, manufacturers, brakes, extras, gears } from "../../../data/bicycle/bicycle";
 import PaperPage from "../../Layout/PaperPage";
 
 const useStyles = makeStyles(theme => ({
@@ -46,19 +34,12 @@ const useStyles = makeStyles(theme => ({
 const ClassifiedSearch = props => {
   const classes = useStyles();
 
-  const [inputValues, setInputValues] = useState({
+  const [values, setValues] = useState({
     variant: "",
     priceFrom: "",
     priceTo: "",
     yearFrom: "",
-    yearTo: ""
-  });
-
-  const handleInputChange = event => {
-    setInputValues({ ...inputValues, [event.target.name]: event.target.value });
-  };
-
-  const [selectValues, setSelectValues] = useState({
+    yearTo: "",
     offer: "",
     category: "",
     manufacturer: "",
@@ -73,13 +54,6 @@ const ClassifiedSearch = props => {
     brakes: "",
     sort: ""
   });
-
-  const handleSelectChange = event => {
-    setSelectValues(oldValues => ({
-      ...oldValues,
-      [event.target.name]: event.target.value
-    }));
-  };
 
   const [checkboxState, setCheckboxState] = useState({
     withPrice: false,
@@ -98,6 +72,10 @@ const ClassifiedSearch = props => {
     cargoRack: false
   });
 
+  const handleChange = event => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
+
   const handleCheckboxChange = event => {
     setCheckboxState({
       ...checkboxState,
@@ -107,7 +85,7 @@ const ClassifiedSearch = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const formValues = { ...selectValues, ...inputValues, ...checkboxState };
+    const formValues = { ...values, ...checkboxState };
     props.history.push(`/bicycles/?${queryString.stringify(formValues)}`);
     console.log("formValues", formValues);
   };
@@ -138,61 +116,61 @@ const ClassifiedSearch = props => {
               name="offer"
               label="Offer Type"
               optionsArray={offer}
-              values={selectValues.offer}
-              handleChange={handleSelectChange}
+              values={values.offer}
+              handleChange={handleChange}
             />
             <SelectForm
               name="condition"
               label="Condition"
               optionsArray={condition}
-              values={selectValues.condition}
-              handleChange={handleSelectChange}
+              values={values.condition}
+              handleChange={handleChange}
             />
             <SelectForm
               name="category"
               label="Category"
               optionsArray={category}
-              values={selectValues.category}
-              handleChange={handleSelectChange}
+              values={values.category}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <SelectForm
               name="manufacturer"
               label="Manufacturer"
-              values={selectValues.manufacturer}
+              values={values.manufacturer}
               optionsArray={manufacturers}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
             <SelectForm
               name="color"
               label="Color"
-              values={selectValues.color}
+              values={values.color}
               optionsArray={color}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
             <InputForm
               name="variant"
               label="Variant"
               placeholder="eg. racing"
-              values={inputValues.variant}
-              handleChange={handleInputChange}
+              values={values.variant}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <SelectForm
               name="brakes"
               label="Brakes"
-              values={selectValues.brakes}
+              values={values.brakes}
               optionsArray={brakes}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
             <SelectForm
               name="gears"
               label="Gears"
-              values={selectValues.gears}
+              values={values.gears}
               optionsArray={gears}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -203,25 +181,25 @@ const ClassifiedSearch = props => {
               name="frameSizeFrom"
               label="Frame size from"
               placeholder="number 30-69"
-              values={inputValues.frameSizeFrom}
+              values={values.frameSizeFrom}
               inputProps={{ min: 30, max: 69 }}
-              handleChange={handleInputChange}
+              handleChange={handleChange}
             />
             <InputForm
               type="number"
               name="frameSizeTo"
               label="Frame size to"
               placeholder="number 30-69"
-              values={inputValues.frameSizeTo}
+              values={values.frameSizeTo}
               inputProps={{ min: 30, max: 69 }}
-              handleChange={handleInputChange}
+              handleChange={handleChange}
             />
             <SelectForm
               name="sort"
               label="Sort"
-              values={selectValues.sort}
+              values={values.sort}
               optionsArray={sort}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -229,24 +207,24 @@ const ClassifiedSearch = props => {
               name="yearFrom"
               label="Purchased from"
               placeholder={`1990 - ${year.toString()}`}
-              values={inputValues.yearFrom}
+              values={values.yearFrom}
               inputProps={{ min: 1990 }}
-              handleChange={handleInputChange}
+              handleChange={handleChange}
             />
             <InputForm
               name="yearTo"
               label="Purchased to"
               placeholder={`1990 - ${year.toString()}`}
-              values={inputValues.yearTo}
+              values={values.yearTo}
               inputProps={{ min: 1990 }}
-              handleChange={handleInputChange}
+              handleChange={handleChange}
             />
             <SelectForm
               name="modified"
               label="Modified"
-              values={selectValues.modified}
+              values={values.modified}
               optionsArray={modified}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -254,15 +232,15 @@ const ClassifiedSearch = props => {
               type="number"
               name="priceFrom"
               label="Price from"
-              values={inputValues.priceFrom}
-              handleChange={handleInputChange}
+              values={values.priceFrom}
+              handleChange={handleChange}
             />
             <InputForm
               type="number"
               name="priceTo"
               label="Price to"
-              values={inputValues.priceTo}
-              handleChange={handleInputChange}
+              values={values.priceTo}
+              handleChange={handleChange}
             />
             <CheckboxForm
               name="withPrice"

@@ -43,7 +43,7 @@ const SideFilters = props => {
   const classes = useStyles();
   const { width } = useWindowDimensions();
 
-  const [inputValues, setInputValues] = useState({
+  const [values, setValues] = useState({
     variant: "",
     priceFrom: "",
     priceTo: "",
@@ -52,25 +52,14 @@ const SideFilters = props => {
     rimSizeFrom: "",
     rimSizeTo: "",
     yearFrom: "",
-    yearTo: ""
-  });
-
-  const handleInputChange = event => {
-    setInputValues({ ...inputValues, [event.target.name]: event.target.value });
-  };
-
-  const [selectValues, setSelectValues] = useState({
+    yearTo: "",
     category: "",
     manufacturer: "",
-    color: ""
+    color: "",
+    modified: "",
+    brakes: "",
+    frameType: ""
   });
-
-  const handleSelectChange = event => {
-    setSelectValues(oldValues => ({
-      ...oldValues,
-      [event.target.name]: event.target.value
-    }));
-  };
 
   const [checkboxState, setCheckboxState] = useState({
     sale: false,
@@ -93,21 +82,15 @@ const SideFilters = props => {
     cargoRack: false
   });
 
+  const handleChange = event => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
+
   const handleCheckboxChange = event => {
     setCheckboxState({
       ...checkboxState,
       [event.target.name]: event.target.checked
     });
-  };
-
-  const [value, setValue] = useState({
-    modified: "",
-    brakes: "",
-    frameType: ""
-  });
-
-  const handleRadioChange = event => {
-    setValue({ ...value, [event.target.name]: event.target.value });
   };
 
   const year = moment().year();
@@ -165,9 +148,9 @@ const SideFilters = props => {
           <SelectForm
             name="manufacturer"
             label="Manufacturers"
-            values={selectValues.manufacturer}
+            values={values.manufacturer}
             optionsArray={manufacturers}
-            handleChange={handleSelectChange}
+            handleChange={handleChange}
           />
         </div>
       </Paper>
@@ -178,9 +161,9 @@ const SideFilters = props => {
           <SelectForm
             name="category"
             label="Category"
-            values={selectValues.category}
+            values={values.category}
             optionsArray={category}
-            handleChange={handleSelectChange}
+            handleChange={handleChange}
           />
         </div>
       </Paper>
@@ -192,15 +175,15 @@ const SideFilters = props => {
             type="number"
             name="priceFrom"
             label="Price from"
-            values={inputValues.priceFrom}
-            handleChange={handleInputChange}
+            values={values.priceFrom}
+            handleChange={handleChange}
           />
           <InputForm
             type="number"
             name="priceTo"
             label="Price to"
-            values={inputValues.priceTo}
-            handleChange={handleInputChange}
+            values={values.priceTo}
+            handleChange={handleChange}
           />
         </div>
       </Paper>
@@ -209,9 +192,9 @@ const SideFilters = props => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="modified"
-          value={value.modified}
+          value={values.modified}
           optionsArray={modified}
-          handleChange={handleRadioChange}
+          handleChange={handleChange}
         />
       </Paper>
       <Paper className={classes.paper}>
@@ -222,17 +205,17 @@ const SideFilters = props => {
             name="yearFrom"
             label="Purchased from"
             placeholder={`1990 - ${year.toString()}`}
-            values={inputValues.year}
+            values={values.year}
             inputProps={{ min: 1990 }}
-            handleChange={handleInputChange}
+            handleChange={handleChange}
           />
           <InputForm
             name="yearTo"
             label="Purchased to"
             placeholder={`1990 - ${year.toString()}`}
-            values={inputValues.year}
+            values={values.year}
             inputProps={{ min: 1990 }}
-            handleChange={handleInputChange}
+            handleChange={handleChange}
           />
         </div>
       </Paper>
@@ -244,8 +227,8 @@ const SideFilters = props => {
             name="variant"
             label="Variant"
             placeholder="eg. racing"
-            values={inputValues.variant}
-            handleChange={handleInputChange}
+            values={values.variant}
+            handleChange={handleChange}
           />
         </div>
       </Paper>
@@ -256,9 +239,9 @@ const SideFilters = props => {
           <SelectForm
             name="color"
             label="Color"
-            values={selectValues.color}
+            values={values.color}
             optionsArray={color}
-            handleChange={handleSelectChange}
+            handleChange={handleChange}
           />
         </div>
       </Paper>
@@ -267,9 +250,9 @@ const SideFilters = props => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="frameType"
-          value={value.frameType}
+          value={values.frameType}
           optionsArray={frameType}
-          handleChange={handleRadioChange}
+          handleChange={handleChange}
         />
       </Paper>
       <Paper className={classes.paper}>
@@ -277,9 +260,9 @@ const SideFilters = props => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="brakes"
-          value={value.brakes}
+          value={values.brakes}
           optionsArray={brakes}
-          handleChange={handleRadioChange}
+          handleChange={handleChange}
         />
       </Paper>
       <Paper className={classes.paper}>
@@ -287,9 +270,9 @@ const SideFilters = props => {
         <Divider variant="fullWidth" />
         <RadioForm
           name="gears"
-          value={value.gears}
+          value={values.gears}
           optionsArray={gears}
-          handleChange={handleRadioChange}
+          handleChange={handleChange}
         />
       </Paper>
       <ExpansionPanel className={classes.expansionPanel}>
@@ -330,18 +313,18 @@ const SideFilters = props => {
             name="frameSizeFrom"
             label="Frame size from"
             placeholder="number 30-69"
-            values={inputValues.frameSizeFrom}
+            values={values.frameSizeFrom}
             inputProps={{ min: 30, max: 69 }}
-            handleChange={handleInputChange}
+            handleChange={handleChange}
           />
           <InputForm
             type="number"
             name="frameSizeTo"
             label="Frame size to"
             placeholder="number 30-69"
-            values={inputValues.frameSizeTo}
+            values={values.frameSizeTo}
             inputProps={{ min: 30, max: 69 }}
-            handleChange={handleInputChange}
+            handleChange={handleChange}
           />
         </div>
       </Paper>
@@ -354,18 +337,18 @@ const SideFilters = props => {
             name="rimSizeFrom"
             label="Rim size from"
             placeholder="number 10-30"
-            values={inputValues.rimSizeFrom}
+            values={values.rimSizeFrom}
             inputProps={{ min: 10, max: 30 }}
-            handleChange={handleInputChange}
+            handleChange={handleChange}
           />
           <InputForm
             type="number"
             name="rimSizeTo"
             label="Rim size to"
             placeholder="number 10-30"
-            values={inputValues.rimSizeTo}
+            values={values.rimSizeTo}
             inputProps={{ min: 10, max: 30 }}
-            handleChange={handleInputChange}
+            handleChange={handleChange}
           />
         </div>
       </Paper>

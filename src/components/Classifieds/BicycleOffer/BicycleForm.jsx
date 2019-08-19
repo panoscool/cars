@@ -2,26 +2,12 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Divider, Typography } from "@material-ui/core";
-import moment from 'moment'
+import moment from 'moment';
 import SelectForm from "../../../shared/forms/SelectForm";
 import InputForm from "../../../shared/forms/InputForm";
 import CheckboxForm from "../../../shared/forms/CheckboxForm";
-import {
-  offer,
-  condition,
-  adDuration,
-  color,
-  months
-} from "../../../data/SharedAttributes";
-import {
-  category,
-  manufacturers,
-  frameType,
-  exchange,
-  brakes,
-  extras,
-  gears
-} from "../../../data/bicycle/bicycle";
+import { offer, condition, adDuration, color, months } from "../../../data/SharedAttributes";
+import { category, manufacturers, frameType, exchange, brakes, extras, gears } from "../../../data/bicycle/bicycle";
 import PaperPage from "../../Layout/PaperPage";
 
 const useStyles = makeStyles(theme => ({
@@ -41,28 +27,16 @@ const useStyles = makeStyles(theme => ({
 
 const BicycleForm = props => {
   const classes = useStyles();
-  const {
-    onSubmit,
-    requiredInfos,
-    currentInputValues,
-    currentSelectedValues,
-    currentCheckBoxState
-  } = props;
+  const { onSubmit, requiredInfos, currentValues, currentCheckBoxState } = props;
 
   useEffect(() => {
     if (props.match.params.id) {
-      setInputValues(currentInputValues);
-      setSelectValues(currentSelectedValues);
+      setValues(currentValues);
       setCheckboxState(currentCheckBoxState);
     }
-  }, [
-      props.match.params.id,
-      currentInputValues,
-      currentSelectedValues,
-      currentCheckBoxState
-    ]);
+  }, [props.match.params.id, currentValues, currentCheckBoxState]);
 
-  const [inputValues, setInputValues] = useState({
+  const [values, setValues] = useState({
     variant: "",
     owners: "",
     price: "",
@@ -75,14 +49,7 @@ const BicycleForm = props => {
     email: "",
     phone1: "",
     location: "",
-    year: ""
-  });
-
-  const handleInputChange = event => {
-    setInputValues({ ...inputValues, [event.target.name]: event.target.value });
-  };
-
-  const [selectValues, setSelectValues] = useState({
+    year: "",
     offer: "",
     category: "",
     manufacturer: "",
@@ -95,13 +62,6 @@ const BicycleForm = props => {
     exchange: "",
     month: ""
   });
-
-  const handleSelectChange = event => {
-    setSelectValues(oldValues => ({
-      ...oldValues,
-      [event.target.name]: event.target.value
-    }));
-  };
 
   const [checkboxState, setCheckboxState] = useState({
     negotiable: false,
@@ -119,6 +79,10 @@ const BicycleForm = props => {
     cargoRack: false
   });
 
+  const handleChange = event => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
+
   const handleCheckboxChange = event => {
     setCheckboxState({
       ...checkboxState,
@@ -129,8 +93,7 @@ const BicycleForm = props => {
   const handleSubmit = event => {
     event.preventDefault();
     const formValues = {
-      inputValues,
-      ...selectValues,
+      ...values,
       ...checkboxState
     };
     onSubmit(formValues);
@@ -150,25 +113,25 @@ const BicycleForm = props => {
               required
               name="offer"
               label="Offer Type"
-              values={selectValues.offer || ""}
+              values={values.offer || ""}
               optionsArray={offer}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
             <SelectForm
               required
               name="condition"
               label="Condition"
-              values={selectValues.condition || ""}
+              values={values.condition || ""}
               optionsArray={condition}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
             <SelectForm
               required
               name="category"
               label="Category"
-              values={selectValues.category || ""}
+              values={values.category || ""}
               optionsArray={category}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -176,26 +139,26 @@ const BicycleForm = props => {
               required
               name="manufacturer"
               label="Manufacturer"
-              values={selectValues.manufacturer || ""}
+              values={values.manufacturer || ""}
               optionsArray={manufacturers}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
             <SelectForm
               required
               name="month"
               label="Purchased Month"
               optionsArray={months}
-              values={selectValues.month || ""}
-              handleChange={handleSelectChange}
+              values={values.month || ""}
+              handleChange={handleChange}
             />
             <InputForm
               required
               name="year"
               label="Purchased Year"
               placeholder={`1990 - ${year.toString()}`}
-              values={inputValues.year || ""}
+              values={values.year || ""}
               inputProps={{ min: 1990 }}
-              handleChange={handleInputChange}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -203,8 +166,8 @@ const BicycleForm = props => {
               name="variant"
               label="Variant"
               placeholder="eg. racing"
-              values={inputValues.variant || ""}
-              handleChange={handleInputChange}
+              values={values.variant || ""}
+              handleChange={handleChange}
             />
             <InputForm
               name="owners"
@@ -212,8 +175,8 @@ const BicycleForm = props => {
               label="Previous owners"
               placeholder="number 0-9"
               inputProps={{ min: 0, max: 9 }}
-              values={inputValues.owners || ""}
-              handleChange={handleInputChange}
+              values={values.owners || ""}
+              handleChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -226,16 +189,16 @@ const BicycleForm = props => {
             <SelectForm
               name="color"
               label="Color"
-              values={selectValues.color || ""}
+              values={values.color || ""}
               optionsArray={color}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
             <SelectForm
               name="frameType"
               label="Frame type"
-              values={selectValues.frameType || ""}
+              values={values.frameType || ""}
               optionsArray={frameType}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -245,8 +208,8 @@ const BicycleForm = props => {
               label="Frame size (cm)"
               placeholder="number 30-70"
               inputProps={{ min: 30, max: 70 }}
-              values={inputValues.frameSize || ""}
-              handleChange={handleInputChange}
+              values={values.frameSize || ""}
+              handleChange={handleChange}
             />
             <InputForm
               type="number"
@@ -254,24 +217,24 @@ const BicycleForm = props => {
               label="Rim size (inches)"
               placeholder="number 10-30"
               inputProps={{ min: 10, max: 30 }}
-              values={inputValues.rimSize || ""}
-              handleChange={handleInputChange}
+              values={values.rimSize || ""}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <SelectForm
               name="brakes"
               label="Brakes"
-              values={selectValues.brakes || ""}
+              values={values.brakes || ""}
               optionsArray={brakes}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
             <SelectForm
               name="gears"
               label="Gears"
-              values={selectValues.gears || ""}
+              values={values.gears || ""}
               optionsArray={gears}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -286,17 +249,17 @@ const BicycleForm = props => {
               type="number"
               name="price"
               label="Price"
-              values={inputValues.price || ""}
-              handleChange={handleInputChange}
+              values={values.price || ""}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <SelectForm
               name="exchange"
               label="Exchange with"
-              values={selectValues.exchange || ""}
+              values={values.exchange || ""}
               optionsArray={exchange}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -322,16 +285,16 @@ const BicycleForm = props => {
               name="description"
               label="Description"
               placeholder="No phones, emails or links are allowed in the description, otherwise the classified will be deleted."
-              values={inputValues.description || ""}
-              handleChange={handleInputChange}
+              values={values.description || ""}
+              handleChange={handleChange}
             />
             <InputForm
               type="url"
               name="youTube"
               label="YouTube"
               placeholder="https://youtube.com"
-              values={inputValues.youTube || ""}
-              handleChange={handleInputChange}
+              values={values.youTube || ""}
+              handleChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -369,9 +332,9 @@ const BicycleForm = props => {
               required
               name="duration"
               label="Ad Duration"
-              values={selectValues.duration || ""}
+              values={values.duration || ""}
               optionsArray={adDuration}
-              handleChange={handleSelectChange}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -379,8 +342,8 @@ const BicycleForm = props => {
               required
               name="password"
               label="Password"
-              values={inputValues.password || ""}
-              handleChange={handleInputChange}
+              values={values.password || ""}
+              handleChange={handleChange}
             />
           </Grid>
         </Grid>
@@ -394,16 +357,16 @@ const BicycleForm = props => {
               required
               name="userName"
               label="Name"
-              values={inputValues.userName || ""}
-              handleChange={handleInputChange}
+              values={values.userName || ""}
+              handleChange={handleChange}
             />
             <InputForm
               required
               type="tel"
               name="phone1"
               label="Phone 1"
-              values={inputValues.phone1 || ""}
-              handleChange={handleInputChange}
+              values={values.phone1 || ""}
+              handleChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -411,15 +374,15 @@ const BicycleForm = props => {
               required
               name="location"
               label="Location"
-              values={inputValues.location || ""}
-              handleChange={handleInputChange}
+              values={values.location || ""}
+              handleChange={handleChange}
             />
             <InputForm
               type="email"
               name="email"
               label="Email"
-              values={inputValues.email || ""}
-              handleChange={handleInputChange}
+              values={values.email || ""}
+              handleChange={handleChange}
             />
           </Grid>
         </Grid>

@@ -15,7 +15,7 @@ const BicycleEdit = props => {
     history.push(`/bicycle/${bicycleObj.id}`)
   };
 
-  const currentInputValues = {
+  const currentValues = {
     variant: bicycleObj.variant,
     owners: bicycleObj.owners,
     price: bicycleObj.price,
@@ -29,20 +29,6 @@ const BicycleEdit = props => {
     phone1: bicycleObj.phone1,
     location: bicycleObj.location,
     year: bicycleObj.year
-  };
-
-  const currentSelectedValues = {
-    offer: bicycleObj.offer,
-    category: bicycleObj.category,
-    manufacturer: bicycleObj.manufacturer,
-    condition: bicycleObj.condition,
-    frameType: bicycleObj.frameType,
-    gears: bicycleObj.gears,
-    color: bicycleObj.color,
-    brakes: bicycleObj.brakes,
-    duration: bicycleObj.duration,
-    exchange: bicycleObj.exchange,
-    month: bicycleObj.month
   };
 
   const currentCheckBoxState = {
@@ -63,8 +49,7 @@ const BicycleEdit = props => {
 
   return (
     <BicycleForm
-      currentInputValues={currentInputValues}
-      currentSelectedValues={currentSelectedValues}
+      currentValues={currentValues}
       currentCheckBoxState={currentCheckBoxState}
       onSubmit={onSubmit}
     />
