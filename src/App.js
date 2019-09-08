@@ -2,6 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
+import SigninPage from "./components/Authentication/SigninPage";
+import SignupPage from "./components/Authentication/SignupPage";
 import HomePage from "./components/Home/HomePage";
 import BicycleCreate from "./components/Classifieds/BicycleOffer/BicycleCreate";
 import BicycleEdit from "./components/Classifieds/BicycleOffer/BicycleEdit";
@@ -26,6 +28,8 @@ function App() {
         <Route path="/contact" component={Contact} />
         <Route path="/market-guide" component={MarketGuide} />
         <Route path="/users-faq" component={UsersFAQ} />
+        <Route path="/sign-up" component={SignupPage} />
+        <Route path="/sign-in" component={SigninPage} />
         <Route path="/" component={HomePage} />
       </Switch>
     </Layout>

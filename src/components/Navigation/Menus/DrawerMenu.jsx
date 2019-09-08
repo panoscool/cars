@@ -31,7 +31,9 @@ const navigation = [
 const subNav = [
   { to: "/contact", label: "Contact" },
   { to: "/market-guide", label: "Market Guide" },
-  { to: "/users-faq", label: "Users F.A.Q." }
+  { to: "/users-faq", label: "Users F.A.Q." },
+  { to: "/sign-up", label: "Signup" },
+  { to: "/sign-in", label: "Signin" }
 ];
 
 const DrawerMenu = ({ handleDrawerToggle }) => {
@@ -53,6 +55,7 @@ const DrawerMenu = ({ handleDrawerToggle }) => {
           button
           component={Link}
           to={nav.to}
+          key={nav.to}
           onClick={handleDrawerToggle}
         >
           <ListItemIcon>{nav.icon}</ListItemIcon>
@@ -69,11 +72,12 @@ const DrawerMenu = ({ handleDrawerToggle }) => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {subNav.map(nav => (
+          {subNav.slice(0, 3).map(nav => (
             <ListItem
               button
               component={Link}
               to={nav.to}
+              key={nav.to}
               onClick={handleDrawerToggle}
               className={classes.nested}
             >

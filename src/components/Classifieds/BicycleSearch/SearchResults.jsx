@@ -13,7 +13,7 @@ import {
 import { DirectionsBike, ViewList, ViewModule } from "@material-ui/icons";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import SelectForm from "../../Shared/forms/SelectForm";
-import Modal from "../../Shared/modal/Modal";
+import Modal from "../../Shared/Modal";
 import { sort } from "../../../data/SharedAttributes";
 import BicycleList from "./BicycleList/BicycleList";
 import SideFilters from "./SideFilters/SideFilters";

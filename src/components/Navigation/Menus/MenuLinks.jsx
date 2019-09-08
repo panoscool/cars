@@ -37,7 +37,7 @@ const MenuLinks = () => {
 
       <DropDown button="Informations">
         {subNav.map(nav => (
-          <MenuItem component={Link} to={nav.to}>
+          <MenuItem key={nav.to} component={Link} to={nav.to}>
             {nav.label}
           </MenuItem>
         ))}
