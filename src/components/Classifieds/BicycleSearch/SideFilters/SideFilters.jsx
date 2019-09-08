@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Typography, Divider, FormGroup } from "@material-ui/core";
-import moment from 'moment'
+import moment from "moment";
 import useWindowDimensions from "../../../../hooks/useWindowDimensions";
-import CheckboxForm from "../../../../shared/forms/CheckboxForm";
-import RadioForm from "../../../../shared/forms/RadioForm";
-import SelectForm from "../../../../shared/forms/SelectForm";
-import InputForm from "../../../../shared/forms/InputForm";
-import { offer, condition, color, modified } from "../../../../data/SharedAttributes";
-import { manufacturers, frameType, brakes, category, gears, extras } from "../../../../data/bicycle/bicycle";
+import CheckboxForm from "../../../Shared/forms/CheckboxForm";
+import RadioForm from "../../../Shared/forms/RadioForm";
+import SelectForm from "../../../Shared/forms/SelectForm";
+import InputForm from "../../../Shared/forms/InputForm";
+import {
+  offer,
+  condition,
+  color,
+  modified
+} from "../../../../data/SharedAttributes";
+import {
+  manufacturers,
+  frameType,
+  brakes,
+  category,
+  gears,
+  extras
+} from "../../../../data/bicycle/bicycle";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";

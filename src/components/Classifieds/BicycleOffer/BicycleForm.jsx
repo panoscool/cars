@@ -2,12 +2,26 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Divider, Typography } from "@material-ui/core";
-import moment from 'moment';
-import SelectForm from "../../../shared/forms/SelectForm";
-import InputForm from "../../../shared/forms/InputForm";
-import CheckboxForm from "../../../shared/forms/CheckboxForm";
-import { offer, condition, adDuration, color, months } from "../../../data/SharedAttributes";
-import { category, manufacturers, frameType, exchange, brakes, extras, gears } from "../../../data/bicycle/bicycle";
+import moment from "moment";
+import SelectForm from "../../Shared/forms/SelectForm";
+import InputForm from "../../Shared/forms/InputForm";
+import CheckboxForm from "../../Shared/forms/CheckboxForm";
+import {
+  offer,
+  condition,
+  adDuration,
+  color,
+  months
+} from "../../../data/SharedAttributes";
+import {
+  category,
+  manufacturers,
+  frameType,
+  exchange,
+  brakes,
+  extras,
+  gears
+} from "../../../data/bicycle/bicycle";
 import PaperPage from "../../Layout/PaperPage";
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +41,12 @@ const useStyles = makeStyles(theme => ({
 
 const BicycleForm = props => {
   const classes = useStyles();
-  const { onSubmit, requiredInfos, currentValues, currentCheckBoxState } = props;
+  const {
+    onSubmit,
+    requiredInfos,
+    currentValues,
+    currentCheckBoxState
+  } = props;
 
   useEffect(() => {
     if (props.match.params.id) {
@@ -97,7 +116,7 @@ const BicycleForm = props => {
       ...checkboxState
     };
     onSubmit(formValues);
-    console.log(formValues)
+    console.log(formValues);
   };
 
   const year = moment().year();

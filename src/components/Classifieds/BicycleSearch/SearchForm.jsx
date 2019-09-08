@@ -2,13 +2,25 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Divider, Typography } from "@material-ui/core";
-import moment from 'moment'
+import moment from "moment";
 import queryString from "query-string";
-import SelectForm from "../../../shared/forms/SelectForm";
-import InputForm from "../../../shared/forms/InputForm";
-import CheckboxForm from "../../../shared/forms/CheckboxForm";
-import { offer, condition, color, sort, modified } from "../../../data/SharedAttributes";
-import { category, manufacturers, brakes, extras, gears } from "../../../data/bicycle/bicycle";
+import SelectForm from "../../Shared/forms/SelectForm";
+import InputForm from "../../Shared/forms/InputForm";
+import CheckboxForm from "../../Shared/forms/CheckboxForm";
+import {
+  offer,
+  condition,
+  color,
+  sort,
+  modified
+} from "../../../data/SharedAttributes";
+import {
+  category,
+  manufacturers,
+  brakes,
+  extras,
+  gears
+} from "../../../data/bicycle/bicycle";
 import PaperPage from "../../Layout/PaperPage";
 
 const useStyles = makeStyles(theme => ({

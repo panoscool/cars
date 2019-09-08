@@ -8,7 +8,7 @@ import {
   ClickAwayListener
 } from "@material-ui/core";
 
-const MenuListComposition = ({ button, children }) => {
+const DropDown = ({ button, children }) => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -56,4 +56,4 @@ const MenuListComposition = ({ button, children }) => {
   );
 };
 
-export default MenuListComposition;
+export default DropDown;

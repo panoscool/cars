@@ -4,7 +4,7 @@ import {
   DELETE_BICYCLE,
   FETCH_BICYCLE,
   FETCH_BICYCLES
-} from "./actionTypes";
+} from "../actionTypes";
 import {
   asyncActionStart,
   asyncActionFinish,

@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Grid, Typography, IconButton, Divider, Button, Hidden } from "@material-ui/core";
+import {
+  Container,
+  Grid,
+  Typography,
+  IconButton,
+  Divider,
+  Button,
+  Hidden
+} from "@material-ui/core";
 import { DirectionsBike, ViewList, ViewModule } from "@material-ui/icons";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
-import SelectForm from "../../../shared/forms/SelectForm";
+import SelectForm from "../../Shared/forms/SelectForm";
+import Modal from "../../Shared/modal/Modal";
 import { sort } from "../../../data/SharedAttributes";
 import BicycleList from "./BicycleList/BicycleList";
 import SideFilters from "./SideFilters/SideFilters";
-import Modal from "../../../shared/modal/Modal";
-import { fetchBicycles } from '../../../store/actions/bicycleActions'
+import { fetchBicycles } from "../../../store/actions/bicycleActions";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -32,8 +40,8 @@ const SearchResults = ({ fetchBicycles, bicycles }) => {
   const { width } = useWindowDimensions();
 
   useEffect(() => {
-    fetchBicycles()
-  }, [fetchBicycles])
+    fetchBicycles();
+  }, [fetchBicycles]);
 
   const [selectValues, setSelectValues] = useState({
     sort: "newest"
@@ -118,6 +126,9 @@ const SearchResults = ({ fetchBicycles, bicycles }) => {
 
 const mapStateToProps = ({ bicycle }) => ({
   bicycles: bicycle.bicycles
-})
+});
 
-export default connect(mapStateToProps, { fetchBicycles })(SearchResults);
+export default connect(
+  mapStateToProps,
+  { fetchBicycles }
+)(SearchResults);

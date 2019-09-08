@@ -1,22 +1,26 @@
-import { CREATE_BICYCLE, UPDATE_BICYCLE, DELETE_BICYCLE, FETCH_BICYCLE, FETCH_BICYCLES } from '../actions/actionTypes'
+import {
+  CREATE_BICYCLE,
+  UPDATE_BICYCLE,
+  DELETE_BICYCLE,
+  FETCH_BICYCLE,
+  FETCH_BICYCLES
+} from "../actionTypes";
 
-const initialState = { bicycles: [], bicycle: [] }
+const initialState = { bicycles: [], bicycle: {} };
 
-const reducer = (state = initialState, action) => {
+export default function(state = initialState, action) {
   switch (action.type) {
     case CREATE_BICYCLE:
-      return { ...state, bicycles: action.payload }
+      return { ...state, bicycles: action.payload };
     case UPDATE_BICYCLE:
-      return { ...state, bicycle: action.payload}
+      return { ...state, bicycle: action.payload };
     case DELETE_BICYCLE:
-      return { ...state, bicycle: action.payload }
+      return { ...state, bicycle: action.payload };
     case FETCH_BICYCLE:
-      return { ...state, bicycle: action.payload }
+      return { ...state, bicycle: action.payload };
     case FETCH_BICYCLES:
-      return { ...state, bicycles: action.payload }
+      return { ...state, bicycles: action.payload };
     default:
-      return state
+      return state;
   }
 }
-
-export default reducer

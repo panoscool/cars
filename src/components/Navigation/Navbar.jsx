@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Menu } from "@material-ui/icons";
-import ListMenu from "./Menus/ListMenu";
+import MenuLinks from "./Menus/MenuLinks";
 import DrawerMenu from "./Menus/DrawerMenu";
 
 const drawerWidth = 240;
@@ -73,7 +73,7 @@ function Navbar() {
               logo
             </Link>
           </Typography>
-          <ListMenu />
+          <MenuLinks />
         </Toolbar>
       </AppBar>
       <Hidden mdUp>
