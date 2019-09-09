@@ -1,8 +1,5 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,4 +23,56 @@ code {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.list-view-image {
+  height: auto;
+  width: 100px;
+  padding-right: 20px;
+}
+
+.horizontal-list {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+.horizontal-list li {
+  float: left;
+  padding: 10px;
+}
+
+.grid-view {
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 5px; */
+  justify-content: space-between;
+}
+.grid-view > div {
+  flex: 0 1 auto;
+  margin-bottom: 10px;
+}
+
+.filter-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 30px;
+}
+
+.card {
+  max-width: 220px;
+}
+
+.side-filters {
+  margin-top: 5px;
+  overflow-y: auto;
+  max-height: calc(100vh - 65px)
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    max-width: 100%;
+  }
 }
