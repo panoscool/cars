@@ -48,8 +48,8 @@ const BicycleDetails = props => {
   );
 };
 
-const mapStateToProps = ({ bicycle }) => ({
-  bicycle: bicycle.bicycle
+const mapStateToProps = ({ bicycleReducer }) => ({
+  bicycle: bicycleReducer.bicycle
 })
 
 export default connect(mapStateToProps, { fetchBicycle })(BicycleDetails);

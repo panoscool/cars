@@ -20,8 +20,8 @@ const BicycleCreate = ({ createBicycle, history, bicycleObj }) => {
   return <BicycleForm onSubmit={onSubmit} requiredInfos={requiredInfos} />;
 };
 
-const mapStateToProps = ({ bicycle }) => ({
-  bicycleObj: bicycle.bicycle
+const mapStateToProps = ({ bicycleReducer }) => ({
+  bicycleObj: bicycleReducer.bicycle
 })
 
 export default connect(mapStateToProps, { createBicycle })(BicycleCreate);

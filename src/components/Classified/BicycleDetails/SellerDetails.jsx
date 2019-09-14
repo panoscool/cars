@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: 16
   },
   attention: {
-    backgroundColor: "#FFFF66"
+    backgroundColor: "#ffc107"
   }
 }));
 

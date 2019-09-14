@@ -56,8 +56,8 @@ const BicycleEdit = props => {
   );
 };
 
-const mapStateToProps = ({ bicycle }) => ({
-  bicycleObj: bicycle.bicycle
+const mapStateToProps = ({ bicycleReducer }) => ({
+  bicycleObj: bicycleReducer.bicycle
 })
 
 
