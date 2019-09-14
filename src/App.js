@@ -13,25 +13,28 @@ import LatestClassifiedsPage from "./components/Classified/LatestClassifieds/Lat
 import Contact from "./components/Information/Contact";
 import MarketGuide from "./components/Information/MarketGuide";
 import UsersFAQ from "./components/Information/UsersFAQ";
+import ThemeWrapper from './theme';
 
-function App() {
+function App(props) {
   return (
-    <Layout>
-      <Switch>
-        <Route path="/bicycle/create" component={BicycleCreate} />
-        <Route path="/bicycle/search" component={SearchForm} />
-        <Route path="/bicycle/edit/:id" component={BicycleEdit} />
-        <Route path="/bicycles" component={SearchResults} />
-        <Route path="/bicycle/:id" component={BicycleDetails} />
-        <Route path="/classifieds/latest" component={LatestClassifiedsPage} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/market-guide" component={MarketGuide} />
-        <Route path="/users-faq" component={UsersFAQ} />
-        <Route path="/sign-up" component={SignupPage} />
-        <Route path="/sign-in" component={SigninPage} />
-        <Route path="/" component={HomePage} />
-      </Switch>
-    </Layout>
+    <ThemeWrapper>
+      <Layout>
+        <Switch>
+          <Route path="/bicycle/create" component={BicycleCreate} />
+          <Route path="/bicycle/search" component={SearchForm} />
+          <Route path="/bicycle/edit/:id" component={BicycleEdit} />
+          <Route path="/bicycles" component={SearchResults} />
+          <Route path="/bicycle/:id" component={BicycleDetails} />
+          <Route path="/classifieds/latest" component={LatestClassifiedsPage} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/market-guide" component={MarketGuide} />
+          <Route path="/users-faq" component={UsersFAQ} />
+          <Route path="/sign-up" component={SignupPage} />
+          <Route path="/sign-in" component={SigninPage} />
+          <Route path="/" component={HomePage} />
+        </Switch>
+      </Layout>
+    </ThemeWrapper>
   );
 }
 

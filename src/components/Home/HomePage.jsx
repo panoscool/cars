@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
 import LatestClassifiedList from "../Classified/LatestClassifieds/LatestClassifiedList";
-import { fetchBicycles } from '../../store/actions/bicycleActions'
+import { fetchBicycles } from '../../store/actions/bicycleActions';
 
 const useStyles = makeStyles(theme => ({
   button: {

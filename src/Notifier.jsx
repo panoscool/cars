@@ -1,16 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ErrorIcon from "@material-ui/icons/Error";
 import InfoIcon from "@material-ui/icons/Info";
-import CloseIcon from "@material-ui/icons/Close";
-import { amber, green, blue, red } from "@material-ui/core/colors";
-import IconButton from "@material-ui/core/IconButton";
 import WarningIcon from "@material-ui/icons/Warning";
-import { makeStyles } from "@material-ui/core/styles";
-import { openSnackbar, closeSnackbar } from "./redux/snackbarActions";
-import { Snackbar, SnackbarContent } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import { Snackbar, SnackbarContent, IconButton } from "@material-ui/core";
+import { amber, green, blue, red } from "@material-ui/core/colors";
+import { openSnackbar, closeSnackbar } from "./store/actions/notificationActions";
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -49,7 +48,7 @@ function CustomizedSnackbars({ className }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { open, message, variant } = useSelector(state => state.notificationReducer);
-  const Icon = variantIcon[variant];
+  const Icon = variant && variantIcon[variant];
 
   function handleClick() {
     dispatch(openSnackbar("Client updated", "warning"));

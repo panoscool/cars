@@ -68,7 +68,7 @@ code {
 .side-filters {
   margin-top: 5px;
   overflow-y: auto;
-  max-height: calc(100vh - 65px)
+  height: calc(100vh - 64px)
 }
 
 @media only screen and (max-width: 600px) {
