@@ -82,8 +82,8 @@ const HomePage = ({ fetchBicycles, bicycles }) => {
   );
 };
 
-const mapStateToProps = ({ bicycle }) => ({
-  bicycles: bicycle.bicycles
+const mapStateToProps = ({ bicycleReducer }) => ({
+  bicycles: bicycleReducer.bicycles
 })
 
 export default connect(mapStateToProps, { fetchBicycles })(HomePage);

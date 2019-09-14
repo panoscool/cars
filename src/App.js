@@ -10,9 +10,9 @@ import SearchForm from "./components/Classifieds/BicycleSearch/SearchForm";
 import SearchResults from "./components/Classifieds//BicycleSearch/SearchResults";
 import BicycleDetails from "./components/Classifieds/BicycleDetails/BicycleDetails";
 import LatestClassifiedsPage from "./components/Classifieds/LatestClassifieds/LatestClassifiedsPage";
-import Contact from "./components/Informations/Contact";
-import MarketGuide from "./components/Informations/MarketGuide";
-import UsersFAQ from "./components/Informations/UsersFAQ";
+import Contact from "./components/Information/Contact";
+import MarketGuide from "./components/Information/MarketGuide";
+import UsersFAQ from "./components/Information/UsersFAQ";
 
 function App() {
   return (

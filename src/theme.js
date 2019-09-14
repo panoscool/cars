@@ -12,9 +12,7 @@ const theme = createMuiTheme({
       main: "#9c27b0",
       dark: "#7b1fa2"
     },
-    background: {
-      default: "#f2f2f2"
-    }
+    type: "dark"
   },
   typography: {
     fontFamily: "Helvetica Neue, sans-serif"
