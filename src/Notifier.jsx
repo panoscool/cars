@@ -9,7 +9,7 @@ import WarningIcon from "@material-ui/icons/Warning";
 import CloseIcon from "@material-ui/icons/Close";
 import { Snackbar, SnackbarContent, IconButton } from "@material-ui/core";
 import { amber, green, blue, red } from "@material-ui/core/colors";
-import { openSnackbar, closeSnackbar } from "./store/actions/notificationActions";
+import { closeSnackbar } from "./store/actions/notificationActions";
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -47,12 +47,10 @@ const useStyles = makeStyles(theme => ({
 function CustomizedSnackbars({ className }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { open, message, variant } = useSelector(state => state.notificationReducer);
+  const { open, message, variant } = useSelector(
+    state => state.notificationReducer
+  );
   const Icon = variant && variantIcon[variant];
-
-  function handleClick() {
-    dispatch(openSnackbar("Client updated", "warning"));
-  }
 
   function handleClose(event, reason) {
     if (reason === "clickaway") return;
@@ -61,39 +59,36 @@ function CustomizedSnackbars({ className }) {
   }
 
   return (
-    <div>
-      <button onClick={handleClick}>click</button>
-      <Snackbar
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left"
-        }}
-        open={open}
-        autoHideDuration={3000}
-        onClose={handleClose}
-      >
-        <SnackbarContent
-          className={clsx(classes[variant], className)}
-          aria-describedby="client-snackbar"
-          message={
-            <span id="client-snackbar" className={classes.message}>
-              <Icon className={clsx(classes.icon, classes.iconVariant)} />
-              {message}
-            </span>
-          }
-          action={[
-            <IconButton
-              key="close"
-              aria-label="close"
-              color="inherit"
-              onClick={handleClose}
-            >
-              <CloseIcon className={classes.icon} />
-            </IconButton>
-          ]}
-        />
-      </Snackbar>
-    </div>
+    <Snackbar
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "left"
+      }}
+      open={open}
+      autoHideDuration={3000}
+      onClose={handleClose}
+    >
+      <SnackbarContent
+        className={clsx(classes[variant], className)}
+        aria-describedby="notifier-snackbar"
+        message={
+          <span id="notifier-snackbar" className={classes.message}>
+            <Icon className={clsx(classes.icon, classes.iconVariant)} />
+            {message}
+          </span>
+        }
+        action={[
+          <IconButton
+            key="close"
+            aria-label="close"
+            color="inherit"
+            onClick={handleClose}
+          >
+            <CloseIcon className={classes.icon} />
+          </IconButton>
+        ]}
+      />
+    </Snackbar>
   );
 }
 

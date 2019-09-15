@@ -28,7 +28,12 @@ function AlignItemsList(props) {
 
   return (
     <List className={classes.root}>
-      <ListItem component={Link} to={`/bicycle/${id}`} alignItems="flex-start">
+      <ListItem
+        color="secondary"
+        component={Link}
+        to={`/bicycle/${id}`}
+        alignItems="flex-start"
+      >
         <ListItemAvatar>
           <img className="list-view-image" alt={title} src={img} />
         </ListItemAvatar>

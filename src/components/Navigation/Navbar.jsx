@@ -11,8 +11,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Menu } from "@material-ui/icons";
-import MenuLinks from "./Menus/MenuLinks";
-import DrawerMenu from "./Menus/DrawerMenu";
+import MenuLinks from "./Parts/MenuLinks";
+import DrawerMenu from "./Parts/DrawerMenu";
 
 const drawerWidth = 240;
 

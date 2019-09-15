@@ -5,12 +5,8 @@ import {
   FETCH_BICYCLE,
   FETCH_BICYCLES
 } from "../actionTypes";
-import {
-  asyncActionStart,
-  asyncActionFinish,
-  asyncActionError
-} from "./asyncActions";
 import { asyncAction } from "./helper";
+import { openSnackbar } from "./notificationActions";
 import bicycle from "../../mockApi";
 
 export const createBicycle = data => async dispatch => {
@@ -18,53 +14,39 @@ export const createBicycle = data => async dispatch => {
     const response = await bicycle.post("/bicycles", data);
 
     dispatch({ type: CREATE_BICYCLE, payload: response.data });
+    dispatch(openSnackbar("Your classified has been created", "success"));
   });
 };
 
 export const updateBicycle = (id, data) => async dispatch => {
-  dispatch(asyncActionStart());
-  try {
+  asyncAction(dispatch, async () => {
     const response = await bicycle.put(`/bicycles/${id}`, data);
 
     dispatch({ type: UPDATE_BICYCLE, payload: response.data });
-    dispatch(asyncActionFinish());
-  } catch (err) {
-    dispatch(asyncActionError(err.response.error));
-  }
+    dispatch(openSnackbar("Your classified has been updated", "success"));
+  });
 };
 
 export const deleteBicycle = id => async dispatch => {
-  dispatch(asyncActionStart());
-  try {
+  asyncAction(dispatch, async () => {
     await bicycle.delete(`/bicycles/${id}`);
 
     dispatch({ type: DELETE_BICYCLE, payload: id });
-    dispatch(asyncActionFinish());
-  } catch (err) {
-    dispatch(asyncActionError(err.response.error));
-  }
+  });
 };
 
 export const fetchBicycle = id => async dispatch => {
-  dispatch(asyncActionStart());
-  try {
+  asyncAction(dispatch, async () => {
     const response = await bicycle.get(`/bicycles/${id}`);
 
     dispatch({ type: FETCH_BICYCLE, payload: response.data });
-    dispatch(asyncActionFinish());
-  } catch (err) {
-    dispatch(asyncActionError(err.response.error));
-  }
+  });
 };
 
 export const fetchBicycles = () => async dispatch => {
-  dispatch(asyncActionStart());
-  try {
+  asyncAction(dispatch, async () => {
     const response = await bicycle.get(`/bicycles`);
 
     dispatch({ type: FETCH_BICYCLES, payload: response.data });
-    dispatch(asyncActionFinish());
-  } catch (err) {
-    dispatch(asyncActionError(err.response.error));
-  }
+  });
 };

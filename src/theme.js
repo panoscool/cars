@@ -1,17 +1,17 @@
-import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Notifier from './Notifier';
-import { purple, amber } from '@material-ui/core/colors';
+import { ThemeProvider } from "@material-ui/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
+import React from "react";
+import { useSelector } from "react-redux";
+import Notifier from "./Notifier";
+import { deepPurple, amber, brown } from "@material-ui/core/colors";
 
 function ThemeWrapper({ children }) {
-  const { type } = useSelector((state) => state.themeReducer)
+  const { type } = useSelector(state => state.themeReducer);
 
   const muiTheme = createMuiTheme({
     palette: {
-      primary: purple,
-      secondary: amber,
+      primary: deepPurple,
+      secondary: type === "light" ? brown : amber,
       type: type
     },
     typography: {
@@ -24,7 +24,7 @@ function ThemeWrapper({ children }) {
       <Notifier />
       {children}
     </ThemeProvider>
-  )
+  );
 }
 
 export default ThemeWrapper;

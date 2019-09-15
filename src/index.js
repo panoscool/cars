@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import history from "./history";
-import store from './store/configureStore'
+import { store } from "./store/configureStore";
 import * as serviceWorker from "./serviceWorker";
 
 const app = (
@@ -14,7 +14,7 @@ const app = (
       <App />
     </Router>
   </Provider>
-)
+);
 
 ReactDOM.render(app, document.getElementById("root"));
 

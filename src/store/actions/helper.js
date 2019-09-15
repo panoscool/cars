@@ -1,4 +1,9 @@
-import { asyncActionStart, asyncActionFinish, asyncActionError } from "./asyncActions";
+import {
+  asyncActionStart,
+  asyncActionFinish,
+  asyncActionError
+} from "./asyncActions";
+import { openSnackbar } from "./notificationActions";
 
 export async function asyncAction(dispatch, actionCallback) {
   dispatch(asyncActionStart());
@@ -7,9 +12,11 @@ export async function asyncAction(dispatch, actionCallback) {
     await actionCallback();
     dispatch(asyncActionFinish());
   } catch (err) {
-    const errorMessage = (err.response.data.error) ?
-      err.response.data.error : "Πρόβλημα κατά την επικοινωνία με τον διακομιστή";
+    const errorMessage = err.response.data.error
+      ? err.response.data.error
+      : "Πρόβλημα κατά την επικοινωνία με τον διακομιστή";
 
     dispatch(asyncActionError(errorMessage));
+    dispatch(openSnackbar(errorMessage, "error"));
   }
 }

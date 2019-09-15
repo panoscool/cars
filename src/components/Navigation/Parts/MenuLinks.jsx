@@ -1,11 +1,18 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Hidden, Button, MenuItem, IconButton, Tooltip } from "@material-ui/core";
+import {
+  Hidden,
+  Button,
+  MenuItem,
+  IconButton,
+  Tooltip
+} from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { WbSunny } from '@material-ui/icons'
+import { WbSunny } from "@material-ui/icons";
 import green from "@material-ui/core/colors/green";
-import { useDispatch, useSelector } from 'react-redux';
-import { setTheme } from '../../../store/actions/themeActions';
+import { useDispatch, useSelector } from "react-redux";
+import { setTheme } from "../../../store/actions/themeActions";
+import LanguageSwitcher from "./LanguageSwitcher";
 import DropDown from "./DropDown";
 
 const ColorButton = withStyles(theme => ({
@@ -32,19 +39,19 @@ const subNav = [
 
 const MenuLinks = () => {
   const classes = useStyles();
-  const dispatch = useDispatch()
-  const { type } = useSelector(state => state.themeReducer)
+  const dispatch = useDispatch();
+  const { type } = useSelector(state => state.themeReducer);
 
   const toggleThemeMode = () => {
-    dispatch(setTheme(type === "light" ? "dark" : "light"))
-  }
+    dispatch(setTheme(type === "light" ? "dark" : "light"));
+  };
 
   return (
     <Fragment>
       <Hidden smDown implementation="css">
         <Button color="inherit" component={Link} to="/bicycle/search">
           Search
-      </Button>
+        </Button>
 
         <DropDown button="Informations">
           {subNav.map(nav => (
@@ -62,11 +69,12 @@ const MenuLinks = () => {
           className={classes.margin}
         >
           Free Classified
-      </ColorButton>
+        </ColorButton>
       </Hidden>
+      {/* <LanguageSwitcher /> */}
       <Tooltip title="Toggle light/dark theme">
         <IconButton aria-label="toggle" onClick={toggleThemeMode}>
-          <WbSunny color='inherit' />
+          <WbSunny color="inherit" />
         </IconButton>
       </Tooltip>
     </Fragment>

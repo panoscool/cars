@@ -2,6 +2,12 @@
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
+// LANGUAGE
+export const SET_LANGUAGE = "SET_LANGUAGE";
+
+// THEME
+export const SET_THEME = "SET_THEME";
+
 // BICYCLES
 export const FETCH_BICYCLES = "FETCH_BICYCLES";
 export const FETCH_BICYCLE = "FETCH_BICYCLE";
@@ -17,6 +23,3 @@ export const ASYNC_ACTION_ERROR = "ASYNC_ACTION_ERROR";
 // NOTIFICATIONS
 export const SNACKBAR_OPEN = "SNACKBAR_OPEN";
 export const SNACKBAR_CLOSE = "SNACKBAR_CLOSE";
-
-// THEME
-export const SET_THEME = "SET_THEME"
