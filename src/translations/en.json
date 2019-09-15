@@ -1,1 +1,6 @@
-{ "el": "Ελληνικά", "en": "English" }
+{
+  "el": "Ελληνικά",
+  "en": "English",
+  "PageButtonSearch": "Search",
+  "PageButtonOffer": "Create Offer"
+}

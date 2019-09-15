@@ -1,14 +1,13 @@
 import { Menu, MenuItem, Button } from "@material-ui/core";
 import React, { useState } from "react";
-import lang, {
-  getLanguage,
-  getLanguageList,
-  setLanguage
-} from "../../../services/lang";
+import { useDispatch, useSelector } from 'react-redux';
+import { setLanguage } from '../../../store/actions/languageActions';
+import lang, { getLanguageList } from "../../../services/lang";
 
 function LanguageSwitcher() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const language = getLanguage();
+  const dispatch = useDispatch();
+  const { language } = useSelector(state => state.languageReducer);
   const languages = getLanguageList();
 
   function handleClick(event) {
@@ -16,6 +15,11 @@ function LanguageSwitcher() {
   }
 
   function handleClose() {
+    setAnchorEl(null);
+  }
+
+  function handleLanguage(data) {
+    dispatch(setLanguage(data))
     setAnchorEl(null);
   }
 
@@ -36,7 +40,7 @@ function LanguageSwitcher() {
         onClose={handleClose}
       >
         {languages.map(lg => (
-          <MenuItem key={lg} onClick={() => setLanguage(lg)}>
+          <MenuItem key={lg} onClick={() => handleLanguage(lg)}>
             {language === lg ? "-" : ""} {lang(lg).toUpperCase()}
           </MenuItem>
         ))}

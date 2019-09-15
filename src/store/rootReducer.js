@@ -9,8 +9,8 @@ import notificationReducer from "./reducers/notificationReducer";
 export default combineReducers({
   authReducer,
   languageReducer,
+  themeReducer,
   bicycleReducer,
   asyncReducer,
-  themeReducer,
   notificationReducer
 });

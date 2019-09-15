@@ -1,22 +1,13 @@
-import { getLanguageKey, setLanguageKey } from "./storage";
+import { useSelector } from 'react-redux';
 import en from "../translations/en.json";
 import el from "../translations/el.json";
 
 const translations = { en, el };
 
-export const getLanguage = () => getLanguageKey("el");
-export const setLanguage = language => {
-  const currentLanguage = getLanguage();
-  if (language !== currentLanguage) {
-    setLanguageKey(language);
-    window.location.reload();
-  }
-};
-
 export const getLanguageList = () => Object.keys(translations);
 
 export default function Lang(...args) {
-  const language = getLanguage();
+  const { language } = useSelector(state => state.languageReducer);
   const translation = translations[language];
 
   const key = String(args.shift());

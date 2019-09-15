@@ -1,6 +1,8 @@
+const STORE = localStorage;
+
 export const loadState = () => {
   try {
-    const serializedState = localStorage.getItem('state')
+    const serializedState = STORE.getItem('state')
     if (serializedState === null) {
       return undefined;
     }
@@ -13,8 +15,9 @@ export const loadState = () => {
 export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state)
-    localStorage.setItem('state', serializedState)
+    STORE.setItem('state', serializedState)
   } catch (err) {
-    // ignore catch error
+    // ignore catch error or we can logged
   }
 }
+

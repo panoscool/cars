@@ -6,6 +6,7 @@ import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
 import LatestClassifiedList from "../Classified/LatestClassifieds/LatestClassifiedList";
 import { fetchBicycles } from '../../store/actions/bicycleActions';
+import Lang from "../../services/lang";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -42,7 +43,7 @@ const HomePage = ({ fetchBicycles, bicycles }) => {
           className={classes.button}
         >
           <Search className={classes.leftIcon} />
-          Search
+          {Lang("PageButtonSearch")}
         </Button>
         <Button
           component={Link}
@@ -52,7 +53,7 @@ const HomePage = ({ fetchBicycles, bicycles }) => {
           className={classes.button}
         >
           <Edit className={classes.leftIcon} />
-          Offer
+          {Lang("PageButtonOffer")}
         </Button>
         <div className={classes.classifieds}>
           <Typography gutterBottom variant="h5" component="h2">

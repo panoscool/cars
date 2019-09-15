@@ -47,9 +47,7 @@ const useStyles = makeStyles(theme => ({
 function CustomizedSnackbars({ className }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { open, message, variant } = useSelector(
-    state => state.notificationReducer
-  );
+  const { open, message, variant } = useSelector(state => state.notificationReducer);
   const Icon = variant && variantIcon[variant];
 
   function handleClose(event, reason) {

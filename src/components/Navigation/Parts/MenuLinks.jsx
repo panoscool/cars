@@ -71,7 +71,7 @@ const MenuLinks = () => {
           Free Classified
         </ColorButton>
       </Hidden>
-      {/* <LanguageSwitcher /> */}
+      <LanguageSwitcher />
       <Tooltip title="Toggle light/dark theme">
         <IconButton aria-label="toggle" onClick={toggleThemeMode}>
           <WbSunny color="inherit" />
