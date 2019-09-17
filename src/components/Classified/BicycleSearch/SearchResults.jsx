@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -18,6 +18,7 @@ import { sort } from "../../../data/SharedAttributes";
 import BicycleList from "./BicycleList/BicycleList";
 import SideFilters from "./SideFilters/SideFilters";
 import { fetchBicycles } from "../../../store/actions/bicycleActions";
+import { LanguageContext } from "../../../LangContext";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -38,6 +39,7 @@ const useStyles = makeStyles(theme => ({
 const SearchResults = ({ fetchBicycles, bicycles }) => {
   const classes = useStyles();
   const { width } = useWindowDimensions();
+  const { lang } = useContext(LanguageContext);
 
   useEffect(() => {
     fetchBicycles();
@@ -76,7 +78,7 @@ const SearchResults = ({ fetchBicycles, bicycles }) => {
             <IconButton color="inherit">
               <DirectionsBike />
             </IconButton>
-            Search Results
+            {lang("PageSearchResults")}
           </Typography>
           <Divider variant="fullWidth" component="hr" />
           <div className={classes.inline}>

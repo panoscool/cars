@@ -14,14 +14,17 @@ const persistedState = loadState();
 export const store = createStore(
   rootReducer,
   persistedState,
-  composeEnhancers(applyMiddleware(thunk))
-  // applyMiddleware(thunk)
+  // composeEnhancers(applyMiddleware(thunk))
+  applyMiddleware(thunk)
 );
 
-store.subscribe(throttle(() => {
-  saveState({
-    themeReducer: store.getState().themeReducer,
-    languageReducer: store.getState().languageReducer
-  });
-}, 1000)
+store.subscribe(
+  throttle(() => {
+    saveState({
+      themeReducer: store.getState().themeReducer,
+      languageReducer: store.getState().languageReducer
+    });
+  }, 1000)
 );
+
+console.log("persistedState", persistedState);
