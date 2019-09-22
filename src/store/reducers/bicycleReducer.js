@@ -1,14 +1,8 @@
-import {
-  CREATE_BICYCLE,
-  UPDATE_BICYCLE,
-  DELETE_BICYCLE,
-  FETCH_BICYCLE,
-  FETCH_BICYCLES
-} from "../actionTypes";
+import { CREATE_BICYCLE, UPDATE_BICYCLE, DELETE_BICYCLE, FETCH_BICYCLE, FETCH_BICYCLES } from "../actionTypes";
 
 const initialState = { bicycles: [], bicycle: {} };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case CREATE_BICYCLE:
       return { ...state, bicycles: action.payload };

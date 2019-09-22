@@ -6,8 +6,7 @@ import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
 import LatestClassifiedList from "../Classified/LatestClassifieds/LatestClassifiedList";
 import { fetchBicycles } from "../../store/actions/bicycleActions";
-// import Lang from "../../services/lang";
-import { LanguageContext } from "../../LangContext";
+import { LanguageContext } from "../../LanguageContext";
 
 const useStyles = makeStyles(theme => ({
   button: {

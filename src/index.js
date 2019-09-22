@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App";
 import history from "./history";
 import { store } from "./store/configureStore";
-import LanguageProvider from "./LangContext";
+import LanguageProvider from "./LanguageContext";
 import * as serviceWorker from "./serviceWorker";
 
 const app = (

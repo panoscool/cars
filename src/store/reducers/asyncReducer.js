@@ -1,12 +1,8 @@
-import {
-  ASYNC_ACTION_START,
-  ASYNC_ACTION_FINISH,
-  ASYNC_ACTION_ERROR
-} from "../actionTypes";
+import { ASYNC_ACTION_START, ASYNC_ACTION_FINISH, ASYNC_ACTION_ERROR } from "../actionTypes";
 
 const initialState = { loading: false, error: null };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case ASYNC_ACTION_START:
       return { loading: true };

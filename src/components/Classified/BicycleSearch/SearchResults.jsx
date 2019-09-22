@@ -1,15 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Container,
-  Grid,
-  Typography,
-  IconButton,
-  Divider,
-  Button,
-  Hidden
-} from "@material-ui/core";
+import { Container, Grid, Typography, IconButton, Divider, Button, Hidden } from "@material-ui/core";
 import { DirectionsBike, ViewList, ViewModule } from "@material-ui/icons";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import SelectForm from "../../Shared/forms/SelectForm";
@@ -18,7 +10,7 @@ import { sort } from "../../../data/SharedAttributes";
 import BicycleList from "./BicycleList/BicycleList";
 import SideFilters from "./SideFilters/SideFilters";
 import { fetchBicycles } from "../../../store/actions/bicycleActions";
-import { LanguageContext } from "../../../LangContext";
+import { LanguageContext } from "../../../LanguageContext";
 
 const useStyles = makeStyles(theme => ({
   margin: {
