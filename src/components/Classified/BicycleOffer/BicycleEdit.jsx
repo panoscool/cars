@@ -4,7 +4,7 @@ import BicycleForm from "./BicycleForm";
 import { fetchBicycle, updateBicycle } from '../../../store/actions/bicycleActions'
 
 const BicycleEdit = props => {
-  const { fetchBicycle, updateBicycle, history, match: { params }, bicycleObj } = props
+  const { fetchBicycle, updateBicycle, match: { params }, bicycleObj } = props
 
   useEffect(() => {
     fetchBicycle(params.id)
@@ -12,7 +12,6 @@ const BicycleEdit = props => {
 
   const onSubmit = data => {
     updateBicycle(params.id, data);
-    history.push(`/bicycle/${bicycleObj.id}`)
   };
 
   const currentValues = {

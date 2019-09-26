@@ -3,14 +3,14 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import React from "react";
 import { useSelector } from "react-redux";
 import Notifier from "./Notifier";
-import { deepPurple, amber, brown } from "@material-ui/core/colors";
+import { teal, amber, brown } from "@material-ui/core/colors";
 
 function ThemeWrapper({ children }) {
   const { type } = useSelector(state => state.themeReducer);
 
   const muiTheme = createMuiTheme({
     palette: {
-      primary: deepPurple,
+      primary: teal,
       secondary: type === "light" ? brown : amber,
       type: type
     },

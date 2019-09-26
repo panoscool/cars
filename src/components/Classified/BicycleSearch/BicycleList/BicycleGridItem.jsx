@@ -1,13 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography
-} from "@material-ui/core";
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   media: {
@@ -20,26 +14,24 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard(props) {
   const classes = useStyles();
-  const { title, price, category, img, id } = props;
+  const { manufacturer, price, category, img, id } = props;
   return (
     <Card className="card">
       <CardActionArea component={Link} to={`/bicycle/${id}`}>
         <CardMedia
           className={classes.media}
           component="img"
-          alt={title}
+          alt={manufacturer}
           height="120"
           image={img}
-          title={title}
+          title={manufacturer}
         />
         <CardContent>
           <Typography gutterBottom variant="subtitle1" component="h2">
-            {title}
+            {manufacturer}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <span>
-              &euro; {price} &bull; {category}
-            </span>
+            <span> &euro; {price} &bull; {category} </span>
           </Typography>
         </CardContent>
       </CardActionArea>

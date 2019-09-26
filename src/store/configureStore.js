@@ -24,5 +24,3 @@ store.subscribe(throttle(() => {
   });
 }, 1000)
 );
-
-console.log("persistedState", persistedState);

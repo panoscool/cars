@@ -7,17 +7,7 @@ const ClassifiedList = ({ view, bicycles }) => {
     return (
       <div className="grid-view">
         {bicycles.map(bicycle => (
-          <BicycleGridItem
-            key={bicycle.id}
-            id={bicycle.id}
-            title={bicycle.manufacturer}
-            price={bicycle.price}
-            color={bicycle.color}
-            category={bicycle.category}
-            purchased={bicycle.purchased}
-            gears={bicycle.gears}
-            img={bicycle.img}
-          />
+          <BicycleGridItem key={bicycle.id} {...bicycle} />
         ))}
       </div>
     );
@@ -25,17 +15,7 @@ const ClassifiedList = ({ view, bicycles }) => {
     return (
       <div>
         {bicycles.map(bicycle => (
-          <BicycleListItem
-            key={bicycle.id}
-            id={bicycle.id}
-            title={bicycle.manufacturer}
-            price={bicycle.price}
-            color={bicycle.color}
-            category={bicycle.category}
-            purchased={bicycle.purchased}
-            gears={bicycle.gears}
-            img={bicycle.img}
-          />
+          <BicycleListItem key={bicycle.id} {...bicycle} />
         ))}
       </div>
     );
