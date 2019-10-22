@@ -1,8 +1,4 @@
-import {
-  asyncActionStart,
-  asyncActionFinish,
-  asyncActionError
-} from "./asyncActions";
+import { asyncActionStart, asyncActionFinish, asyncActionError } from "./asyncActions";
 import { openSnackbar } from "./notificationActions";
 
 export async function asyncAction(dispatch, actionCallback) {

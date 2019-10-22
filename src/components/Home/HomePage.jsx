@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 function HomePage() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { bicycles } = useSelector(state => state.bicycleReducer)
+  const { bicycles } = useSelector(state => state.bicycleReducer);
 
   useEffect(() => {
     dispatch(fetchBicycles());
