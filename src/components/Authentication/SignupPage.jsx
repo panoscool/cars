@@ -1,8 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import AuthForm from "./AuthForm";
 
-function SignupPage({ loading }) {
+function SignupPage() {
+  const { loading } = useSelector(state => state.asyncReducer);
+
   const handleSubmit = data => {
     console.log(data);
   };
@@ -17,9 +19,4 @@ function SignupPage({ loading }) {
   );
 }
 
-const mapStateToProps = ({ asyncReducer }) => ({
-  loading: asyncReducer.loading,
-  error: asyncReducer.error
-});
-
-export default connect(mapStateToProps)(SignupPage);
+export default SignupPage;

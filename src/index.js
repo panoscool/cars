@@ -6,16 +6,13 @@ import "./index.css";
 import App from "./App";
 import history from "./history";
 import { store } from "./store/configureStore";
-import LanguageProvider from "./LanguageContext";
 import * as serviceWorker from "./serviceWorker";
 
 const app = (
   <Provider store={store}>
-    <LanguageProvider>
-      <Router history={history}>
-        <App />
-      </Router>
-    </LanguageProvider>
+    <Router history={history}>
+      <App />
+    </Router>
   </Provider>
 );
 

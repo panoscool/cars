@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container, Grid, Hidden } from "@material-ui/core";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import ClassifiedDetails from "./ClassifiedDetails";
@@ -12,14 +12,14 @@ import { infoArray, sellerDetails, checkBoxes } from "./InfoDataArray";
 import ImageCarousel from "./ImageCarousel";
 import { fetchBicycle } from '../../../store/actions/bicycleActions'
 
-const BicycleDetails = props => {
+const BicycleDetails = ({ match: { params } }) => {
+  const dispatch = useDispatch();
+  const { bicycle } = useSelector(state => state.bicycleReducer);
   const { width } = useWindowDimensions();
 
-  const { fetchBicycle, match: { params }, bicycle } = props
-
   useEffect(() => {
-    fetchBicycle(params.id)
-  }, [params.id, fetchBicycle])
+    dispatch(fetchBicycle(params.id));
+  }, [params.id, dispatch])
 
   return (
     <Container maxWidth="lg">
@@ -48,8 +48,4 @@ const BicycleDetails = props => {
   );
 };
 
-const mapStateToProps = ({ bicycleReducer }) => ({
-  bicycle: bicycleReducer.bicycle
-})
-
-export default connect(mapStateToProps, { fetchBicycle })(BicycleDetails);
+export default BicycleDetails;

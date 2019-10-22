@@ -1,12 +1,12 @@
-import React, { useEffect, useContext } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Container } from "@material-ui/core";
 import { Search, Edit } from "@material-ui/icons";
 import LatestClassifiedList from "../Classified/LatestClassifieds/LatestClassifiedList";
 import { fetchBicycles } from "../../store/actions/bicycleActions";
-import { LanguageContext } from "../../LanguageContext";
+import { lang } from '../../services/lang';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -25,14 +25,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const HomePage = ({ fetchBicycles, bicycles }) => {
+function HomePage() {
   const classes = useStyles();
-  const { lang } = useContext(LanguageContext);
+  const dispatch = useDispatch();
+  const { bicycles } = useSelector(state => state.bicycleReducer)
 
   useEffect(() => {
-    fetchBicycles();
-  }, [fetchBicycles]);
-  console.log("home component", lang);
+    dispatch(fetchBicycles());
+  }, [dispatch]);
 
   return (
     <Container maxWidth="lg">
@@ -85,11 +85,4 @@ const HomePage = ({ fetchBicycles, bicycles }) => {
   );
 };
 
-const mapStateToProps = ({ bicycleReducer }) => ({
-  bicycles: bicycleReducer.bicycles
-});
-
-export default connect(
-  mapStateToProps,
-  { fetchBicycles }
-)(HomePage);
+export default HomePage;

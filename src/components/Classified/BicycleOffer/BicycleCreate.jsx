@@ -1,12 +1,13 @@
 import React from "react";
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import BicycleForm from "./BicycleForm";
 import { createBicycle } from '../../../store/actions/bicycleActions'
 
-const BicycleCreate = ({ createBicycle }) => {
+const BicycleCreate = () => {
+  const dispatch = useDispatch();
 
   const onSubmit = data => {
-    createBicycle(data)
+    dispatch(createBicycle(data));
   };
 
   const requiredInfos = (
@@ -19,8 +20,4 @@ const BicycleCreate = ({ createBicycle }) => {
   return <BicycleForm onSubmit={onSubmit} requiredInfos={requiredInfos} />;
 };
 
-const mapStateToProps = ({ bicycleReducer }) => ({
-  bicycleObj: bicycleReducer.bicycle
-})
-
-export default connect(mapStateToProps, { createBicycle })(BicycleCreate);
+export default BicycleCreate;

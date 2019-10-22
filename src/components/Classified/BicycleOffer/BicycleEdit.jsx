@@ -1,49 +1,50 @@
 import React, { useEffect } from "react";
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import BicycleForm from "./BicycleForm";
-import { fetchBicycle, updateBicycle } from '../../../store/actions/bicycleActions'
+import { fetchBicycle, updateBicycle } from '../../../store/actions/bicycleActions';
 
-const BicycleEdit = props => {
-  const { fetchBicycle, updateBicycle, match: { params }, bicycleObj } = props
+const BicycleEdit = ({ match: { params } }) => {
+  const dispatch = useDispatch();
+  const { bicycle } = useSelector(state => state.bicycleReducer);
 
   useEffect(() => {
-    fetchBicycle(params.id)
-  }, [params.id, fetchBicycle])
+    dispatch(fetchBicycle(params.id));
+  }, [params.id, dispatch])
 
   const onSubmit = data => {
-    updateBicycle(params.id, data);
+    dispatch(updateBicycle(params.id, data));
   };
 
   const currentValues = {
-    variant: bicycleObj.variant,
-    owners: bicycleObj.owners,
-    price: bicycleObj.price,
-    frameSize: bicycleObj.frameSize,
-    rimSize: bicycleObj.rimSize,
-    description: bicycleObj.description,
-    youTube: bicycleObj.youTube,
-    password: bicycleObj.password,
-    userName: bicycleObj.userName,
-    email: bicycleObj.email,
-    phone1: bicycleObj.phone1,
-    location: bicycleObj.location,
-    year: bicycleObj.year
+    variant: bicycle.variant,
+    owners: bicycle.owners,
+    price: bicycle.price,
+    frameSize: bicycle.frameSize,
+    rimSize: bicycle.rimSize,
+    description: bicycle.description,
+    youTube: bicycle.youTube,
+    password: bicycle.password,
+    userName: bicycle.userName,
+    email: bicycle.email,
+    phone1: bicycle.phone1,
+    location: bicycle.location,
+    year: bicycle.year
   };
 
   const currentCheckBoxState = {
-    negotiable: bicycleObj.negotiable,
-    womens: bicycleObj.womens,
-    mens: bicycleObj.mens,
-    dynamoLights: bicycleObj.dynamoLights,
-    ledLights: bicycleObj.ledLights,
-    shockAbsorber: bicycleObj.shockAbsorber,
-    fenders: bicycleObj.fenders,
-    singleSpeed: bicycleObj.singleSpeed,
-    interiorSpeed: bicycleObj.interiorSpeed,
-    exteriorSpeed: bicycleObj.exteriorSpeed,
-    antique: bicycleObj.antique,
-    basket: bicycleObj.basket,
-    cargoRack: bicycleObj.cargoRack
+    negotiable: bicycle.negotiable,
+    womens: bicycle.womens,
+    mens: bicycle.mens,
+    dynamoLights: bicycle.dynamoLights,
+    ledLights: bicycle.ledLights,
+    shockAbsorber: bicycle.shockAbsorber,
+    fenders: bicycle.fenders,
+    singleSpeed: bicycle.singleSpeed,
+    interiorSpeed: bicycle.interiorSpeed,
+    exteriorSpeed: bicycle.exteriorSpeed,
+    antique: bicycle.antique,
+    basket: bicycle.basket,
+    cargoRack: bicycle.cargoRack
   };
 
   return (
@@ -55,9 +56,4 @@ const BicycleEdit = props => {
   );
 };
 
-const mapStateToProps = ({ bicycleReducer }) => ({
-  bicycleObj: bicycleReducer.bicycle
-})
-
-
-export default connect(mapStateToProps, { fetchBicycle, updateBicycle })(BicycleEdit);
+export default BicycleEdit;

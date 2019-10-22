@@ -1,13 +1,20 @@
+import React, { useState } from "react";
+import { makeStyles } from '@material-ui/core/styles';
 import { Menu, MenuItem, Button } from "@material-ui/core";
-import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { LanguageContext } from '../../../LanguageContext';
+import { getLanguageList, lang } from '../../../services/lang';
 import { setLanguage } from '../../../store/actions/languageActions';
 
+const useStyles = makeStyles((theme) => ({
+  activeMenuItem: {
+    fontWeight: 'bold',
+  }
+}));
+
 function LanguageSwitcher() {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const { lang, languages } = useContext(LanguageContext)
-  const { language } = useSelector(state => state.languageReducer);
+  const { langKey } = useSelector(state => state.languageReducer);
   const dispatch = useDispatch();
 
   function handleClick(event) {
@@ -31,7 +38,7 @@ function LanguageSwitcher() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        {language.toUpperCase()}
+        {langKey.toUpperCase()}
       </Button>
       <Menu
         id="menu-appbar"
@@ -39,9 +46,9 @@ function LanguageSwitcher() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {languages().map(lg => (
-          <MenuItem key={lg} onClick={() => handleLanguage(lg)}>
-            {language === lg ? "-" : ""} {lang(lg).toUpperCase()}
+        {getLanguageList().map(lg => (
+          <MenuItem key={lg} onClick={() => handleLanguage(lg)} className={langKey === lg ? classes.activeMenuItem : null}>
+            {lang(lg)}
           </MenuItem>
         ))}
       </Menu>

@@ -1,12 +1,15 @@
 import React, { Fragment, useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SimilarClassifiedsList from './SimilarClassifiedsList'
 import { fetchBicycles } from '../../../../store/actions/bicycleActions'
 
-const SimilarClassifieds = ({ bicycles, fetchBicycles }) => {
+const SimilarClassifieds = () => {
+  const dispatch = useDispatch();
+  const { bicycles } = useSelector(state => state.bicycleReducer);
+
   useEffect(() => {
-    fetchBicycles()
-  }, [fetchBicycles])
+    dispatch(fetchBicycles());
+  }, [dispatch])
 
   return (
     <Fragment>
@@ -24,8 +27,4 @@ const SimilarClassifieds = ({ bicycles, fetchBicycles }) => {
   )
 }
 
-const mapStateToProps = ({ bicycleReducer }) => ({
-  bicycles: bicycleReducer.bicycles
-})
-
-export default connect(mapStateToProps, { fetchBicycles })(SimilarClassifieds)
+export default SimilarClassifieds;
